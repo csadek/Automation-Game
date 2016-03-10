@@ -9,7 +9,7 @@ class BaseTestCase(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
-
+        self.driver.maximize_window()
        # navigate to the application home page
         self.driver.get('http://10.1.22.67/jamaica/')
 
