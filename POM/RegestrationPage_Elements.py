@@ -6,12 +6,10 @@ from Utilities import ReadExcel
 from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Firefox()
-
 driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
 driver.implicitly_wait(30)
 
-class RegestartionPageObject(webdriver):
-    #def __init__(self, webdriver):
+class RegistrationPageObject(webdriver):
 
     Email = driver.find_element_by_name('email')
     Nickname = driver.find_element_by_id('pseudo')
@@ -23,20 +21,18 @@ class RegestartionPageObject(webdriver):
     Address = driver.find_element_by_id('adresse')
     Zipcode = driver.find_element_by_id('code_postal')
     Town = driver.find_element_by_id('ville')
-    Title = driver.find_elements_by_xpath(
-        "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div/form/div[2]/div[1]/span[2]/input[3]")[0]
+    Title = driver.find_elements_by_xpath("/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div/form/div[2]/div[1]/span[2]/input[3]")[0]
     Capacity = select_capacity = driver.find_element_by_id("fonction")
     Country = select_Country = driver.find_element_by_id("pays")
     How_do_you_know_our_website = select_Howdoyouknowourwebsite = driver.find_element_by_id("origin")
     FirstSelection = driver.find_element_by_id('newsletter')
     SecondSelection = driver.find_element_by_id('commercial')
 
-    #Read = ReadExcel.get_data( '../Utilities/Data.xls','Regestration')
-    #data(*(Read))
-    @data(*(ReadExcel.ReadExcel.get_data( '../Utilities/Data.xls','Regestration')))
+    Read = ReadExcel.ReadExcel.get_data('../Utilities/Data.xls', 'Registration')
+    data(*(Read))
+    #@data(*(ReadExcel.ReadExcel.get_data('../Utilities/Data.xls', 'Registration')))
     @unpack
-    def test_RegestartionPage(self,Email,Nickname,FirstName,Surname,Company,Phone,Mobile,Address,Zipcode,Town):
-
+    def test_registration(self, Email, Nickname, FirstName, Surname, Company, Phone, Mobile, Address, Zipcode,Town):
         self.Email.send_keys(Email)
         self.Nickname.send_keys(Nickname)
         self.FirstName.send_keys(FirstName)
@@ -47,8 +43,7 @@ class RegestartionPageObject(webdriver):
         self.Address.send_keys(Address)
         self.Zipcode.send_keys(Zipcode)
         self.Town.send_keys(Town)
-
-        self.Title.click
+        self.Title.click()
         self.Capacity.send_keys(str("Manager"))
         self.Country.send_keys(str("Egypt"))
         self.How_do_you_know_our_website.send_keys(str("Other"))
@@ -56,4 +51,4 @@ class RegestartionPageObject(webdriver):
         self.SecondSelection.click()
 
 
-webdriver.close()
+driver.close()
