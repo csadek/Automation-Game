@@ -1,12 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from login import login_data
+import xlrd
+
 driver = webdriver.Firefox()
 
 driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
 driver.implicitly_wait(30)
 
-import xlrd
+
 import os.path
 
 file_location = 'C:\Info.xlsx'
