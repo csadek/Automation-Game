@@ -31,9 +31,9 @@ class RegestartionPageObject(webdriver):
     FirstSelection = driver.find_element_by_id('newsletter')
     SecondSelection = driver.find_element_by_id('commercial')
 
-
-
-    @data(*(ReadExcel.get_data( '../Utilities/Data.xls','Regestration')))
+    Read = ReadExcel.get_data( '../Utilities/Data.xls','Regestration')
+    data(*(Read))
+    #@data(*(ReadExcel.get_data( '../Utilities/Data.xls','Regestration')))
     @unpack
     def test_RegestartionPage(self,Email,Nickname,FirstName,Surname,Company,Phone,Mobile,Address,Zipcode,Town):
 
