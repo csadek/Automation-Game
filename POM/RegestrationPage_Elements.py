@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import Select
 from ddt import ddt, data, unpack
 from Tests.Regestration_DataFromExcelsheet import Regestration
 from Utilities import ReadExcel
+from selenium.common.exceptions import NoSuchElementException
 
 driver = webdriver.Firefox()
 
@@ -10,7 +11,13 @@ driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
 driver.implicitly_wait(30)
 
 class RegestartionPageObject(webdriver):
-    Email = webdriver.find_element_by_id('email')
+    #def __init__(self, webdriver):
+    Email = webdriver.find_element_by_name('email')
+    '''try:
+        Email = webdriver.find_element_by_name('email')
+    except NoSuchElementException:
+        webdriver.fail("Could not find 'Email' element on page")'''
+
     Nickname = webdriver.find_element_by_id('pseudo')
     FirstName = webdriver.find_element_by_id('prenom')
     Surname = webdriver.find_element_by_id('nom_famille')
