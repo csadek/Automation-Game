@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from login import login_data
+from ddt import ddt, data, unpack
 driver = webdriver.Firefox()
 
 driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
@@ -8,16 +9,19 @@ driver.implicitly_wait(30)
 
 import xlrd
 import os.path
+import unittest
 
-file_location = 'C:\Info.xlsx'
-workbook = xlrd.open_workbook(file_location)
-workbook = xlrd.open_workbook('C:\Info.xlsx')
-inputfields = []
-#worksheet = workbook.sheet_by_indix(0)
-worksheet = workbook.sheet_by_name('Sheet1')
-for current_row in range(worksheet.nrows):
-    inputfields.append(worksheet.cell_value(current_row,0))
-print(inputfields)
+class Regestration(unittest.TestCase):
+    def InsertData(self):
+        file_location = 'C:\Info.xlsx'
+        workbook = xlrd.open_workbook(file_location)
+        workbook = xlrd.open_workbook('C:\Info.xlsx')
+        inputfields = []
+        #worksheet = workbook.sheet_by_indix(0)
+        worksheet = workbook.sheet_by_name('Sheet1')
+        for current_row in range(worksheet.nrows):
+            inputfields.append(worksheet.cell_value(current_row,0))
+        print(inputfields)
 """  Email_text = worksheet.row(current_row)[0]
     Nickname_text = worksheet.row(current_row)[0][1]
     FirstName_text = worksheet.row(current_row)[0][2]

@@ -12,32 +12,28 @@ driver.implicitly_wait(30)
 
 class RegestartionPageObject(webdriver):
     #def __init__(self, webdriver):
-    Email = webdriver.find_element_by_name('email')
-    '''try:
-        Email = webdriver.find_element_by_name('email')
-    except NoSuchElementException:
-        webdriver.fail("Could not find 'Email' element on page")'''
 
-    Nickname = webdriver.find_element_by_id('pseudo')
-    FirstName = webdriver.find_element_by_id('prenom')
-    Surname = webdriver.find_element_by_id('nom_famille')
-    Company = webdriver.find_element_by_id('societe')
-    Phone = webdriver.find_element_by_id('telephone')
-    Mobile = webdriver.find_element_by_id('societe')
-    Address = webdriver.find_element_by_id('adresse')
-    Zipcode = webdriver.find_element_by_id('code_postal')
-    Town = webdriver.find_element_by_id('ville')
-    Title = webdriver.find_elements_by_xpath(
+    Email = driver.find_element_by_name('email')
+    Nickname = driver.find_element_by_id('pseudo')
+    FirstName = driver.find_element_by_id('prenom')
+    Surname = driver.find_element_by_id('nom_famille')
+    Company = driver.find_element_by_id('societe')
+    Phone = driver.find_element_by_id('telephone')
+    Mobile = driver.find_element_by_id('societe')
+    Address = driver.find_element_by_id('adresse')
+    Zipcode = driver.find_element_by_id('code_postal')
+    Town = driver.find_element_by_id('ville')
+    Title = driver.find_elements_by_xpath(
         "/html/body/div[1]/div[1]/div[1]/div/div/div[2]/div/form/div[2]/div[1]/span[2]/input[3]")[0]
-    Capacity = select_capacity = webdriver.find_element_by_id("fonction")
-    Country = select_Country = webdriver.find_element_by_id("pays")
-    How_do_you_know_our_website = select_Howdoyouknowourwebsite = webdriver.find_element_by_id("origin")
-    FirstSelection = webdriver.find_element_by_id('newsletter')
-    SecondSelection = webdriver.find_element_by_id('commercial')
+    Capacity = select_capacity = driver.find_element_by_id("fonction")
+    Country = select_Country = driver.find_element_by_id("pays")
+    How_do_you_know_our_website = select_Howdoyouknowourwebsite = driver.find_element_by_id("origin")
+    FirstSelection = driver.find_element_by_id('newsletter')
+    SecondSelection = driver.find_element_by_id('commercial')
 
 
 
-    @data(*ReadExcel.get_data( '../Utilities/Data.xls','Regestration'))
+    @data(*(ReadExcel.get_data( '../Utilities/Data.xls','Regestration')))
     @unpack
     def test_RegestartionPage(self,Email,Nickname,FirstName,Surname,Company,Phone,Mobile,Address,Zipcode,Town):
 
