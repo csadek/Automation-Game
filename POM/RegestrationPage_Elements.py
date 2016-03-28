@@ -4,14 +4,18 @@ from ddt import ddt, data, unpack
 from Tests.Regestration_DataFromExcelsheet import Regestration
 from Utilities import ReadExcel
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
 driver = webdriver.Firefox()
 driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
 driver.implicitly_wait(30)
 
-class RegistrationPageObject(webdriver):
+class RegistrationPageObject(driver):
+    def __init__(self):
+        driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
+        driver.implicitly_wait(30)
 
-    Email = driver.find_element_by_name('email')
+    Email = driver.find_element_by_class_name('email')
     Nickname = driver.find_element_by_id('pseudo')
     FirstName = driver.find_element_by_id('prenom')
     Surname = driver.find_element_by_id('nom_famille')

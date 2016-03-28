@@ -1,15 +1,21 @@
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from HelpReferences import basetestcase
 
-
-class LoginPageObject(webdriver):
-    login = webdriver.find_element_by_class_name("header_user_text")
-    Username = webdriver.find_element_by_name("email")
-    Password = webdriver.find_element_by_name("mot_passe")
-    Submit = webdriver.find_element_by_class_name("btn-success")
+class LoginPageObject(basetestcase):
+    login = By.CLASS_NAME("header_user_text")
+    Username = By.NAME("email")
+    Password = By.NAME("mot_passe")
+    Submit = By.CLASS_NAME("btn-success")
 
     def test_search_products(self, username, password):
         self.login.click()
         self.Username.send_keys(username)
         self.Password.send_keys(password)
         self.Submit.click()
+
+  '''  def test_search_products(self, username, password):
+        self.login.click()
+        self.Username.send_keys(username)
+        self.Password.send_keys(password)
+        self.Submit.click()
+'''

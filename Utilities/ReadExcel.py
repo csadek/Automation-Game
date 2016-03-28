@@ -1,8 +1,10 @@
 import xlrd
 
 class ReadExcel:
-    """ This class to read data from excel sheets """
-    def get_data(file_path,sheetname):
+        """ This class to read data from excel sheets """
+
+
+def get_data(self,file_path,sheetname):
         # create an empty list to store rows
         rows = []
         # open the specified Excel spreadsheet as workbook

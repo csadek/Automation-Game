@@ -4,21 +4,19 @@ from datetime import datetime
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from DataSourceFiles.readxml import Read_Xml
 
 
-class basetestcase(unittest.TestCase):
-
+class BaseTestCase(unittest.TestCase):
 
     def setUp(self):
 
         self.driver = webdriver.Firefox()
         self.driver.maximize_window()
         # get app url
-        url = Read_Xml.read_tag_attribute_from_xml('../DatasourceFiles/configuration.xml', 'url')
+        #url = Read_Xml.read_tag_attribute_from_xml('../DatasourceFiles/configuration.xml', 'url')
+        url = 'http://10.1.22.67/Jamaica/membre.php'
         # navigate to the application home page
         self.driver.get(url)
-
 
     def tearDown(self):
         # close the browser window

@@ -34,21 +34,3 @@ class LoginPage(BaseTestCase):
         self.set_password(password)
         self.set_email(email)
         self.click_submit()
-
-   ''' def __init__(self, driver):
-        super(LoginPage, self).__init__(driver)
-
-    def login_with_invalid_credentials(self, username, password):
-        self.driver.find_element(*LoginPage.USERNAME).send_keys(username)
-        self.driver.find_element(*LoginPage.PASSWORD).send_keys(password)
-        self.driver.find_element(*LoginPage.LOGIN_BTN).click()
-        error_lbl = self.driver.find_element(*LoginPage.Error_LBL)
-
-    def login_with_valid_credentials(self, username, password):
-
-        self.driver.find_element(*LoginPage.USERNAME).send_keys(username)
-        self.driver.find_element(*LoginPage.PASSWORD).send_keys(password)
-        self.driver.find_element(*LoginPage.LOGIN_BTN).click()'''
-
-
-
