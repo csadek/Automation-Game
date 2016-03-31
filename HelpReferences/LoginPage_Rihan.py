@@ -6,31 +6,23 @@ class LoginPage(BaseTestCase):
     """ this class represent login page elements manipulations and functions"""
 
     # Locators
-    USERNAME = (By.ID, 'email')
-    PASSWORD = (By.ID, 'mot_passe')
-    LOGIN_BTN = (By.CLASS_NAME, 'btn btn-primary')
-    Error_LBL = (By.CLASS_NAME, 'alert alert-danger fade in')
+    USERNAME = (By.CSS_SELECTOR, 'div:nth-child(1) > div > div > div.middle_column_repeat > div > div:nth-child(2) > form > table > tbody > tr:nth-child(1) > td:nth-child(2) > input')
+    PASSWORD = (By.CSS_SELECTOR, 'div:nth-child(2) > form > table > tbody > tr:nth-child(2) > td:nth-child(2) > input')
+    LOGIN_BTN = (By.CSS_SELECTOR, 'tr:nth-child(3) > td > p > input.btn.btn-primary')
+    Error_LBL = (By.CSS_SELECTOR, 'tr:nth-child(1) > td:nth-child(2) > div.alert.alert-danger.fade.in')
 
     def __init__(self, driver):
         super(LoginPage, self).__init__(driver)
 
-    def set_email(self, email):
-        emailElement = self.driver.find_element(*LoginPage.USERNAME)
-        emailElement.send_keys(email)
-
     def login_error_displayed(self):
         notifcationElement = self.driver.find_element(*LoginPage.Error_LBL)
         return notifcationElement.is_displayed()
-
-    def set_password(self, password):
-        pwordElement = self.driver.find_element(*LoginPage.PASSWORD)
-        pwordElement.send_keys(password)
 
     def click_submit(self):
         submitBttn = self.driver.find_element(*LoginPage.LOGIN_BTN)
         submitBttn.click()
 
     def login(self, email, password):
-        self.set_password(password)
-        self.set_email(email)
+        self.driver.find_element(*LoginPage.USERNAME).send_keys(email)
+        self.driver.find_element(*LoginPage.PASSWORD).send_keys(password)
         self.click_submit()

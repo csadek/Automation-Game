@@ -4,9 +4,11 @@ from HelpReferences import LoginPage_Rihan
 
 
 class LoginTests_Rihan(BaseTestCase):
-    def test_login(self, username, password):
-        username = 'eng.mohammadrihan@gmail.com'
-        password = 'h0tr1ngG'
+
+    def test_login(self):
+        login=LoginPage_Rihan
+        login.LoginPage.login(self,'eng.mohammadrihan@gmail.com','h0tr1ngG')
+
 
     def test_login_incorrect_email(self):
        login_page = LoginPage_Rihan.LoginPage(self.driver)
