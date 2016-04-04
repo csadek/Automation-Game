@@ -6,8 +6,7 @@ class RegistrationPageObject(BasePageObject):
     """ this class represent Registration elements manipulations and functions"""
 
     # Locators
-
-    Email = By.CSS_SELECTOR('#email')
+    Email = By.ID('email')
     Nickname = By.ID('pseudo')
     FirstName = By.ID('prenom')
     Surname = By.ID('nom_famille')
