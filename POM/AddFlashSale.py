@@ -7,6 +7,7 @@ class AddFlashSale(BasePageObject):
     """ this class represent login page elements manipulations and functions"""
 
     # Locators
+    # admin- product details - add flash sale details- save
 
 
     def __init__(self, driver):

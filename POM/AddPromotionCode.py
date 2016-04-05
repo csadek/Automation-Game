@@ -7,6 +7,7 @@ class AddPromotionCode(BasePageObject):
     """ this class represent login page elements manipulations and functions"""
 
     # Locators
+    # Users --customer loyalty - coupon codes
 
 
     def __init__(self, driver):
