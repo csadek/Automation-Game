@@ -1,5 +1,6 @@
 import xlrd
 
+
 class ReadExcel:
         """ This class to read data from excel sheets """
 

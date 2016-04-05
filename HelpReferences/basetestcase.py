@@ -14,7 +14,7 @@ class BaseTestCase(unittest.TestCase):
         self.driver.maximize_window()
         # get app url
         #url = Read_Xml.read_tag_attribute_from_xml('../DatasourceFiles/configuration.xml', 'url')
-        url = 'http://10.1.22.67/Jamaica/membre.php'
+        url = 'http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php'
         # navigate to the application home page
         self.driver.get(url)
 

@@ -2,7 +2,10 @@ import xlrd
 import os.path
 import unittest
 
-class Regestration(unittest.TestCase):
+
+class ReadData:
+    """ This class to read data from excel sheets """
+
     def InsertData(self):
         file_location = 'C:\Info.xlsx'
         workbook = xlrd.open_workbook(file_location)
