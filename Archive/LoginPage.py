@@ -13,7 +13,7 @@ class LoginPageObject(basetestcase):
         self.Password.send_keys(password)
         self.Submit.click()
 
-  '''  def test_search_products(self, username, password):
+'''  def test_search_products(self, username, password):
         self.login.click()
         self.Username.send_keys(username)
         self.Password.send_keys(password)

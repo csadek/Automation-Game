@@ -35,7 +35,7 @@ class LoginPage(BaseTestCase):
         self.set_email(email)
         self.click_submit()
 
-   ''' def __init__(self, driver):
+''' def __init__(self, driver):
         super(LoginPage, self).__init__(driver)
 
     def login_with_invalid_credentials(self, username, password):
