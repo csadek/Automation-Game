@@ -7,7 +7,7 @@ from selenium import webdriver
 class BaseTestCase(unittest.TestCase):
 
     @classmethod
-    def setUp(cls):
+    def setUpClass(cls):
         cls.driver = webdriver.Firefox()
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
@@ -15,7 +15,7 @@ class BaseTestCase(unittest.TestCase):
         cls.driver.get('http://10.1.22.67/Jamaica/membre.php')
 
     @classmethod
-    def tearDown(cls):
+    def tearDownClass(cls):
         # close the browser window
         cls.driver.quit()
 
