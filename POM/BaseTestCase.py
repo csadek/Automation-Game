@@ -7,17 +7,17 @@ from selenium import webdriver
 class BaseTestCase(unittest.TestCase):
 
     @classmethod
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+    def setUpClass(cls):
+        cls.driver = webdriver.Firefox()
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
         # navigate to the application home page
-        self.driver.get('http://10.1.22.67/jamaica/')
+        cls.driver.get('http://10.1.22.67/Jamaica/membre.php')
 
     @classmethod
-    def tearDown(self):
+    def tearDownClass(cls):
         # close the browser window
-        self.driver.quit()
+        cls.driver.quit()
 
 if __name__ == '__main__':
-            unittest.main()
+    unittest.main(verbosity=2)

@@ -4,7 +4,3 @@ import Tests.BaseTestCase
 
 
 class searchTests(BaseTestCase):
-
-
-
-
