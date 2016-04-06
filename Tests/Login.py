@@ -4,8 +4,8 @@ from POM.LoginPage import LoginPage
 
 class Login(BaseTestCase):
 
-   # def __init__(self):
-     #   self = LoginPage.self
+    def __init__(self,driver):
+        super(Login, self).__init__(driver)
 
     def test_login_incorrect_email(self):
 
