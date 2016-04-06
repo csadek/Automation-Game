@@ -11,6 +11,7 @@ class LoginPage(BaseTestCase):
     Error_LBL = (By.CSS_SELECTOR, 'tr:nth-child(1) > td:nth-child(2) > div.alert.alert-danger.fade.in')
     Error_LBL2 = (By.CSS_SELECTOR, 'tr:nth-child(2) > td:nth-child(2) > div.alert.alert-danger.fade.in')
 
+
     def login_with_Invalid_credentials(self, username, password):
         self.driver.find_element(*LoginPage.USERNAME).send_keys(username)
         self.driver.find_element(*LoginPage.PASSWORD).send_keys(password)
