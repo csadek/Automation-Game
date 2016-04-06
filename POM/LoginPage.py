@@ -18,6 +18,8 @@ class LoginPage(BaseTestCase):
         self.driver.find_element(*LoginPage.LOGIN_BTN).click()
         error_LBL = self.driver.find_element(*LoginPage.Error_LBL)
         self.assertTrue(error_LBL.is_displayed())
+        self.driver.find_element(*LoginPage.USERNAME).clear()
+        self.driver.find_element(*LoginPage.PASSWORD).clear()
 
     def login_with_Invalid_credentials2(self, username, password):
         self.driver.find_element(*LoginPage.USERNAME).send_keys(username)
@@ -25,6 +27,8 @@ class LoginPage(BaseTestCase):
         self.driver.find_element(*LoginPage.LOGIN_BTN).click()
         error_LBL = self.driver.find_element(*LoginPage.Error_LBL2)
         self.assertTrue(error_LBL.is_displayed())
+        self.driver.find_element(*LoginPage.USERNAME).clear()
+        self.driver.find_element(*LoginPage.PASSWORD).clear()
 
     def login_with_valid_credentials(self, username, password):
         self.driver.find_element(*LoginPage.USERNAME).send_keys(username)
