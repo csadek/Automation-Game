@@ -7,7 +7,7 @@ class welcomepage(basetestcase):
 
     # Locators
     logoutbutton = (By.CLASS_NAME,"btn btn-primary pull-right")
-    logoutbutton.__class__.
+
     def __init__(self):
         pass
 
