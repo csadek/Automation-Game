@@ -19,6 +19,7 @@ class RegistrationPageObject(BasePageObject):
     Town = (By.ID, 'ville')
     Title = (By.CSS_SELECTOR,'div:nth-child(2) > div:nth-child(1) > span.enregistrementdroite > input[type="radio"]:nth-child(1)')
     Capacity = select_capacity = (By.ID, "fonction")
+    DateOfBirth = (By.CSS_SELECTOR,'#naissance')
     Country = select_Country = (By.ID, "pays")
     How_do_you_know_our_website = select_Howdoyouknowourwebsite = (By.ID, "origin")
     FirstSelection = (By.ID, 'newsletter')
@@ -29,7 +30,8 @@ class RegistrationPageObject(BasePageObject):
     def __init__(self, driver):
         super(RegistrationPageObject, self).__init__(driver)
 
-    def Register_with_valid_input(self, email, nickname, password, firstname, surname, company, phone, mobile, zipcode, town, capacity, country, how_do_you_know_our_website, firstSelection, secondSelection):
+    def Register_with_valid_input(self, email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town
+                                  , country, how_do_you_know_our_website):
         self.driver.find_element(*RegistrationPageObject.Email).send_keys(email)
         self.driver.find_element(*RegistrationPageObject.Nickname).send_keys(nickname)
         self.driver.find_element(*RegistrationPageObject.Password).send_keys(password)
@@ -38,15 +40,17 @@ class RegistrationPageObject(BasePageObject):
         self.driver.find_element(*RegistrationPageObject.Company).send_keys(company)
         self.driver.find_element(*RegistrationPageObject.Phone).send_keys(phone)
         self.driver.find_element(*RegistrationPageObject.Mobile).send_keys(mobile)
-        self.driver.find_element(*RegistrationPageObject.Address).send_keys(zipcode)
-        self.driver.find_element(*RegistrationPageObject.Zipcode).send_keys(phone)
+        self.driver.find_element(*RegistrationPageObject.Address).send_keys(address)
+        self.driver.find_element(*RegistrationPageObject.Zipcode).send_keys(zipcode)
+        self.driver.find_element(*RegistrationPageObject.Phone).send_keys(phone)
         self.driver.find_element(*RegistrationPageObject.Town).send_keys(town)
         self.driver.find_element(*RegistrationPageObject.Title).click()
         self.driver.find_element(*RegistrationPageObject.Capacity).send_keys(capacity)
+        self.driver.find_element(*RegistrationPageObject.DateOfBirth).send_keys(dateofbirth)
         self.driver.find_element(*RegistrationPageObject.Country).send_keys(country)
         self.driver.find_element(*RegistrationPageObject.How_do_you_know_our_website).send_keys(how_do_you_know_our_website)
-        self.driver.find_element(*RegistrationPageObject.FirstSelection).send_keys(firstSelection)
-        self.driver.find_element(*RegistrationPageObject.SecondSelection).send_keys(secondSelection)
+        self.driver.find_element(*RegistrationPageObject.FirstSelection).click()
+        self.driver.find_element(*RegistrationPageObject.SecondSelection).click()
         #error_LBL_Email = self.driver.find_element(*RegistrationPageObject.Error_LBL_Email)
         #self.assertTrue(error_LBL_Email.is_displayed())
         self.driver.find_element(*RegistrationPageObject.OpenAccount).click()
