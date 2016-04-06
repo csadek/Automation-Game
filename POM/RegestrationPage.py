@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from Utilities.BasePage_Mahran import BasePageObject
+from POM.BaseTestCase import BaseTestCase
 
 
-class RegistrationPageObject(BasePageObject):
+class RegistrationPageObject(BaseTestCase):
     """ this class represent Registration elements manipulations and functions"""
 
     # Locators
@@ -27,8 +27,6 @@ class RegistrationPageObject(BasePageObject):
     #Error_LBL_Email = (By.CSS_SELECTOR, 'div:nth-child(1) > div:nth-child(1) > div.alert.alert-danger.fade.in')
     OpenAccount = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > div > p.center > input.btn.btn-primary.btn-lg')
 
-    def __init__(self, driver):
-        super(RegistrationPageObject, self).__init__(driver)
 
     def Register_with_valid_input(self, email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town
                                   , country, how_do_you_know_our_website):
