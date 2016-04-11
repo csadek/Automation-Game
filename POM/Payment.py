@@ -62,12 +62,10 @@ class Payment1(BaseTestCase):
     TermsCond = (By.CSS_SELECTOR,'div > p > input[type="checkbox"]')
     NextStep_Btn = (By.CSS_SELECTOR,'div:nth-child(2) > div > div > input')
 
-
     #Page5 'Summary' --> Needs more Verifying and assertions
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
+
     #Page6 'Confirmation page'--> Needs more Verifying and assertions
-
-
     def Pay_Oneproduct(self):
         self.driver.find_element(*Payment1.Product_1).click()
         self.driver.find_element(*Payment1.Quantity_Fld).clear()
@@ -80,6 +78,7 @@ class Payment1(BaseTestCase):
         self.driver.find_element(*Payment1.MeansOfShipping_Lst).click()
         #The next page will be changed according to Means Of Shipping, So in this Method Pickup in store will be chosen
         self.driver.find_element(*Payment1.CompeleteUrOrder_Btn).click()
+
         #Page4 'Payment means'
     def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
         self.driver.find_element(*Payment1.Company_Fld).send_keys(company)
@@ -98,4 +97,4 @@ class Payment1(BaseTestCase):
         self.driver.find_element(*Payment1.NextStep_Btn).click()
         #Page5
         self.driver.find_element(*Payment1.CompleteYourOrder_Page5_Btn).click()
-        #Page6
+        #Page6 'Confirmation page'--> Needs more Verifying and assertions

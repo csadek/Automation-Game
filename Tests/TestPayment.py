@@ -14,6 +14,8 @@ class TestPayment(BaseTestCase):
         Payment1.Billing_Address(self,'Integrant','Rihan','Mohammad','eng.mohammadriihan@gmail.com','012','566st','11411'
                                 ,'FR','France','Thank you')
 
+        Screenshot = self.driver.get_screenshot_as_file('screenshot_PayConfirm.jpg')
+
     '''def Test_Oneproduct(self):
         Payment1.Pay_Oneproduct(self,'France','Pickup in store','Integrant','Rihan','Mohammad','eng.mohammadriihan@gmail.com','012','566st','11411'
                                 ,'FR','France','Thank you')'''
