@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 
 class TestOrder(BaseTestCase):
-    def test_login_valid(self):
+    def test_FollowOrder_valid(self):
         LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         FollowUp_Orders.FollowOrder(self)
         FollowUp_Orders.get_Status_Name(self)
