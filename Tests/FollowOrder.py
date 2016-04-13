@@ -1,7 +1,6 @@
 from POM.FollowUp import FollowUp_Orders
-from HelpReferences.basetestcase import BaseTestCase
+from POM.BaseTestCase import BaseTestCase
 from POM.LoginPage import LoginPage
-from selenium.webdriver.common.by import By
 
 
 class TestOrder(BaseTestCase):

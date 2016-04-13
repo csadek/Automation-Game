@@ -1,5 +1,4 @@
 from POM.RegestrationPage import RegistrationPageObject
-#from HelpReferences.basetestcase import BaseTestCase
 from POM.BaseTestCase import BaseTestCase
 
 
