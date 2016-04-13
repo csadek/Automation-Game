@@ -1,13 +1,17 @@
-
 from selenium.webdriver.common.by import By
-from Utilities.BasePage_Mahran import BasePageObject
+from POM.BaseTestCase import BaseTestCase
 
 
-class AddProduct(BasePageObject):
-    """ this class represent login page elements manipulations and functions"""
+class AddProduct(BaseTestCase):
+
+    """ this class represents add product page elements manipulations and functions"""
 
     # Locators
-    # admin - add product - save
+    AddProductMenu = By.CSS_SELECTOR("a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php?mode=ajout\"]")
+    SelectCategory = By.NAME("categories[]")
+    Position = By.NAME("position")
+
+
 
 
     def __init__(self, driver):
