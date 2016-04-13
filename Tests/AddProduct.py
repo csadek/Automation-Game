@@ -1,10 +1,10 @@
 from POM.PaymentPages import PaymentPages
-from POM.BaseTestCase import BaseTestCase
+from HelpReferences.basetestcase import BaseTestCase
 from POM.LoginPage import LoginPage
 from selenium.webdriver.common.by import By
 
 
-class Payment(BaseTestCase):
+class AddProduct(BaseTestCase):
 
     def test_login_valid(self):
         LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
