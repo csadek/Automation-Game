@@ -14,13 +14,13 @@ class BaseTestCase(unittest.TestCase):
         self.driver.maximize_window()
         # get app url
         #url = Read_Xml.read_tag_attribute_from_xml('../DatasourceFiles/configuration.xml', 'url')
-        url = 'http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php'
+        url = 'http://10.1.22.67/Jamaica/membre.php'
         # navigate to the application home page
         self.driver.get(url)
 
-    def tearDown(self):
+    '''def tearDown(self):
         # close the browser window
-        self.driver.quit()
+        self.driver.quit()'''
 
     def take_screen_shoot(self):
         st = (datetime.now().strftime('%Y-%m-%d %H.%M.%S'))

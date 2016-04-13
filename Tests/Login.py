@@ -4,6 +4,9 @@ from POM.LoginPage import LoginPage
 
 class Login(BaseTestCase):
 
+    def Open(self):
+        LoginPage.Open_Login_Page(self)
+
     def test_login_incorrect(self):
         LoginPage.login_with_Invalid_credentials(self, 'test123@email.com', 'password')
 
