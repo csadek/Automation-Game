@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-from selenium.webdriver.support.ui import Select
 
 
 class SearchPage(BaseTestCase):
@@ -12,7 +11,7 @@ class SearchPage(BaseTestCase):
     AddToCardBtn = (By.NAME,'Add to cart')
     ProductName = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > h1')
 
-    def search_vaild_Data(self,ProductName,CategoryName):
+    def search_valid_Data(self,ProductName,CategoryName):
 
         #Product Name
         self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
@@ -22,7 +21,6 @@ class SearchPage(BaseTestCase):
         #click on GO to find results
         self.driver.find_element(*SearchPage.SearchButton).click()
         self.driver.implicitly_wait(30)
-
 
     def get_Product_Name(self):
         self.driver.implicitly_wait(10)
