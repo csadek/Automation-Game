@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 
-class AddProduct(BaseTestCase):
+class AddProductPage(BaseTestCase):
 
     """ this class represents add product page elements manipulations and functions"""
 
@@ -15,7 +15,7 @@ class AddProduct(BaseTestCase):
 
 
     def __init__(self, driver):
-        super(AddProduct, self).__init__(driver)
+        super(AddProductPage, self).__init__(driver)
 
 
 

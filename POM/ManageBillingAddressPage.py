@@ -2,15 +2,14 @@ from selenium.webdriver.common.by import By
 from Utilities.BasePage_Mahran import BasePageObject
 
 
-class AddPromotionCode(BasePageObject):
+class ManageBillingAddressPage(BasePageObject):
     """ this class represent login page elements manipulations and functions"""
 
     # Locators
-    # Users --customer loyalty - coupon codes
-
+# Login - modify billing address - modify - Change my credentials
 
     def __init__(self, driver):
-        super(AddPromotionCode, self).__init__(driver)
+        super(ManageBillingAddress, self).__init__(driver)
 
 
 

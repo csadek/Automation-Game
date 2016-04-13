@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 
-class RegistrationPageObject(BaseTestCase):
+class RegistrationPage(BaseTestCase):
     """ this class represent Registration elements manipulations and functions"""
 
     # Locators

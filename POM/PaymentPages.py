@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 
-class Payment(BaseTestCase):
+class PaymentPages(BaseTestCase):
     """ this class represent payment1 page elements manipulations and functions"""
 
     # Locators

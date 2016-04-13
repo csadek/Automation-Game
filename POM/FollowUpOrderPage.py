@@ -3,7 +3,7 @@ from POM.BaseTestCase import BaseTestCase
 from selenium import webdriver
 
 
-class FollowUp_Orders(BaseTestCase):
+class FollowUpOrdersPage(BaseTestCase):
     """ this class represent FollowUp_Orders page elements manipulations and functions"""
 
     # Locators
