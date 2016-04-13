@@ -21,6 +21,7 @@ class SearchPage(BaseTestCase):
 
         #click on GO to find results
         self.driver.find_element(*SearchPage.SearchButton).click()
+        self.driver.implicitly_wait(30)
 
 
     def get_Product_Name(self):

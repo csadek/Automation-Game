@@ -7,7 +7,7 @@ class Payment1(BaseTestCase):
 
     # Locators
     #Page1
-    Product_1 = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > span > a > img')
+    Product_1 = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > a > span')
     SearchField = (By.CSS_SELECTOR, '#search_advanced_input')
     Dropdwn_Words = (By.CSS_SELECTOR, 'ul.attribute_select_search.attribute_select_search_part1 > li > select')
     Dropdwn_Cat = (By.CSS_SELECTOR, 'ul.attribute_select_search.attribute_select_search_part2 > li > select')
@@ -17,8 +17,10 @@ class Payment1(BaseTestCase):
     #Sale Time details message = i think it needs iframe becouse if i take the selector, the message words will be taken not the frame itself
 
     #page2
-    Quantity_Fld = (By.CSS_SELECTOR, 'tr > td > div.product_quantity.pull-left > input')
-    AddToCard_Btn = (By.CSS_SELECTOR, 'div.product_order.pull-right > input')
+    Color_Lst = (By.CSS_SELECTOR, '#couleur')
+    Size_Lst = (By.CSS_SELECTOR, '#taille > option:nth-child(5)')
+    Quantity_Fld = (By.CSS_SELECTOR, 'div.product_quantity.pull-left > input')
+    AddToCard_Btn = (By.CSS_SELECTOR, 'tr > td > div.product_order.pull-right > input')
     EditPrdct_AdminLnk = (By.CSS_SELECTOR, 'div.middle_column_repeat > div > p > a')
     PrdctTitle = (By.CSS_SELECTOR, 'div.fp_produit > h1')
     SendEmail_Lnk = (By.CSS_SELECTOR, 'tr.picto-tell_friends > td.txt-tell_friends > a')
@@ -62,16 +64,22 @@ class Payment1(BaseTestCase):
     TermsCond = (By.CSS_SELECTOR,'div > p > input[type="checkbox"]')
     NextStep_Btn = (By.CSS_SELECTOR,'div:nth-child(2) > div > div > input')
 
+
     #Page5 'Summary' --> Needs more Verifying and assertions
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
 
     #Page6 'Confirmation page'--> Needs more Verifying and assertions
     def Pay_Oneproduct(self):
         self.driver.find_element(*Payment1.Product_1).click()
+        self.driver.implicitly_wait(30)
+        self.driver.find_element(*Payment1.Color_Lst).send_keys('Black')
+        self.driver.implicitly_wait(30)
+        self.driver.find_element(*Payment1.Size_Lst).click()
+        self.driver.implicitly_wait(30)
         self.driver.find_element(*Payment1.Quantity_Fld).clear()
         self.driver.find_element(*Payment1.Quantity_Fld).send_keys('1')
         self.driver.find_element(*Payment1.AddToCard_Btn).click()
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(30)
         self.driver.find_element(*Payment1.YourCart_Btn).click()
         self.driver.find_element(*Payment1.ShippingZone_Lst).click()
         self.driver.implicitly_wait(30)

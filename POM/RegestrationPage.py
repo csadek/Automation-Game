@@ -22,10 +22,12 @@ class RegistrationPageObject(BaseTestCase):
     DateOfBirth = (By.CSS_SELECTOR,'#naissance')
     Country = select_Country = (By.ID, "pays")
     How_do_you_know_our_website = select_Howdoyouknowourwebsite = (By.ID, "origin")
+    Code = (By.CSS_SELECTOR,'#code')
     FirstSelection = (By.ID, 'newsletter')
     SecondSelection = (By.ID, 'commercial')
     #Error_LBL_Email = (By.CSS_SELECTOR, 'div:nth-child(1) > div:nth-child(1) > div.alert.alert-danger.fade.in')
     OpenAccount = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > div > p.center > input.btn.btn-primary.btn-lg')
+    Thanks_Msg = (By.CSS_SELECTOR, 'div.middle_column_repeat > p')
 
 
     def Register_with_valid_input(self, email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town
@@ -47,8 +49,13 @@ class RegistrationPageObject(BaseTestCase):
         self.driver.find_element(*RegistrationPageObject.DateOfBirth).send_keys(dateofbirth)
         self.driver.find_element(*RegistrationPageObject.Country).send_keys(country)
         self.driver.find_element(*RegistrationPageObject.How_do_you_know_our_website).send_keys(how_do_you_know_our_website)
+        self.driver.find_element(*RegistrationPageObject.Code).send_keys('12340')
         self.driver.find_element(*RegistrationPageObject.FirstSelection).click()
         self.driver.find_element(*RegistrationPageObject.SecondSelection).click()
         #error_LBL_Email = self.driver.find_element(*RegistrationPageObject.Error_LBL_Email)
         #self.assertTrue(error_LBL_Email.is_displayed())
         self.driver.find_element(*RegistrationPageObject.OpenAccount).click()
+
+    def get_Thanks_Msg(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(*RegistrationPageObject.Thanks_Msg).text
