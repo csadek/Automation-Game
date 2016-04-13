@@ -9,7 +9,7 @@ class ProductDetailsPage(BasePageObject):
 
 
     def __init__(self, driver):
-        super(ProductDetails, self).__init__(driver)
+        super(ProductDetailsPage, self).__init__(driver)
 
 
 

@@ -14,20 +14,20 @@ class FollowUpOrdersPage(BaseTestCase):
     OrderNumber = (By.CSS_SELECTOR, 'div.middle_column_repeat > div > table > tbody > tr:nth-child(1) > td:nth-child(2)')
 
     def FollowOrder(self):
-        self.driver.find_element(*FollowUp_Orders.FollowUp_Orders_Lnk).click()
+        self.driver.find_element(*FollowUpOrdersPage.FollowUp_Orders_Lnk).click()
         #text = self.driver.find_element(*FollowUp_Orders.FollowUp_Orders_Lnk).text
         #self.assertEqual(self,text,'Payment pending')
     def get_Status_Name(self):
         self.driver.implicitly_wait(10)
         PaymentStatus_Lnk_LBL = (By.CSS_SELECTOR, 'tr:nth-child(1) > td:nth-child(4) > a')
-        return self.driver.find_element(*FollowUp_Orders.PaymentStatus_Lnk).text
+        return self.driver.find_element(*FollowUpOrdersPage.PaymentStatus_Lnk).text
 
     def ClickOnStatus(self):
-        self.driver.find_element(*FollowUp_Orders.PaymentStatus_Lnk).click()
+        self.driver.find_element(*FollowUpOrdersPage.PaymentStatus_Lnk).click()
 
     def get_Order_Number(self):
         self.driver.implicitly_wait(10)
-        return self.driver.find_element(*FollowUp_Orders.OrderNumber).text
+        return self.driver.find_element(*FollowUpOrdersPage.OrderNumber).text
 
 
 

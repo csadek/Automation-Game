@@ -9,7 +9,7 @@ class ManageBillingAddressPage(BasePageObject):
 # Login - modify billing address - modify - Change my credentials
 
     def __init__(self, driver):
-        super(ManageBillingAddress, self).__init__(driver)
+        super(ManageBillingAddressPage, self).__init__(driver)
 
 
 
