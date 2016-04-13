@@ -3,7 +3,7 @@ from POM.BaseTestCase import BaseTestCase
 from POM.LoginPage import LoginPage
 
 
-class TestOrder(BaseTestCase):
+class FollowUpOrder(BaseTestCase):
     def test_FollowOrder_valid(self):
         LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         FollowUpOrdersPage.FollowOrder(self)

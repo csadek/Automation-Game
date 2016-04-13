@@ -3,7 +3,7 @@ from POM.SearchPage import SearchPage
 from POM.LoginPage import LoginPage
 
 
-class SearchTests(BaseTestCase):
+class Search(BaseTestCase):
 
     def test_search_Exist_products(self):
         LoginPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
