@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-from selenium import webdriver
 
 
 class FollowUpOrdersPage(BaseTestCase):
