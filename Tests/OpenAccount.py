@@ -1,5 +1,5 @@
-from POM.RegestrationPage import RegistrationPage
 from POM.BaseTestCase import BaseTestCase
+from POM.RegestrationPage import RegistrationPage
 
 
 class OpenAccount(BaseTestCase):

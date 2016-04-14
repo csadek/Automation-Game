@@ -1,6 +1,6 @@
-from POM.FollowUpOrderPage import FollowUpOrdersPage
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginPage import LoginPage
+from POM.FollowUpOrderPage import FollowUpOrdersPage
 
 
 class FollowUpOrder(BaseTestCase):
