@@ -17,7 +17,7 @@ class PaymentPages(BaseTestCase):
     #Sale Time details message = i think it needs iframe becouse if i take the selector, the message words will be taken not the frame itself
 
     #page2
-    Color_Lst = (By.CSS_SELECTOR, '#couleur')
+    Color_Lst = (By.CSS_SELECTOR, '#couleur > option:nth-child(2)')
     Size_Lst = (By.CSS_SELECTOR, '#taille > option:nth-child(5)')
     Quantity_Fld = (By.CSS_SELECTOR, 'div.product_quantity.pull-left > input')
     AddToCard_Btn = (By.CSS_SELECTOR, 'tr > td > div.product_order.pull-right > input')
@@ -42,7 +42,8 @@ class PaymentPages(BaseTestCase):
     UpdateYourCart_Btn = (By.CSS_SELECTOR, 'div.code_promo > div:nth-child(2) > a')
     ShippingZone_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(1) > select')
     MeansOfShipping_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(3) > select > option:nth-child(3)')
-    CompeleteUrOrder_Btn = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > p > button')
+    CompeleteUrOrder_Btn = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > p > a')
+    CompleteYourOrder_Popup_Btn = (By.CSS_SELECTOR, 'div.modal-body > div > div > a')
     ContinueMyShopping_Page3_Btn = (By.CSS_SELECTOR, 'tr:nth-child(2) > td.td_caddie_link_shopping > a')
     EmptyList_Btn = (By.CSS_SELECTOR, 'tr:nth-child(2) > td.td_caddie_link_empty_cart > a')
     Quantity_Page3_Fld = (By.CSS_SELECTOR, 'td.lignecaddie_quantite.center > div > input')
@@ -69,10 +70,12 @@ class PaymentPages(BaseTestCase):
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
 
     #Page6 'Confirmation page'--> Needs more Verifying and assertions
+    Confirm_Msg = (By.CSS_SELECTOR,'div.middle_column_repeat > h1')
+
     def Pay_Oneproduct(self):
         self.driver.find_element(*PaymentPages.Product_1).click()
         self.driver.implicitly_wait(30)
-        self.driver.find_element(*PaymentPages.Color_Lst).send_keys('Black')
+        self.driver.find_element(*PaymentPages.Color_Lst).click()
         self.driver.implicitly_wait(30)
         self.driver.find_element(*PaymentPages.Size_Lst).click()
         self.driver.implicitly_wait(30)
@@ -86,6 +89,7 @@ class PaymentPages(BaseTestCase):
         self.driver.find_element(*PaymentPages.MeansOfShipping_Lst).click()
         #The next page will be changed according to Means Of Shipping, So in this Method Pickup in store will be chosen
         self.driver.find_element(*PaymentPages.CompeleteUrOrder_Btn).click()
+        self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
 
         #Page4 'Payment means'
     def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
@@ -106,3 +110,6 @@ class PaymentPages(BaseTestCase):
         #Page5
         self.driver.find_element(*PaymentPages.CompleteYourOrder_Page5_Btn).click()
         #Page6 'Confirmation page'--> Needs more Verifying and assertions
+    def get_Confirm_Msg(self):
+        self.driver.implicitly_wait(10)
+        return self.driver.find_element(*PaymentPages.Confirm_Msg).text
