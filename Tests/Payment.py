@@ -15,6 +15,10 @@ class Payment(BaseTestCase):
                                 ,'FR','France','Thank you')
 
         Screenshot = self.driver.get_screenshot_as_file('screenshot_PayConfirm.jpg')
+        PaymentPages.get_Confirm_Msg(self)
+        self.assertIn('Confirmation of your order',PaymentPages.get_Confirm_Msg(self))
+
+
 
     '''def Test_Oneproduct(self):
         Payment1.Pay_Oneproduct(self,'France','Pickup in store','Integrant','Rihan','Mohammad','eng.mohammadriihan@gmail.com','012','566st','11411'
