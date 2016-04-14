@@ -1,11 +1,11 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginPage import LoginPage
-from POM.AddProductPage import AddProductPage
+from POM.AddFlashSalePage import AddFlashSalePage
 
 
 class AddProduct(BaseTestCase):
 
     def test_Add_Product(self):
         LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
-        AddProductPage.AddProduct(self,'test1')
-        self.assertIn('Products management',AddProductPage.get_Page_Name(self))
+        AddFlashSalePage.AddFlashSale(self,50,'04-15-2016 01h50:56','04-16-2016 01h39:56')
+        self.assertIn('Products management',AddFlashSalePage.get_Page_Name(self))

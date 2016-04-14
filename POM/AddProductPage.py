@@ -19,20 +19,13 @@ class AddProductPage(BaseTestCase):
     our_selection = (By.NAME, 'on_special')
     state_online = (By.NAME, 'etat')
 
-    #Flash Sale locators
-    flash_sale_price = (By.CSS_SELECTOR,'#tab1 > table > tbody > tr:nth-child(48) > td.left > input')
-    #start_date = (By.CSS_SELECTOR, '#dp1460584319257')
-    start_date = (By.NAME, 'flash_start')
-    end_date = (By.NAME, 'flash_end')
-    show_in_flash_section =(By.CSS_SELECTOR, '#tab1 > table > tbody > tr:nth-child(51) > td:nth-child(2) > input[type="checkbox"]')
-
-    # Second tab
+     # Second tab
     english_tab = (By.CSS_SELECTOR,'a[href="#tab_EN"]')
     product_name = (By.CSS_SELECTOR,'#tab_EN > input:nth-child(3)')
     add_product_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
 
     #Add Product
-    def AddProduct(self,price,start,end,name):
+    def AddProduct(self,name):
         # Open Add product page
         self.driver.find_element(*AddProductPage.admin_button).click()
         self.driver.find_element(*AddProductPage.main_menu).click()
@@ -43,14 +36,6 @@ class AddProductPage(BaseTestCase):
         self.driver.find_element(*AddProductPage.select_category).click()
         self.driver.find_element(*AddProductPage.our_selection).click()
         self.driver.find_element(*AddProductPage.state_online).click()
-
-        #add flash sale
-        self.driver.find_element(*AddProductPage.flash_sale_price).clear()
-        self.driver.find_element(*AddProductPage.flash_sale_price).send_keys(price)
-        self.driver.find_element(*AddProductPage.start_date).clear()
-        self.driver.find_element(*AddProductPage.start_date).send_keys(start)
-        self.driver.find_element(*AddProductPage.end_date).clear()
-        self.driver.find_element(*AddProductPage.end_date).send_keys(end)
 
         # add second tab
         self.driver.find_element(*AddProductPage.english_tab).click()
