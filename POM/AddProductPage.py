@@ -19,14 +19,14 @@ class AddProductPage(BaseTestCase):
     our_selection = (By.NAME, 'on_special')
     state_online = (By.NAME, 'etat')
 
-     # Second tab
+    #Second tab
     english_tab = (By.CSS_SELECTOR,'a[href="#tab_EN"]')
     product_name = (By.CSS_SELECTOR,'#tab_EN > input:nth-child(3)')
     add_product_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
 
     #Add Product
     def AddProduct(self,name):
-        # Open Add product page
+        #Open Add product page
         self.driver.find_element(*AddProductPage.admin_button).click()
         self.driver.find_element(*AddProductPage.main_menu).click()
         self.driver.find_element(*AddProductPage.sub_menu).click()
@@ -37,7 +37,7 @@ class AddProductPage(BaseTestCase):
         self.driver.find_element(*AddProductPage.our_selection).click()
         self.driver.find_element(*AddProductPage.state_online).click()
 
-        # add second tab
+        #add second tab
         self.driver.find_element(*AddProductPage.english_tab).click()
         self.driver.find_element(*AddProductPage.product_name).send_keys(name)
 
