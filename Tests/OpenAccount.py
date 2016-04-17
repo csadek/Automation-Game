@@ -6,7 +6,7 @@ from ddt import ddt, data, unpack
 @ddt
 class OpenAccount(BaseTestCase):
 
-    @data(*ReadExcel.get_data('C:/Users/csadek/Desktop/Automation-Game/Automation-Game/Utilities/Data.xlsx','Registration'))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Registration'))
     @unpack
     def test_OpenAccount(self,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen):
         self.driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
