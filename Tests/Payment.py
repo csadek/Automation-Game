@@ -1,6 +1,6 @@
 from POM.PaymentPages import PaymentPages
 from POM.BaseTestCase import BaseTestCase
-from POM.LoginPage import LoginPage
+from POM.LoginLogoutPage import LoginPage
 from selenium.webdriver.common.by import By
 
 

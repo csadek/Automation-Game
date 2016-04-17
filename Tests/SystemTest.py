@@ -1,5 +1,5 @@
 from POM.BaseTestCase import BaseTestCase
-from POM.LoginPage import LoginPage
+from POM.LoginLogoutPage import LoginPage
 from POM import SearchPage
 from POM.PaymentPages import PaymentPages
 

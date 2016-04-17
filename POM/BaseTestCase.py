@@ -12,7 +12,7 @@ class BaseTestCase(unittest.TestCase):
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
         # navigate to the application home page
-        cls.driver.get('http://10.1.22.67/Jamaica/membre.php')
+        cls.driver.get('http://10.1.22.67/Jamaica/')
 
     @classmethod
     def tearDownClass(cls):
