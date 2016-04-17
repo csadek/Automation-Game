@@ -15,4 +15,3 @@ class AddProduct(BaseTestCase):
         AddProductPage.admin_view(self)
         AddProductPage.AddProduct(self,position,reference,code,price,name,short,description)
         self.assertIn(name,AddProductPage.get_Page_Name(self))
-        LoginLogoutPage.logout(self)
