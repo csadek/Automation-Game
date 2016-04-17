@@ -1,6 +1,6 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.SearchPage import SearchPage
-from POM.LoginPage import LoginPage
+from POM.LoginLogoutPage import LoginPage
 
 
 class Search(BaseTestCase):
