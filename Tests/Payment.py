@@ -1,7 +1,7 @@
 from POM.PaymentPages import PaymentPages
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.SearchPage import SearchPage
+from POM.searchPage import SearchPage
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
 
