@@ -1,20 +1,32 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
+from Utilities.ReadExcel import ReadExcel
+from ddt import ddt, data, unpack
 
+@ddt
+@data(*ReadExcel.get_data('../Utilities/Data.xlsx','Login'))
+class LoginLogout(BaseTestCase):
 
-class Login(BaseTestCase):
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Login'))
+    @unpack
+    def test_login_incorrect(self,one,two):
+        self.assertTrue('Bad email or password.',LoginLogoutPage.login_with_Invalid_credentials(self, one,two))
 
-    def test_login_incorrect(self):
-        self.assertTrue('Bad email or password.',LoginLogoutPage.login_with_Invalid_credentials(self, 'test123@email.com','password'))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Login'))
+    @unpack
+    def test_login_blank_password(self,one,two):
+        self.assertTrue('Please type in your password.',LoginLogoutPage.login_with_Invalid_credentials2(self,one,two))
 
-    def test_login_blank_password(self):
-        self.assertTrue('Please type in your password.',LoginLogoutPage.login_with_Invalid_credentials2(self, 'test@email.com', ''))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Login'))
+    @unpack
+    def test_login_blank_email(self,one,two):
+        self.assertTrue('Bad email or password.',LoginLogoutPage.login_with_Invalid_credentials(self,one,two))
 
-    def test_login_blank_email(self):
-        self.assertTrue('Bad email or password.',LoginLogoutPage.login_with_Invalid_credentials(self, 'test123@email.com','password'))
-
-    def test_login_valid(self):
-        LoginLogoutPage.login_with_valid_credentials(self, 'eng.mohammadrihan@gmail.com', 'h0tr1ngG')
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Login'))
+    @unpack
+    def test_login_valid(self,one,two):
+        self.driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
+        LoginLogoutPage.login_with_valid_credentials(self,one,two)
 
     def test_logout(self):
         LoginLogoutPage.logout(self)
