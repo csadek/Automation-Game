@@ -10,7 +10,6 @@ class Payment(BaseTestCase):
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','BillingAddress'))
     @unpack
     def test_payment(self,company,surname,name,email,phone,address,zipcode,town,country,comment):
-        company,surname,name,email,phone,address,zipcode,town,country,comment
         LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         SearchPage.search_valid_Data(self,'trouser','Clothing')
         PaymentPages.Pay_Oneproduct(self)
