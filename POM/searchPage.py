@@ -10,18 +10,22 @@ class SearchPage(BaseTestCase):
     SearchResult= (By.PARTIAL_LINK_TEXT,"trouser")
     AddToCardBtn = (By.NAME,'Add to cart')
     ProductName = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > h1')
+    emptyResults = (By.CLASS_NAME ,'search_result')
 
     def search_valid_Data(self,ProductName,CategoryName):
-
-        #Product Name
         self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
-        #find Category List On Page
         self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
-
-        #click on GO to find results
         self.driver.find_element(*SearchPage.SearchButton).click()
         self.driver.implicitly_wait(30)
+
+    def search_not_exist_Product(self,ProductName):
+        self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
+        self.driver.find_element(*SearchPage.SearchButton).click()
+
 
     def get_Product_Name(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(*SearchPage.ProductName).text
+
+    def get_not_found_Msg(self):
+        return self.driver.find_element(*SearchPage.emptyResults).text

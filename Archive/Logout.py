@@ -1,6 +1,7 @@
-from POM.BaseTestCase import BaseTestCase
 from POM.LoginPage import LoginPage
-from POM.LogoutPage import LogoutPage
+
+from Archive.LogoutPage import LogoutPage
+from POM.BaseTestCase import BaseTestCase
 
 
 class Logout(BaseTestCase):
