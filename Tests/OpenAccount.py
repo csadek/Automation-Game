@@ -11,7 +11,6 @@ class OpenAccount(BaseTestCase):
     def test_OpenAccount(self,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website):
         self.driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
         RegistrationPage.Register_with_valid_input(self,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website)
-
         RegistrationPage.get_Thanks_Msg(self)
         self.assertIn('Thanks for your confidence.',RegistrationPage.get_Thanks_Msg(self))
 
