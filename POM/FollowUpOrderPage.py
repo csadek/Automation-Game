@@ -14,8 +14,6 @@ class FollowUpOrdersPage(BaseTestCase):
 
     def FollowOrder(self):
         self.driver.find_element(*FollowUpOrdersPage.FollowUp_Orders_Lnk).click()
-        #text = self.driver.find_element(*FollowUp_Orders.FollowUp_Orders_Lnk).text
-        #self.assertEqual(self,text,'Payment pending')
     def get_Status_Name(self):
         self.driver.implicitly_wait(10)
         PaymentStatus_Lnk_LBL = (By.CSS_SELECTOR, 'tr:nth-child(1) > td:nth-child(4) > a')

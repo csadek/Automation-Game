@@ -25,9 +25,6 @@ class SystemTest(BaseTestCase):
         FollowUpOrdersPage.get_Order_Number(self)
         self.assertIn('12',FollowUpOrdersPage.get_Order_Number(self))
 
-        #Follow
-        #Logout
-
 
 
 
