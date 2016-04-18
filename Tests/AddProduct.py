@@ -1,11 +1,18 @@
 from POM.BaseTestCase import BaseTestCase
-from POM.LoginPage import LoginPage
+from POM.LoginLogoutPage import LoginLogoutPage
 from POM.AddProductPage import AddProductPage
+from Utilities.ReadExcel import ReadExcel
+from ddt import ddt, data, unpack
 
 
+@ddt
 class AddProduct(BaseTestCase):
 
-    def test_Add_Product(self):
-        LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
-        AddProductPage.AddProduct(self,'test1')
-        self.assertIn('Products management',AddProductPage.get_Page_Name(self))
+    @data(*ReadExcel.get_data('C:/Users/csadek/Desktop/Automation-Game/Automation-Game/Utilities/Data.xlsx','Clothes'))
+    @unpack
+    def test_Add_Product(self,position,reference,code,price,name,short,description):
+        LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
+        AddProductPage.admin_view(self)
+        AddProductPage.AddProduct(self,position,reference,code,price,name,short,description)
+        self.assertIn(name,AddProductPage.get_Page_Name(self))
+        LoginLogoutPage.logout(self)

@@ -29,9 +29,7 @@ class RegistrationPage(BaseTestCase):
     OpenAccount = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > div > p.center > input.btn.btn-primary.btn-lg')
     Thanks_Msg = (By.CSS_SELECTOR, 'div.middle_column_repeat > p')
 
-
-    def Register_with_valid_input(self, email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town
-                                  , country, how_do_you_know_our_website):
+    def Register_with_valid_input(self,email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town, country, how_do_you_know_our_website):
         self.driver.find_element(*RegistrationPage.Email).send_keys(email)
         self.driver.find_element(*RegistrationPage.Nickname).send_keys(nickname)
         self.driver.find_element(*RegistrationPage.Password).send_keys(password)
