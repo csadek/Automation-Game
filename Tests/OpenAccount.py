@@ -8,9 +8,10 @@ class OpenAccount(BaseTestCase):
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Registration'))
     @unpack
-    def test_OpenAccount(self,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen):
+    def test_OpenAccount(self,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website):
         self.driver.get('http://10.1.22.67/Jamaica/utilisateurs/enregistrement.php')
-        RegistrationPage.Register_with_valid_input(self,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve,thirteen,fourteen,fifteen)
-
+        RegistrationPage.Register_with_valid_input(self,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website)
         RegistrationPage.get_Thanks_Msg(self)
         self.assertIn('Thanks for your confidence.',RegistrationPage.get_Thanks_Msg(self))
+
+

@@ -1,11 +1,11 @@
 from POM.BaseTestCase import BaseTestCase
-from POM.LoginLogoutPage import LoginPage
+from POM.LoginLogoutPage import LoginLogoutPage
 from POM.FollowUpOrderPage import FollowUpOrdersPage
 
 
 class FollowUpOrder(BaseTestCase):
     def test_FollowOrder_valid(self):
-        LoginPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
+        LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         FollowUpOrdersPage.FollowOrder(self)
         FollowUpOrdersPage.get_Status_Name(self)
         self.assertIn('Payment pending', FollowUpOrdersPage.get_Status_Name(self))

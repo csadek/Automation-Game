@@ -42,7 +42,7 @@ class PaymentPages(BaseTestCase):
     UpdateYourCart_Btn = (By.CSS_SELECTOR, 'div.code_promo > div:nth-child(2) > a')
     ShippingZone_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(1) > select')
     MeansOfShipping_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(3) > select > option:nth-child(3)')
-    CompeleteUrOrder_Btn = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > p > a')
+    CompeleteUrOrder_Btn = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > p > button')
     CompleteYourOrder_Popup_Btn = (By.CSS_SELECTOR, 'div.modal-body > div > div > a')
     ContinueMyShopping_Page3_Btn = (By.CSS_SELECTOR, 'tr:nth-child(2) > td.td_caddie_link_shopping > a')
     EmptyList_Btn = (By.CSS_SELECTOR, 'tr:nth-child(2) > td.td_caddie_link_empty_cart > a')
@@ -89,7 +89,7 @@ class PaymentPages(BaseTestCase):
         self.driver.find_element(*PaymentPages.MeansOfShipping_Lst).click()
         #The next page will be changed according to Means Of Shipping, So in this Method Pickup in store will be chosen
         self.driver.find_element(*PaymentPages.CompeleteUrOrder_Btn).click()
-        self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
+        #self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
 
         #Page4 'Payment means'
     def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
