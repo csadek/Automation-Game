@@ -1,11 +1,18 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
 from POM.ManageBillingAddressPage import ManageBillingAddressPage
+from Utilities.ReadExcel import ReadExcel
+from ddt import ddt, data, unpack
 
+@ddt
 class MangeBilling(BaseTestCase):
-    def test_Change(self):
+
+    @data(*ReadExcel.get_data('../Automation-Game/Automation-Game/Utilities/Data.xlsx','BillingAddress'))
+    @unpack
+    def test_Change_Billing_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         ManageBillingAddressPage.manage_billing(self)
-        ManageBillingAddressPage.Create_Another_Address(self,'Mmmm5678009','Billing Address','Mohammad','Rihan','mr@gmaddil.com','integrant','566St','11411','Town','Egypt','01223')
+        ManageBillingAddressPage.Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
+
 
 

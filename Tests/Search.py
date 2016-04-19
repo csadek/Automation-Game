@@ -1,8 +1,10 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.searchPage  import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
+from Utilities.ReadExcel import ReadExcel
+from ddt import ddt, data, unpack
 
-
+@ddt
 class Search(BaseTestCase):
 
     def test_search_Exist_products(self):

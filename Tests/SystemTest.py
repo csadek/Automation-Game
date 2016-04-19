@@ -15,9 +15,9 @@ class SystemTest(BaseTestCase):
         LoginLogoutPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
         SearchPage.search_valid_Data(self, 'trouser', 'Clothing')
         SearchPage.get_Product_Name(self)
-        ProductDetails.getProductDetails(self,'trouser')
+        #ProductDetails.getProductDetails(self,'trouser')
         PaymentPages.Pay_Oneproduct(self)
-        PaymentPages.Billing_Address(self,company,surname,name,email,phone,address,zipcode,town,country,comment)
+        PaymentPages.Billing_Address(self,company,surname,name,email,phone,address,zipcode,town,country)
         LoginLogoutPage.logout(self)
         LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         FollowUpOrdersPage.FollowOrder(self)
@@ -26,16 +26,3 @@ class SystemTest(BaseTestCase):
         FollowUpOrdersPage.ClickOnStatus(self)
         FollowUpOrdersPage.get_Order_Number(self)
         self.assertIn('12',FollowUpOrdersPage.get_Order_Number(self))
-
-
-
-
-
-
-
-
-
-
-
-
-
