@@ -15,7 +15,7 @@ class SystemTest(BaseTestCase):
         LoginLogoutPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
         SearchPage.search_valid_Data(self, 'trouser', 'Clothing')
         SearchPage.get_Product_Name(self)
-        ProductDetails.getProductDetails(self,'trouser')
+        #ProductDetails.getProductDetails(self,'trouser')
         PaymentPages.Pay_Oneproduct(self)
         PaymentPages.Billing_Address(self,company,surname,name,email,phone,address,zipcode,town,country,comment)
         LoginLogoutPage.logout(self)
