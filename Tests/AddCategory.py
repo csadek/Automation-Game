@@ -1,6 +1,6 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.AddCategoryPage import AddCategoryPage
+from POM.CategoryPage import AddCategoryPage
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
 
