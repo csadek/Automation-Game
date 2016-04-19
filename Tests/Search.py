@@ -8,18 +8,20 @@ from ddt import ddt, data, unpack
 @ddt
 class Search(BaseTestCase):
 
-    def test_not_exist_Product(self):
-        LoginLogoutPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
-        SearchPage.search_not_exist_Product(self,'DRESS')
-        self.assertTrue('No product for this search.',SearchPage.get_not_found_Msg(self))
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Products'))
     @unpack
     def test_search_Exist_products(self,productName,Category):
         LoginLogoutPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
         SearchPage.search_valid_Data(self,productName,Category)
-        self.assertIn(productName,SearchPage.get_Product_Name(self))
+        self.assertTrue(productName,str.capitalize(SearchPage.get_Product_Name(self)) )
 
+
+    def test_not_exist_Product(self):
+        LoginLogoutPage.login_with_valid_credentials(self,"csadek","ZAQ!cde3")
+        SearchPage.search_not_exist_Product(self,'DRESS')
+        self.assertTrue('No product for this search.',SearchPage.get_not_found_Msg(self))
+        LoginLogoutPage.logout(self)
 
 
 
