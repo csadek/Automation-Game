@@ -24,9 +24,7 @@ class sendEmailClass(BaseTestCase):
 
         return self.driver.find_element(*sendEmailClass.confirmationMsg).text
 
-    def send_Email_missing_data(self,RecName,RecEmails):
-        self.driver.find_element(*sendEmailClass.recipientNames).send_keys(RecName)
-        self.driver.find_element(*sendEmailClass.recipientEmails).send_keys(RecEmails)
+    def send_Email_empty_data(self):
         self.driver.find_element(*sendEmailClass.sendButton).click()
 
         return self.driver.find_element(*sendEmailClass.errorMsg).text

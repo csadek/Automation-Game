@@ -18,9 +18,9 @@ class ProductDetails(BaseTestCase):
 
     def getProductDetails(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
-        #self.driver.find_element(*ProductDetails.productInfo).click()
-        #self.driver.find_element(*ProductDetails.careTab).click()
-        #self.driver.find_element(*ProductDetails.washingTab).click()
+
+    def send_email(self):
+        self.driver.find_element(*ProductDetails.sendEmailLink).click()
 
     def __init__(self, driver):
         super(ProductDetails, self).__init__(driver)

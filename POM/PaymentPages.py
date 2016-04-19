@@ -93,6 +93,7 @@ class PaymentPages(BaseTestCase):
 
         #Page4 'Payment means'
     def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
+        self.driver.find_element(*PaymentPages.Company_Fld).clear()
         self.driver.find_element(*PaymentPages.Company_Fld).send_keys(company)
         self.driver.find_element(*PaymentPages.Surname_Fld).send_keys(surename)
         self.driver.find_element(*PaymentPages.FirstName_Fld).send_keys(firstname)

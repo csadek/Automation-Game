@@ -12,14 +12,14 @@ class createBillingAddress(BaseTestCase):
     Address = (By.ID, 'adresse')
     Zipcode = (By.ID, 'code_postal')
     Town = (By.ID, 'ville')
-    Country =(By.CLASS_NAME, "form-control")   #country drop list
-    Phone = (By.ID, 'telephone')
+    Country = select_Country = (By.ID, "pays")
+    Phone = (By.ID, 'portable')
     ValidateBtn = (By.NAME ,'Validate' )
 
     def new_address_vaild_input(self,surAddress,type,surName,firstName,email,company,address,zipCode,town,country,phone):
         self.driver.find_element(*createBillingAddress.surnameAddress).send_keys(surAddress)
         self.driver.find_element(*createBillingAddress.TypeList).send_keys(type)
-        #title radio button
+        #title radio butto6`n
         #self.driver.find_element(*createBillingAddress.Title).click()
 
         self.driver.find_element(*createBillingAddress.Surname).send_keys(surName)
