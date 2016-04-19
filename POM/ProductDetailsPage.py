@@ -13,14 +13,18 @@ class ProductDetails(BaseTestCase):
     printPage = (By.PARTIAL_LINK_TEXT,'Print this page')
     washingTab = (By.PARTIAL_LINK_TEXT,'Washing')
     productInfo = (By.PARTIAL_LINK_TEXT,'Product Info')
-    careTab= (By.PARTIAL_LINK_TEXT,'Care')
-    zoomTool = (By.CSS_SELECTOR,'#zoom1 > div > div.zoomPreload')
+    availability= (By.PARTIAL_LINK_TEXT,'Availability')
+    zoomTool = (By.CSS_SELECTOR,'#zoom1 > div > div.zoomWindow')
 
     def getProductDetails(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
+        self.driver.find_element(*ProductDetails.availability).click()
+        self.driver.find_element(*ProductDetails.washingTab).click()
+
 
     def zoom_product_image(self):
          self.driver.find_element(*ProductDetails.zoomTool).click()
+
 
     def send_email(self):
         self.driver.find_element(*ProductDetails.sendEmailLink).click()
