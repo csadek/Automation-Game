@@ -29,3 +29,6 @@ class sendEmail(BaseTestCase):
     def get_Error_mesage(self):
         return self.driver.find_element(*sendEmail.errorMsg).text
 
+
+
+
