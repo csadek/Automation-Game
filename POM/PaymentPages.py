@@ -20,6 +20,8 @@ class PaymentPages(BaseTestCase):
     Color_Lst = (By.CSS_SELECTOR, '#couleur > option:nth-child(2)')
     Size_Lst = (By.CSS_SELECTOR, '#taille > option:nth-child(5)')
     Quantity_Fld = (By.CSS_SELECTOR, 'div.product_quantity.pull-left > input')
+    Warning_Msg_Popup = (By.CSS_SELECTOR, 'div.modal-body > div')
+    OK_Popup_Btn = (By.CSS_SELECTOR,'div.modal-footer > button')
     AddToCard_Btn = (By.CSS_SELECTOR, 'tr > td > div.product_order.pull-right > input')
     EditPrdct_AdminLnk = (By.CSS_SELECTOR, 'div.middle_column_repeat > div > p > a')
     PrdctTitle = (By.CSS_SELECTOR, 'div.fp_produit > h1')
