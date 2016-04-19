@@ -9,18 +9,23 @@ class sendEmail(BaseTestCase):
     recipientEmails = (By.NAME,'femail[]')
     comments = (By.NAME,'comments')
     sendButton= (By.NAME,'action')
-    confirmationMsg= (By.CLASS_NAME,'alert alert-success')
+    errorMsg= (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div')
+    confirmationMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div')
 
-    def send_Email(self,name,email,RecName,RecEmails ,comment):
+    def send_Email_successfully(self,name,RecName,RecEmails ,comment):
         self.driver.find_element(*sendEmail.firstName).send_keys(name)
-        self.driver.find_element(*sendEmail.yourEmail).send_keys(email)
         self.driver.find_element(*sendEmail.recipientNames).send_keys(RecName)
         self.driver.find_element(*sendEmail.recipientEmails).send_keys(RecEmails)
         self.driver.find_element(*sendEmail.comments).send_keys(comment)
-
         self.driver.find_element(*sendEmail.sendButton).click()
 
-    def get_conformation_Message(self):
-        return self.driver.find_element_by(*sendEmail.confirmationMsg).text
+        return self.driver.find_element(*sendEmail.confirmationMsg).text
 
+    def send_Email_missing_data(self,RecName,RecEmails):
+        self.driver.find_element(*sendEmail.recipientNames).send_keys(RecName)
+        self.driver.find_element(*sendEmail.recipientEmails).send_keys(RecEmails)
+        self.driver.find_element(*sendEmail.sendButton).click()
+
+    def get_Error_mesage(self):
+        return self.driver.find_element(*sendEmail.errorMsg).text
 

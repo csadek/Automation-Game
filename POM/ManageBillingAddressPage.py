@@ -15,9 +15,9 @@ class ManageBillingAddressPage(BaseTestCase):
         self.driver.find_element(*ManageBillingAddressPage.BillingAddressLink).click()
 
 
-    def Create_Another_Address(self,surAddress,type,surName,firstName,email,company,address,zipCode,town,country,phone):
+    def Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         self.driver.find_element(*ManageBillingAddressPage.CreatAddressBtn).click()
-        createBillingAddress.new_address_vaild_input(self,surAddress,type,surName,firstName,email,company,address,zipCode,town,country,phone)
+        createBillingAddress.new_address_vaild_input(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
 
 
 
