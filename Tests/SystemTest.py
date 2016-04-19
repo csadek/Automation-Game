@@ -17,6 +17,7 @@ class SystemTest(BaseTestCase):
         SearchPage.search_valid_Data(self, 'trouser', 'Clothing')
         SearchPage.get_Product_Name(self)
         ProductDetails.getProductDetails(self,'trouser')
+       # ProductDetails.zoom_product_image(self)
         #Send Email From Product Details Page
         ProductDetails.send_email(self)
         conformation_Msg = sendEmailClass.send_Email_successfully(self,'Chris','csadek@integrant.com','Jihad','jMohamed@integrant.com','Hello')

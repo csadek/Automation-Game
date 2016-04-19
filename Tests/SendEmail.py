@@ -8,10 +8,14 @@ from ddt import ddt, data, unpack
 @ddt
 class sendEmailTestCases(BaseTestCase):
 
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','LoginValid'))
+    @unpack
+    def test_add(self,user,password):
+        LoginLogoutPage.login_with_valid_credentials(self, user, password)
+
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','SendEmail'))
     @unpack
     def test_send_email_successfully(self,SenderName,SenderEmail,RecName,RecEmails,comment):
-        LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         ProductDetails.getProductDetails(self,'trouser')
         ProductDetails.send_email(self)
 
