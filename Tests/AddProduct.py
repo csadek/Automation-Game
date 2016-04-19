@@ -8,7 +8,7 @@ from ddt import ddt, data, unpack
 @ddt
 class AddProduct(BaseTestCase):
 
-    @data(*ReadExcel.get_data('../Automation-Game/Automation-Game/Utilities/Data.xlsx','Clothes'))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Clothes'))
     @unpack
     def test_Add_Product(self,position,reference,code,price,name,short,description):
         LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
