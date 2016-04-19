@@ -9,8 +9,8 @@ class CategoryPage(BaseTestCase):
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
     sub_menu = (By.CSS_SELECTOR, '#menu_820845ea')
-    add_category_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/categories.php\"]')
-    category_list_link = (By.CSS_SELECTOR,)
+    add_category_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/categories.php?mode=ajout\"]')
+    category_list_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/categories.php\"]')
 
     # Locators
     root_category = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(3) > td:nth-child(2) > select > option:nth-child(1)')
@@ -20,7 +20,8 @@ class CategoryPage(BaseTestCase):
     name = (By.NAME,'nom_en')
     parent = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(3) > td:nth-child(2) > select > option[value]')
     add_category_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(27) > td > p > input')
-    delete_name = (By.CSS_SELECTOR,'#total > div.container > div > div > div.table-responsive > table > tbody > tr > td:nth-child(4) > a')
+    # alert
+    alert = (By.XPATH,'//*[@id="total"]/div[3]/div/div/div[2]/text()')
 
     # navigate to admin pages
     def admin_view(self):
@@ -40,6 +41,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.name).send_keys(name)
         # submit
         self.driver.find_element(*CategoryPage.add_category_button).click()
+        return self.driver.find_element(*CategoryPage.alert).text
 
     # Add sub category
     def add_sub_category(self,position,name,parent):
@@ -57,21 +59,18 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.name).send_keys(name)
         # submit
         self.driver.find_element(*CategoryPage.add_category_button).click()
+        return self.driver.find_element(*CategoryPage.alert).text
 
     # delete category
-    def delete_category(self,category):
+    def delete_category(self,idd):
         # Open category page
         self.driver.find_element(*CategoryPage.main_menu).click()
         self.driver.find_element(*CategoryPage.sub_menu).click()
         self.driver.find_element(*CategoryPage.category_list_link).click()
         # delete category
         delete_row = (By.CSS_SELECTOR,'#total > div.container > div > div > div.table-responsive > table > tbody > tr')
-        for i in self.driver.find_elements(*CategoryPage.delete_name):
-            if i.text == category:
-                self.driver.find_element(By.CSS_SELECTOR,'')
+        self.driver.find_element(By.CSS_SELECTOR,'a[href="http://10.1.22.67/Jamaica/administrer/categories.php?mode=suppr&id={}"]'.format(idd))
 
-        self.driver.find_element(By.CSS_SELECTOR,'a[href$={}]'.format(idd))
-        getattr()
 
 
 
