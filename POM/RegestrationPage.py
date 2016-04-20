@@ -25,7 +25,6 @@ class RegistrationPage(BaseTestCase):
     Code = (By.CSS_SELECTOR,'#code')
     FirstSelection = (By.ID, 'newsletter')
     SecondSelection = (By.ID, 'commercial')
-    #Error_LBL_Email = (By.CSS_SELECTOR, 'div:nth-child(1) > div:nth-child(1) > div.alert.alert-danger.fade.in')
     OpenAccount = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > div > p.center > input.btn.btn-primary.btn-lg')
     Thanks_Msg = (By.CSS_SELECTOR, 'div.middle_column_repeat > p')
 
@@ -50,10 +49,5 @@ class RegistrationPage(BaseTestCase):
         self.driver.find_element(*RegistrationPage.Code).send_keys('12340')
         self.driver.find_element(*RegistrationPage.FirstSelection).click()
         self.driver.find_element(*RegistrationPage.SecondSelection).click()
-        #error_LBL_Email = self.driver.find_element(*RegistrationPageObject.Error_LBL_Email)
-        #self.assertTrue(error_LBL_Email.is_displayed())
         self.driver.find_element(*RegistrationPage.OpenAccount).click()
-
-    def get_Thanks_Msg(self):
-        self.driver.implicitly_wait(10)
         return self.driver.find_element(*RegistrationPage.Thanks_Msg).text

@@ -1,7 +1,6 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.searchPage  import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.ProductDetailsPage import ProductDetails
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
 
@@ -19,7 +18,6 @@ class Search(BaseTestCase):
     def test_search_Exist_products(self,productName,Category):
         SearchPage.search_valid_Data(self,productName,Category)
         self.assertTrue(productName,str.capitalize(SearchPage.get_Product_Name(self)) )
-
 
     def test_not_exist_Product(self):
         SearchPage.search_not_exist_Product(self,'DRESS')

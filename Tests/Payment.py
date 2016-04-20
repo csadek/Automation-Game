@@ -12,7 +12,7 @@ class Payment(BaseTestCase):
     def test_payment1(self,username,password):
         LoginLogoutPage.login_with_valid_credentials(self, username,password)
 
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Search'))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Products'))
     @unpack
     def test_payment2(self,item,category):
         SearchPage.search_valid_Data(self,item,category)
