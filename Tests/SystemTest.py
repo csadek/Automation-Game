@@ -1,19 +1,14 @@
-from POM.BaseTestCase import BaseTestCase
-from POM.LoginLogoutPage import LoginLogoutPage
-from POM.searchPage import SearchPage
-from POM.SendEmailPage import sendEmailClass
-from POM.PaymentPages import PaymentPages
-from POM.ProductDetailsPage import ProductDetails
-from POM.FollowUpOrderPage import FollowUpOrdersPage
+from Tests.LoginLogout import LoginLogout
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
 
 @ddt
 class SystemTest(BaseTestCase):
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','BillingAddress'))
+
     @unpack
-    def test_system(self,company,surname,name,email,phone,address,zipcode,town,country,comment):
-        LoginLogoutPage.login_with_valid_credentials(self,'csadek','ZAQ!cde3')
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','BillingAddress'))
+    def test_system(self,username,password,company,surname,name,email,phone,address,zipcode,town,country,comment):
+        LoginLogout.test_login_valid(self,username, password)
         SearchPage.search_valid_Data(self, 'trouser', 'Clothing')
         SearchPage.get_Product_Name(self)
         ProductDetails.getProductDetails(self,'trouser')

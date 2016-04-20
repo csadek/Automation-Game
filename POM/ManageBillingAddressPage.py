@@ -19,8 +19,6 @@ class ManageBillingAddressPage(BaseTestCase):
         self.driver.find_element(*ManageBillingAddressPage.CreatAddressBtn).click()
         createBillingAddress.new_address_vaild_input(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
 
-
-
     def __init__(self, driver):
         super(ManageBillingAddressPage, self).__init__(driver)
 
