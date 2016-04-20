@@ -41,7 +41,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.name).send_keys(name)
         # submit
         self.driver.find_element(*CategoryPage.add_category_button).click()
-        return self.driver.find_element(*CategoryPage.alert).text
+        #return self.driver.find_element(*CategoryPage.alert).text
 
     # Add sub category
     def add_sub_category(self,position,name,parent):
@@ -50,7 +50,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.sub_menu).click()
         self.driver.find_element(*CategoryPage.add_category_link).click()
         # Add sub category
-        for i in self.driver.find_elements_by_css_selector(*CategoryPage.parent):
+        for i in self.driver.find_elements(*CategoryPage.parent):
             if i.text == parent:
                 i.click()
         self.driver.find_element(*CategoryPage.view_on_home).click()
@@ -59,7 +59,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.name).send_keys(name)
         # submit
         self.driver.find_element(*CategoryPage.add_category_button).click()
-        return self.driver.find_element(*CategoryPage.alert).text
+        #return self.driver.find_element(*CategoryPage.alert).text
 
     # delete category
     def delete_category(self,idd):
