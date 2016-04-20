@@ -4,7 +4,7 @@ from POM.AddProductPage import AddProductPage
 from POM.AddPromotionCodePage import AddPromotionCodePage
 from POM.CategoryPage import CategoryPage
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.SearchPage import SearchPage
+from POM.searchPage import SearchPage
 from POM.RegestrationPage import RegistrationPage
 from POM.PaymentPages import PaymentPages
 from POM.ProductDetailsPage import ProductDetails
