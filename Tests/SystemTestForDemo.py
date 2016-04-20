@@ -1,6 +1,6 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.SearchPage import SearchPage
+from POM.searchPage import SearchPage
 from POM.SendEmailPage import sendEmailClass
 from POM.PaymentPages import PaymentPages
 from POM.ProductDetailsPage import ProductDetails
@@ -10,7 +10,6 @@ from ddt import ddt, data, unpack
 
 @ddt
 class SystemTest(BaseTestCase):
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','BillingAddress'))
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','BillingAddress'))
     @unpack
     def test_system(self,company,surname,name,email,phone,address,zipcode,town,country,comment):
