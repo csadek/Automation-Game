@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-from POM.CreateBillingAddressPage import createBillingAddress
+from POM.CreateBillingAddressPage import CreateBillingAddress
 
 
 class ManageBillingAddressPage(BaseTestCase):
@@ -17,7 +17,7 @@ class ManageBillingAddressPage(BaseTestCase):
 
     def Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         self.driver.find_element(*ManageBillingAddressPage.CreatAddressBtn).click()
-        createBillingAddress.new_address_vaild_input(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
+        CreateBillingAddress.new_address_vaild_input(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
 
     def __init__(self, driver):
         super(ManageBillingAddressPage, self).__init__(driver)

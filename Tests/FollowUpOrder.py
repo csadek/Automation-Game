@@ -15,4 +15,4 @@ class FollowUpOrder(BaseTestCase):
         FollowUpOrdersPage.get_Status_Name(self)
         self.assertIn('Payment pending', FollowUpOrdersPage.get_Status_Name(self))
         FollowUpOrdersPage.ClickOnStatus(self)
-        self.assertIn('12',FollowUpOrdersPage.get_Order_Number(self))
+        self.assertIn('24',FollowUpOrdersPage.get_Order_Number(self))
