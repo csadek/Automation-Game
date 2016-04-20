@@ -1,6 +1,6 @@
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.searchPage import SearchPage
+from POM.SearchPage import SearchPage
 from POM.SendEmailPage import sendEmailClass
 from POM.PaymentPages import PaymentPages
 from POM.ProductDetailsPage import ProductDetails
