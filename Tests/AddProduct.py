@@ -17,9 +17,17 @@ class AddProduct(BaseTestCase):
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Clothes'))
     @unpack
     def test_Add_Product(self,position,reference,code,price,name,short,description):
+        self.assertIn(name,AddProductPage.AddProduct(self,position,reference,code,price,name,short,description))
 
-        AddProductPage.AddProduct(self,position,reference,code,price,name,short,description)
-        self.assertIn(name,AddProductPage.get_Page_Name(self))
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Clothes'))
+    @unpack
+    def test_delete(self,position,reference,code,price,name,short,description):
+        AddProductPage.delete_product(self,name)
+
+    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Clothes'))
+    @unpack
+    def test_edit_product(self,position,reference,code,price,name,short,description):
+        AddProductPage.edit_product(self,name)
 
     def test_end(self):
         LoginLogoutPage.logout(self)

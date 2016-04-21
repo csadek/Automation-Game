@@ -4,7 +4,13 @@ from POM.BaseTestCase import BaseTestCase
 
 class AddProductPage(BaseTestCase):
     """ this class represents add product page elements manipulations and functions"""
-
+    '''1- check product details(view online)-
+    2-calculate promotion
+     3- edit product to add tabs & check them online
+     4- delete product
+     5- windows forms'''
+    def __init__(self, driver,name):
+        super(AddProductPage, self).__init__(driver)
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
@@ -14,7 +20,7 @@ class AddProductPage(BaseTestCase):
     # Locators
     # first tab
     page_title = (By.CSS_SELECTOR,'#page_title > h1')
-    select_category = (By.CSS_SELECTOR,'#categories > option:nth-child(1)')
+    select_category = (By.CSS_SELECTOR,'#categories > option')
     position = (By.NAME,'position')
     our_selection = (By.NAME, 'on_special')
     new = (By.NAME,'on_new' )
@@ -27,6 +33,7 @@ class AddProductPage(BaseTestCase):
     reference = (By.NAME,'reference')
     code = (By.NAME,'technical_code')
     price = (By.NAME,'prix')
+    promotion = (By.NAME,'promotion')
 
     #Second tab
     english_tab = (By.CSS_SELECTOR,'a[href="#tab_EN"]')
@@ -34,10 +41,10 @@ class AddProductPage(BaseTestCase):
     short_description = (By.NAME,'descriptif_en')
     description = (By.CSS_SELECTOR,'body')
     add_product_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
+    confirm_delete = (By.CSS_SELECTOR,'body > div.bootbox.modal.fade.in > div > div > div.modal-footer > button.btn.btn-primary')
 
     #Notification
     alert =(By.CSS_SELECTOR,'#total > div.container > div > div > div.alert.alert-success.fade.in > b')
-
     # naviagate to admin pages
     def admin_view(self):
         self.driver.find_element(*AddProductPage.admin_button).click()
@@ -68,10 +75,15 @@ class AddProductPage(BaseTestCase):
         self.driver.find_element(*AddProductPage.description).send_keys(description)
         #submit
         self.driver.find_element(*AddProductPage.add_product_button).click()
-
-    def get_Page_Name(self):
-        #return self.driver.find_element(*AddProductPage.page_title).text
         return self.driver.find_element(*AddProductPage.alert).text
+
+
+    def delete_product(self,name):
+        self.driver.find_element_by_css_selector('a[title=\'Delete {}\']'.format(name)).click()
+        self.driver.find_element(*AddProductPage.confirm_delete).click()
+
+    def edit_product(self,name):
+        self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
 
 
 

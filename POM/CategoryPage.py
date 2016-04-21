@@ -57,7 +57,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.position).send_keys(position)
         self.driver.find_element(*CategoryPage.state_online).click()
         self.driver.find_element(*CategoryPage.name).send_keys(name)
-        # submit
+        # submit`
         self.driver.find_element(*CategoryPage.add_category_button).click()
         #return self.driver.find_element(*CategoryPage.alert).text
 
