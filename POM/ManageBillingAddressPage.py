@@ -4,11 +4,12 @@ from POM.CreateBillingAddressPage import CreateBillingAddress
 
 
 class ManageBillingAddressPage(BaseTestCase):
-
+    '''revisit the class'''
     PageTitle = (By.CLASS_NAME,'page_title')
     BillingAddressLink = (By.PARTIAL_LINK_TEXT,'Manage my billing and shipping addresses')
     BillingAddressList = (By.ID , 'address_default')
     ShippingAddress = (By.NAME,'personal_address_ship')
+    # should be added at create address
     CreatAddressBtn = (By.PARTIAL_LINK_TEXT ,'Create another address')
 
     def manage_billing(self):

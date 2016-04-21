@@ -4,7 +4,8 @@ from POM.BaseTestCase import BaseTestCase
 
 class CategoryPage(BaseTestCase):
     """ this class represents add and delete both category and subcategory elements manipulations and functions"""
-
+    '''1- check category (view online)-
+     4- delete category'''
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
@@ -57,7 +58,7 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.position).send_keys(position)
         self.driver.find_element(*CategoryPage.state_online).click()
         self.driver.find_element(*CategoryPage.name).send_keys(name)
-        # submit
+        # submit`
         self.driver.find_element(*CategoryPage.add_category_button).click()
         #return self.driver.find_element(*CategoryPage.alert).text
 

@@ -2,6 +2,11 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 class PaymentPages(BaseTestCase):
+    '''1- pay with no products selected
+    2- pay with missing values.
+    3- pay multiple products and calculate
+    4- pay multiple products not exists at the store
+    '''
     # Locators
     #Page1
     Product_1 = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > a > span')

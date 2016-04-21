@@ -4,6 +4,9 @@ from POM.BaseTestCase import BaseTestCase
 
 class ProductDetails(BaseTestCase):
     """ this class represent login page elements manipulations and functions"""
+    '''assert on each function
+    complete each process
+    integrate with SMTP to check the mail'''
 
     # Locators
     sendEmailLink = (By.PARTIAL_LINK_TEXT,'Send email to your friend')
@@ -21,10 +24,8 @@ class ProductDetails(BaseTestCase):
         self.driver.find_element(*ProductDetails.availability).click()
         self.driver.find_element(*ProductDetails.washingTab).click()
 
-
     def zoom_product_image(self):
          self.driver.find_element(*ProductDetails.zoomTool).click()
-
 
     def send_email(self):
         self.driver.find_element(*ProductDetails.sendEmailLink).click()
@@ -34,7 +35,6 @@ class ProductDetails(BaseTestCase):
 
     def people_feedback_Page(self):
         self.driver.find_element(*ProductDetails.peopleFeedBack).click()
-
 
     def add_to_notePad_Page(self):
         self.driver.find_element(*ProductDetails.addToNotePad).click()

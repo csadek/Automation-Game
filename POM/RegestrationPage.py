@@ -4,6 +4,7 @@ from POM.BaseTestCase import BaseTestCase
 
 class RegistrationPage(BaseTestCase):
     """ this class represent Registration elements manipulations and functions"""
+    ''' check that user added to database'''
 
     # Locators
     Email = (By.CSS_SELECTOR,'#email')
