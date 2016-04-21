@@ -4,7 +4,9 @@ from POM.BaseTestCase import BaseTestCase
 
 class FollowUpOrdersPage(BaseTestCase):
     """ this class represent FollowUp_Orders page elements manipulations and functions"""
-
+    '''follow up on the product used at payment
+    edit order status
+    follow up again on the updated order'''
     # Locators
     FollowUp_Orders_Lnk = (By.CSS_SELECTOR, 'div.middle_column_repeat > div > div:nth-child(7) > div:nth-child(1) > a')
     FollowUp_Orders_Title = (By.CSS_SELECTOR, '#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > h1')

@@ -4,7 +4,8 @@ from POM.BaseTestCase import BaseTestCase
 
 class AddFlashSalePage(BaseTestCase):
     """ this class represents add product page elements manipulations and functions"""
-    ''''''
+    '''open product view -edit
+    check flash sale remaining time - check price -pay with the new price'''
 
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')

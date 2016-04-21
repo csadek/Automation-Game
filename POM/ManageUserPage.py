@@ -4,6 +4,7 @@ from POM.BaseTestCase import BaseTestCase
 
 class ManageUserPage(BaseTestCase):
     """ this class represents manage users page elements manipulations and functions"""
+    '''give user admin permission'''
 
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')

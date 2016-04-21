@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 class CreateBillingAddress(BaseTestCase):
+    '''assert on billing address
+    pay and select the created billing address'''
     surnameAddress = (By.ID,'name_adresse')
     TypeList= (By.NAME, "address_type")   # type drop down list
 
