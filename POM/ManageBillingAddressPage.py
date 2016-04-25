@@ -7,6 +7,8 @@ class ManageBillingAddressPage(BaseTestCase):
     BillingAddressLink = (By.PARTIAL_LINK_TEXT,'Manage my billing and shipping addresses')
     BillingAddressList = (By.ID , 'address_default')
     ShippingAddress = (By.NAME,'personal_address_ship')
+
+    #Create Another address Elements
     CreatAddressBtn = (By.PARTIAL_LINK_TEXT ,'Create another address')
     surnameAddress=(By.NAME,'name_adresse')
     TypeList= (By.NAME, "address_type")   # type drop down list
@@ -20,13 +22,14 @@ class ManageBillingAddressPage(BaseTestCase):
     Country = select_Country = (By.ID, "pays")
     Phone = (By.ID, 'portable')
     ValidateBtn = (By.CSS_SELECTOR ,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > form > fieldset > p > input' )
+    createAddressMsg = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div.alert.alert-success.fade.in')
 
     def manage_billing(self):
         self.driver.find_element(*ManageBillingAddressPage.BillingAddressLink).click()
 
-
     def Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         self.driver.find_element(*ManageBillingAddressPage.CreatAddressBtn).click()
+
         self.driver.find_element(*ManageBillingAddressPage.surnameAddress).send_keys(surAddress)
         self.driver.find_element(*ManageBillingAddressPage.Surname).send_keys(surName)
         self.driver.find_element(*ManageBillingAddressPage.FirstName).send_keys(firstName)
@@ -39,6 +42,14 @@ class ManageBillingAddressPage(BaseTestCase):
         self.driver.find_element(*ManageBillingAddressPage.Phone).send_keys(phone)
 
         self.driver.find_element(*ManageBillingAddressPage.ValidateBtn).click()
+
+
+    def get_surName_address(self):
+        return  self.driver.find_element(*ManageBillingAddressPage.surnameAddress).text
+
+    def get_createAddress_msg(self):
+        return self.driver.find_element(*ManageBillingAddressPage.createAddressMsg).text
+
 
     def __init__(self, driver):
         super(ManageBillingAddressPage, self).__init__(driver)
