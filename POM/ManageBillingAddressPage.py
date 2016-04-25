@@ -3,13 +3,12 @@ from POM.BaseTestCase import BaseTestCase
 
 
 class ManageBillingAddressPage(BaseTestCase):
-    '''revisit the class'''
     PageTitle = (By.CLASS_NAME,'page_title')
     BillingAddressLink = (By.PARTIAL_LINK_TEXT,'Manage my billing and shipping addresses')
     BillingAddressList = (By.ID , 'address_default')
     ShippingAddress = (By.NAME,'personal_address_ship')
-    # should be added at create address
     CreatAddressBtn = (By.PARTIAL_LINK_TEXT ,'Create another address')
+    surnameAddress=(By.NAME,'name_adresse')
     TypeList= (By.NAME, "address_type")   # type drop down list
     Surname = (By.ID, 'nom_famille')
     FirstName = (By.ID, 'prenom')
@@ -26,8 +25,9 @@ class ManageBillingAddressPage(BaseTestCase):
         self.driver.find_element(*ManageBillingAddressPage.BillingAddressLink).click()
 
 
-    def Create_Another_Address(self,surName,firstName,email,company,address,zipCode,town,country,phone):
+    def Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         self.driver.find_element(*ManageBillingAddressPage.CreatAddressBtn).click()
+        self.driver.find_element(*ManageBillingAddressPage.surnameAddress).send_keys(surAddress)
         self.driver.find_element(*ManageBillingAddressPage.Surname).send_keys(surName)
         self.driver.find_element(*ManageBillingAddressPage.FirstName).send_keys(firstName)
         self.driver.find_element(*ManageBillingAddressPage.Email).send_keys(email)
@@ -42,7 +42,3 @@ class ManageBillingAddressPage(BaseTestCase):
 
     def __init__(self, driver):
         super(ManageBillingAddressPage, self).__init__(driver)
-
-
-
-
