@@ -12,7 +12,7 @@ class MangeBilling(BaseTestCase):
     def test_Change_Billing_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone):
         LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
         ManageBillingAddressPage.manage_billing(self)
-        ManageBillingAddressPage.Create_Another_Address(self,surName,firstName,email,company,address,zipCode,town,country,phone)
+        ManageBillingAddressPage.Create_Another_Address(self,surAddress,surName,firstName,email,company,address,zipCode,town,country,phone)
 
 
 
