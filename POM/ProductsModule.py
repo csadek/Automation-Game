@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 
 
-class AddProductPage(BaseTestCase):
+class ProductsModule(BaseTestCase):
     """ this class represents add product page elements manipulations and functions"""
     '''1- check product details(view online)-
     2-calculate promotion
@@ -10,7 +10,7 @@ class AddProductPage(BaseTestCase):
      4- delete product
      5- windows forms'''
     def __init__(self, driver,name):
-        super(AddProductPage, self).__init__(driver)
+        super(ProductsModule, self).__init__(driver)
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
@@ -47,43 +47,45 @@ class AddProductPage(BaseTestCase):
     alert =(By.CSS_SELECTOR,'#total > div.container > div > div > div.alert.alert-success.fade.in > b')
     # naviagate to admin pages
     def admin_view(self):
-        self.driver.find_element(*AddProductPage.admin_button).click()
+        self.driver.find_element(*ProductsModule.admin_button).click()
     #Add Product
     def AddProduct(self,position,reference,code,price,name,short,description):
         #Open Add product page
-        self.driver.find_element(*AddProductPage.main_menu).click()
-        self.driver.find_element(*AddProductPage.sub_menu).click()
-        self.driver.find_element(*AddProductPage.add_product_link).click()
+        self.driver.find_element(*ProductsModule.main_menu).click()
+        self.driver.find_element(*ProductsModule.sub_menu).click()
+        self.driver.find_element(*ProductsModule.add_product_link).click()
         #Add first
-        self.driver.find_element(*AddProductPage.select_category).click()
-        self.driver.find_element(*AddProductPage.position).clear()
-        self.driver.find_element(*AddProductPage.position).send_keys(position)
-        self.driver.find_element(*AddProductPage.our_selection).click()
-        self.driver.find_element(*AddProductPage.new).click()
-        self.driver.find_element(*AddProductPage.special).click()
-        self.driver.find_element(*AddProductPage.reseller).click()
-        self.driver.find_element(*AddProductPage.recommended).click()
-        self.driver.find_element(*AddProductPage.best).click()
-        self.driver.find_element(*AddProductPage.state_online).click()
-        self.driver.find_element(*AddProductPage.reference).send_keys(reference)
-        self.driver.find_element(*AddProductPage.code).send_keys(code)
-        self.driver.find_element(*AddProductPage.price).send_keys(price)
+        self.driver.find_element(*ProductsModule.select_category).click()
+        self.driver.find_element(*ProductsModule.position).clear()
+        self.driver.find_element(*ProductsModule.position).send_keys(position)
+        self.driver.find_element(*ProductsModule.our_selection).click()
+        self.driver.find_element(*ProductsModule.new).click()
+        self.driver.find_element(*ProductsModule.special).click()
+        self.driver.find_element(*ProductsModule.reseller).click()
+        self.driver.find_element(*ProductsModule.recommended).click()
+        self.driver.find_element(*ProductsModule.best).click()
+        self.driver.find_element(*ProductsModule.state_online).click()
+        self.driver.find_element(*ProductsModule.reference).send_keys(reference)
+        self.driver.find_element(*ProductsModule.code).send_keys(code)
+        self.driver.find_element(*ProductsModule.price).send_keys(price)
         #add second tab
-        self.driver.find_element(*AddProductPage.english_tab).click()
-        self.driver.find_element(*AddProductPage.product_name).send_keys(name)
-        self.driver.find_element(*AddProductPage.short_description).send_keys(short)
-        self.driver.find_element(*AddProductPage.description).send_keys(description)
+        self.driver.find_element(*ProductsModule.english_tab).click()
+        self.driver.find_element(*ProductsModule.product_name).send_keys(name)
+        self.driver.find_element(*ProductsModule.short_description).send_keys(short)
+        self.driver.find_element(*ProductsModule.description).send_keys(description)
         #submit
-        self.driver.find_element(*AddProductPage.add_product_button).click()
-        return self.driver.find_element(*AddProductPage.alert).text
+        self.driver.find_element(*ProductsModule.add_product_button).click()
+        return self.driver.find_element(*ProductsModule.alert).text
 
 
     def delete_product(self,name):
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']'.format(name)).click()
-        self.driver.find_element(*AddProductPage.confirm_delete).click()
+        self.driver.find_element(*ProductsModule.confirm_delete).click()
 
     def edit_product(self,name):
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
+
+
 
 
 

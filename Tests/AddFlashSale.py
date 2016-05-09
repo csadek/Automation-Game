@@ -4,7 +4,6 @@ from POM.AddFlashSalePage import AddFlashSalePage
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
 
-
 @ddt
 class AddFlashSale(BaseTestCase):
 
@@ -15,6 +14,6 @@ class AddFlashSale(BaseTestCase):
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','flash'))
     @unpack
-    def test_Add_flash_sale(self,amount,start,end):
-        AddFlashSalePage.AddFlashSale(self,amount,start,end)
-        self.assertIn('Products management',AddFlashSalePage.get_Page_Name(self))
+    def test_Add_flash_sale(self,amount,start,end,product_name):
+        self.assertIn('×\nChanges to product {} have been taken into account.'.format(product_name),AddFlashSalePage.AddFlashSale(self,amount,start,end,product_name))
+        self.assertEqual(amount,AddFlashSalePage.verify_flash_sale(self, product_name))

@@ -3,7 +3,9 @@ from POM.BaseTestCase import BaseTestCase
 
 
 class SearchPage(BaseTestCase):
-
+    '''search product with no category
+    search all products at specific category
+    assert on each function'''
     SearchBox = (By.NAME,'search')
     CategoryList = (By.ID,'search_category')
     SearchButton =  (By.CLASS_NAME,'btn-header_search')

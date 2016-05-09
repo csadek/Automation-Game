@@ -1,6 +1,6 @@
 from POM.FollowUpOrderPage import FollowUpOrdersPage
 from POM.AddFlashSalePage import AddFlashSalePage
-from POM.AddProductPage import AddProductPage
+from POM.ProductsModule import AddProductPage
 from POM.AddPromotionCodePage import AddPromotionCodePage
 from POM.CategoryPage import CategoryPage
 from POM.LoginLogoutPage import LoginLogoutPage
