@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-
+import poplib
 
 class SendEmailClass(BaseTestCase):
     firstName = (By.NAME,'yname')
@@ -31,4 +31,7 @@ class SendEmailClass(BaseTestCase):
 
     def back_to_product_Page(self):
         self.driver.find_element(*SendEmailClass.backToProduct).click()
+
+
+
 
