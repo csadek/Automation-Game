@@ -1,7 +1,11 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
 from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
+from Utilities import HTMLTestRunner
 
 @ddt
 class LoginLogout(BaseTestCase):
