@@ -1,6 +1,8 @@
 import unittest
-import os
 import datetime as dt
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 from Tests.LoginLogout import LoginLogout
 from Utilities import HTMLTestRunner
 
