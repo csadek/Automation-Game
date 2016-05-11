@@ -2,15 +2,18 @@ import unittest
 import datetime as dt
 import os
 import sys
-from Tests.LoginLogout import LoginLogout
 from Utilities import HTMLTestRunner
+from Tests.LoginLogout import LoginLogout
 
+
+# navigate to the relative paths from the batch file
 sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
-current_directory = (os.path.dirname(os.getcwd()))
 
+# create the html report file
+current_directory = (os.path.dirname(os.getcwd()))
 outfile = open(current_directory + '\Reports\TestReport_' + dt.datetime.now().strftime("%Y-%m-%d_%H%M%S"+ ".html"), "w")
 
-# get all tests from HomeBeforeLoginTests and LoginTests classes
+# get all tests for the system test
 login_tests = unittest.TestLoader().loadTestsFromTestCase(LoginLogout)
 
 #   Creating a Test Suite using the imported Test Case Files

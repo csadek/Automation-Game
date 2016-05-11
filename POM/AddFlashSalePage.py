@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 from dateutil import parser
+import re
 
 
 class AddFlashSalePage(BaseTestCase):
@@ -14,7 +15,7 @@ class AddFlashSalePage(BaseTestCase):
     edit_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php\"]')
 
     # Locators
-    #Flash Sale locators
+    # Flash Sale locators
     page_title = (By.CSS_SELECTOR,'#page_title > h1')
     flash_sale_price = (By.NAME,'prix_flash')
     start_date = (By.NAME, 'flash_start')
@@ -28,7 +29,7 @@ class AddFlashSalePage(BaseTestCase):
     old_price = (By.CSS_SELECTOR,'#detailsajout28 > div > div > table > tbody > tr:nth-child(2) > td > del')
     remaining_time = (By.CSS_SELECTOR,'div.alert.alert-warning')
 
-    #Add Product
+    # Add flash sale
     def AddFlashSale(self,price,start,end,name):
         # Open edit page
         self.driver.find_element(*AddFlashSalePage.admin_button).click()
@@ -37,9 +38,9 @@ class AddFlashSalePage(BaseTestCase):
         self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
 
-        #add flash sale
+        # add flash sale
         self.driver.find_element(*AddFlashSalePage.flash_sale_price).clear()
-        self.driver.find_element(*AddFlashSalePage.flash_sale_price).send_keys(price)
+        self.driver.find_element(*AddFlashSalePage.flash_sale_price).send_keys(int(price))
         self.driver.find_element(*AddFlashSalePage.start_date).click()
         self.driver.find_element(*AddFlashSalePage.start_date).clear()
         self.driver.find_element(*AddFlashSalePage.start_date).send_keys(start)
@@ -47,7 +48,7 @@ class AddFlashSalePage(BaseTestCase):
         self.driver.find_element(*AddFlashSalePage.end_date).clear()
         self.driver.find_element(*AddFlashSalePage.end_date).send_keys(end)
 
-        #submit
+        # submit
         self.driver.find_element(*AddFlashSalePage.save_changes_button).click()
         return self.driver.find_element(*AddFlashSalePage.alert).text
 
@@ -59,7 +60,8 @@ class AddFlashSalePage(BaseTestCase):
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
         window_before = self.driver.window_handles[0]
         print(window_before)
-        #view online
+
+        # view online
         self.driver.find_element(*AddFlashSalePage.view_online).click()
         window_after = self.driver.window_handles[1]
         self.driver.switch_to.window(window_after)
@@ -71,9 +73,8 @@ class AddFlashSalePage(BaseTestCase):
 
     def verify_remaining_time(self,end_time):
         alert1 = self.driver.find_element(*AddFlashSalePage.remaining_time).text
-        whole_alert = alert1.split(' by')
-        remaining_time = parser.parse(whole_alert[0])
-        end = parser.parse(end_time)
+        time_list = re.findall(r'\b\d+\b', alert1)
+        return time_list
         
 
 
