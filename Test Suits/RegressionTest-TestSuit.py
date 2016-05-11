@@ -2,11 +2,10 @@ import unittest
 import datetime as dt
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 from Tests.LoginLogout import LoginLogout
 from Utilities import HTMLTestRunner
 
-
+sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 current_directory = (os.path.dirname(os.getcwd()))
 
 outfile = open(current_directory + '\Reports\TestReport_' + dt.datetime.now().strftime("%Y-%m-%d_%H%M%S"+ ".html"), "w")
