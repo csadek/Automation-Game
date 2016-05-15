@@ -1,12 +1,13 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 from dateutil import parser
+import datetime
 import re
 
 
 class AddFlashSalePage(BaseTestCase):
     """ this class represents add product page elements manipulations and functions"""
-    '''check flash sale remaining time -pay with the new price'''
+    '''pay with the new price'''
 
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
@@ -73,8 +74,14 @@ class AddFlashSalePage(BaseTestCase):
 
     def verify_remaining_time(self,end_time):
         alert1 = self.driver.find_element(*AddFlashSalePage.remaining_time).text
-        time_list = re.findall(r'\b\d+\b', alert1)
-        return time_list
+        time_list = re.findall(r'(?:\d)?\d+', alert1)
+        now = datetime.datetime.now()
+        remaining_time = parser.parse(end_time) - now
+        if remaining_time.days == time_list[0]:
+            return True
+        else:
+            return False
+
         
 
 
