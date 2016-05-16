@@ -6,9 +6,9 @@ import re
 
 
 class AddFlashSalePage(BaseTestCase):
-    """ this class represents add product page elements manipulations and functions"""
-    '''pay with the new price'''
-
+    """ this class represents add flash sale to specific product elements manipulations and functions"""
+    """ Flash sale is specific type of sale on the product which remains for specific time- AT Jamaica user should have
+    product created so that he can apply flash sale to it and it cannot happen during the creation of the product"""
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
@@ -31,7 +31,7 @@ class AddFlashSalePage(BaseTestCase):
     remaining_time = (By.CSS_SELECTOR,'div.alert.alert-warning')
 
     # Add flash sale
-    def AddFlashSale(self,price,start,end,name):
+    def add_flash_sale_to_product(self,price,start,end,name):
         # Open edit page
         self.driver.find_element(*AddFlashSalePage.admin_button).click()
         self.driver.find_element(*AddFlashSalePage.main_menu).click()
@@ -53,26 +53,47 @@ class AddFlashSalePage(BaseTestCase):
         self.driver.find_element(*AddFlashSalePage.save_changes_button).click()
         return self.driver.find_element(*AddFlashSalePage.alert).text
 
-    def verify_flash_sale(self,name):
+    def verify_flash_sale_price(self,name):
+        # make sure user is at the administrator view
+        if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:
+            self.driver.find_element(*AddFlashSalePage.admin_button).click()
+        else:
+            pass
         # Open Add product page
         self.driver.find_element(*AddFlashSalePage.main_menu).click()
         self.driver.find_element(*AddFlashSalePage.sub_menu).click()
         self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
         window_before = self.driver.window_handles[0]
-        print(window_before)
 
         # view online
         self.driver.find_element(*AddFlashSalePage.view_online).click()
         window_after = self.driver.window_handles[1]
         self.driver.switch_to.window(window_after)
-        print(window_after)
+        # extract product new price
         new = self.driver.find_element(*AddFlashSalePage.price).text
         whole_text = new.split(',')
-        no = whole_text[0]
-        return int(no)
+        exact_price = whole_text[0]
+        return int(exact_price)
 
-    def verify_remaining_time(self,end_time):
+    def verify_remaining_time_to_end_sale(self,end_time):
+        # make sure user is at the administrator view
+        if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:
+            self.driver.find_element(*AddFlashSalePage.admin_button).click()
+        else:
+            pass
+        # Open Add product page
+        self.driver.find_element(*AddFlashSalePage.main_menu).click()
+        self.driver.find_element(*AddFlashSalePage.sub_menu).click()
+        self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
+        self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
+        window_before = self.driver.window_handles[0]
+
+        # view online
+        self.driver.find_element(*AddFlashSalePage.view_online).click()
+        window_after = self.driver.window_handles[1]
+        self.driver.switch_to.window(window_after)
+        #
         alert1 = self.driver.find_element(*AddFlashSalePage.remaining_time).text
         time_list = re.findall(r'(?:\d)?\d+', alert1)
         now = datetime.datetime.now()
@@ -81,6 +102,8 @@ class AddFlashSalePage(BaseTestCase):
             return True
         else:
             return False
+
+   # def pay_with_flash_sale_price(self,name):
 
         
 
