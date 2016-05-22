@@ -1,17 +1,12 @@
-from POM.FollowUpOrderPage import FollowUpOrdersPage
-from POM.AddFlashSalePage import AddFlashSalePage
-from POM.ProductsModule import AddProductPage
-from POM.AddPromotionCodePage import AddPromotionCodePage
-from POM.CategoryPage import CategoryPage
-from POM.LoginLogoutPage import LoginLogoutPage
-from POM.searchPage import SearchPage
-from POM.RegestrationPage import RegistrationPage
-from POM.PaymentPages import PaymentPages
-from POM.ProductDetailsPage import ProductDetails
 from POM.ManageUserPage import ManageUserPage
-from POM.BaseTestCase import BaseTestCase
-from Utilities.ReadExcel import ReadExcel
+from POM.searchPage import SearchPage
 from ddt import ddt, data, unpack
+
+from POM.BaseTestCase import BaseTestCase
+from POM.Customer.PaymentPages import PaymentPages
+from POM.LoginLogoutPage import LoginLogoutPage
+from POM.NewUser.RegestrationPage import RegistrationPage
+from Utilities.ReadExcel import ReadExcel
 
 
 @ddt

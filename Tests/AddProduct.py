@@ -1,8 +1,9 @@
+from ddt import ddt, data, unpack
+
+from POM.Administrator.ProductsModule import ProductsModule
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.ProductsModule import ProductsModule
 from Utilities.ReadExcel import ReadExcel
-from ddt import ddt, data, unpack
 
 
 @ddt

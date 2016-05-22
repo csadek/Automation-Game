@@ -1,9 +1,11 @@
-from POM.PaymentPages import PaymentPages
-from POM.BaseTestCase import BaseTestCase
-from POM.LoginLogoutPage import LoginLogoutPage
 from POM.searchPage import SearchPage
-from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
+
+from POM.BaseTestCase import BaseTestCase
+from POM.Customer.PaymentPages import PaymentPages
+from POM.LoginLogoutPage import LoginLogoutPage
+from Utilities.ReadExcel import ReadExcel
+
 
 @ddt
 class Payment(BaseTestCase):

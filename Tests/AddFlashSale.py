@@ -1,8 +1,10 @@
+from ddt import ddt, data, unpack
+
+from POM.Administrator.AddFlashSalePage import AddFlashSalePage
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.AddFlashSalePage import AddFlashSalePage
 from Utilities.ReadExcel import ReadExcel
-from ddt import ddt, data, unpack
+
 
 @ddt
 class AddFlashSale(BaseTestCase):

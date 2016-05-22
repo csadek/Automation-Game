@@ -1,9 +1,11 @@
-from POM.BaseTestCase import BaseTestCase
-from POM.LoginLogoutPage import LoginLogoutPage
-from POM.ProductDetailsPage import ProductDetails
-from POM.SendEmailPage import sendEmailClass
-from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
+
+from POM.BaseTestCase import BaseTestCase
+from POM.Customer.ProductDetailsPage import ProductDetails
+from POM.Customer.SendEmailPage import sendEmailClass
+from POM.LoginLogoutPage import LoginLogoutPage
+from Utilities.ReadExcel import ReadExcel
+
 
 @ddt
 class sendEmailTestCases(BaseTestCase):

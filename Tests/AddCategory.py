@@ -1,8 +1,9 @@
+from ddt import ddt, data, unpack
+
+from POM.Administrator.CategoryPage import CategoryPage
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
-from POM.CategoryPage import CategoryPage
 from Utilities.ReadExcel import ReadExcel
-from ddt import ddt, data, unpack
 
 
 @ddt

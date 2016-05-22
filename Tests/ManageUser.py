@@ -1,8 +1,9 @@
-from POM.BaseTestCase import BaseTestCase
-from POM.LoginLogoutPage import LoginLogoutPage
-from POM.ManageUserPage import ManageUserPage
-from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
+
+from POM.BaseTestCase import BaseTestCase
+from POM.Customer.ManageUserPage import ManageUserPage
+from POM.LoginLogoutPage import LoginLogoutPage
+from Utilities.ReadExcel import ReadExcel
 
 
 @ddt

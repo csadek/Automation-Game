@@ -1,7 +1,9 @@
-from POM.BaseTestCase import BaseTestCase
-from POM.RegestrationPage import RegistrationPage
-from Utilities.ReadExcel import ReadExcel
 from ddt import ddt, data, unpack
+
+from POM.BaseTestCase import BaseTestCase
+from POM.NewUser.RegestrationPage import RegistrationPage
+from Utilities.ReadExcel import ReadExcel
+
 
 @ddt
 class OpenAccount(BaseTestCase):
