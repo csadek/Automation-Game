@@ -4,6 +4,7 @@ from POM.BaseTestCase import BaseTestCase
 
 class CategoryPage(BaseTestCase):
     """ this class represents add and delete both category and subcategory elements manipulations and functions"""
+    """ Admin user should add categories and subcategories to add products to those categories"""
     '''1- check category (view online)-
      4- delete category'''
     # Navigators
@@ -16,51 +17,36 @@ class CategoryPage(BaseTestCase):
     # Locators
     root_category = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(3) > td:nth-child(2) > select > option:nth-child(1)')
     view_on_home = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(5) > td:nth-child(2) > input[type="checkbox"]')
-    position = (By.NAME,'position')
     state_online = (By.NAME, 'etat')
     name = (By.NAME,'nom_en')
     parent = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(3) > td:nth-child(2) > select > option[value]')
     add_category_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(27) > td > p > input')
     # alert
-    alert = (By.XPATH,'//*[@id="total"]/div[3]/div/div/div[2]/text()')
+    alert = (By.CSS_SELECTOR,'div[class=\'alert alert-success fade in\']')
 
     # navigate to admin pages
     def admin_view(self):
         self.driver.find_element(*CategoryPage.admin_button).click()
 
-    # Add category
-    def add_category(self,position,name):
-        # Open category page
-        self.driver.find_element(*CategoryPage.main_menu).click()
-        self.driver.find_element(*CategoryPage.sub_menu).click()
-        self.driver.find_element(*CategoryPage.add_category_link).click()
-        # Add category
-        self.driver.find_element(*CategoryPage.root_category).click()
-        self.driver.find_element(*CategoryPage.view_on_home).click()
-        self.driver.find_element(*CategoryPage.position).send_keys(position)
-        self.driver.find_element(*CategoryPage.state_online).click()
-        self.driver.find_element(*CategoryPage.name).send_keys(name)
-        # submit
-        self.driver.find_element(*CategoryPage.add_category_button).click()
-        #return self.driver.find_element(*CategoryPage.alert).text
-
     # Add sub category
-    def add_sub_category(self,position,name,parent):
+    def add_category(self,name,parent):
         # Open category page
         self.driver.find_element(*CategoryPage.main_menu).click()
         self.driver.find_element(*CategoryPage.sub_menu).click()
         self.driver.find_element(*CategoryPage.add_category_link).click()
         # Add sub category
-        for i in self.driver.find_elements(*CategoryPage.parent):
-            if i.text == parent:
-                i.click()
+        if parent == "":
+            self.driver.find_element(*CategoryPage.root_category).click()
+        else:
+            for i in self.driver.find_elements(*CategoryPage.parent):
+                if i.text == parent:
+                    i.click()
         self.driver.find_element(*CategoryPage.view_on_home).click()
-        self.driver.find_element(*CategoryPage.position).send_keys(position)
         self.driver.find_element(*CategoryPage.state_online).click()
         self.driver.find_element(*CategoryPage.name).send_keys(name)
         # submit`
         self.driver.find_element(*CategoryPage.add_category_button).click()
-        #return self.driver.find_element(*CategoryPage.alert).text
+        return self.driver.find_element(*CategoryPage.alert).text
 
     # delete category
     def delete_category(self,idd):

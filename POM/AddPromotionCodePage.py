@@ -6,7 +6,7 @@ class AddPromotionCodePage(BaseTestCase):
     """ this class represent login page elements manipulations and functions"""
     '''use coupon at payment - calculate price & check price'''
    # Navigators
-    admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
+    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
     main_menu = (By.CSS_SELECTOR, '#menu_label_users')
     sub_menu = (By.CSS_SELECTOR, '#menu_bc24ec8e')
     add_coupon = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/codes_promos.php\"]')

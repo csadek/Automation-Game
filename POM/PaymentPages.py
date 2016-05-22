@@ -6,7 +6,7 @@ class PaymentPages(BaseTestCase):
     """ this class represent payment1 page elements manipulations and functions"""
     '''need assertions'''
     # Locators
-    #Page1
+    # Page1
     Product_1 = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > a > span')
     SearchField = (By.CSS_SELECTOR, '#search_advanced_input')
     Dropdwn_Words = (By.CSS_SELECTOR, 'ul.attribute_select_search.attribute_select_search_part1 > li > select')
@@ -16,7 +16,7 @@ class PaymentPages(BaseTestCase):
     Prdct_Name = (By.CSS_SELECTOR, 'tr:nth-child(3) > td > div.description_text > a')
     #Sale Time details message = i think it needs iframe becouse if i take the selector, the message words will be taken not the frame itself
 
-    #page2
+    # page2
     Color_Lst = (By.CSS_SELECTOR, '#couleur > option:nth-child(2)')
     Size_Lst = (By.CSS_SELECTOR, '#taille > option:nth-child(5)')
     Quantity_Fld = (By.CSS_SELECTOR, 'div.product_quantity.pull-left > input')
@@ -32,14 +32,14 @@ class PaymentPages(BaseTestCase):
     PrintPage_Lnk = (By.CSS_SELECTOR, 'tr.picto-print > td.txt-print > a')
     #Sale Time details message = i think it needs iframe becouse if i take the selector, the message words will be taken not the frame itself
 
-    #Pop up Form
+    # Pop up Form
     Pop_Title = (By.CSS_SELECTOR, 'div.popup_cart_title')
     ContinueMyShopping_Btn = (By.CSS_SELECTOR, 'div.modal-footer > button.btn.btn-success')
     YourCart_Btn = (By.CSS_SELECTOR, 'body > div.bootbox.modal.fade.in > div > div > div.modal-footer > button.btn.btn-primary')
     QuantityNo = (By.CSS_SELECTOR, 'tr:nth-child(1) > td.center')
     AmountNo = (By.CSS_SELECTOR, 'tr:nth-child(2) > td.center')
 
-    #Page3 'Your cart'
+    # Page3 'Your cart'
     PromoCode_Fld = (By.CSS_SELECTOR, '#code_promo')
     UpdateYourCart_Btn = (By.CSS_SELECTOR, 'div.code_promo > div:nth-child(2) > a')
     ShippingZone_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(1) > select')
@@ -51,7 +51,7 @@ class PaymentPages(BaseTestCase):
     Quantity_Page3_Fld = (By.CSS_SELECTOR, 'td.lignecaddie_quantite.center > div > input')
     NetToPay = (By.CSS_SELECTOR, '#step2caddie > p.caddie_net_to_pay > span')
 
-    #Page4 'Payment means' after choose Means of shipping = Pickup in store
+    # Page4 'Payment means' after choose Means of shipping = Pickup in store
     YourPayment_Hdr = (By.CSS_SELECTOR,'div.middle_column_repeat > h1')
     Company_Fld = (By.CSS_SELECTOR,'#societe1')
     Surname_Fld = (By.CSS_SELECTOR,'#nom1')
@@ -68,10 +68,10 @@ class PaymentPages(BaseTestCase):
     NextStep_Btn = (By.CSS_SELECTOR,'div:nth-child(2) > div > div > input')
 
 
-    #Page5 'Summary' --> Needs more Verifying and assertions
+    # Page5 'Summary' --> Needs more Verifying and assertions
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
 
-    #Page6 'Confirmation page'--> Needs more Verifying and assertions
+    # Page6 'Confirmation page'--> Needs more Verifying and assertions
     Confirm_Msg = (By.CSS_SELECTOR,'div.middle_column_repeat > h1')
 
     def Pay_Oneproduct(self):
@@ -93,7 +93,7 @@ class PaymentPages(BaseTestCase):
         self.driver.find_element(*PaymentPages.CompeleteUrOrder_Btn).click()
         #self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
 
-        #Page4 'Payment means'
+        # Page4 'Payment means'
     def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
         self.driver.find_element(*PaymentPages.Company_Fld).clear()
         self.driver.find_element(*PaymentPages.Company_Fld).send_keys(company)
@@ -110,9 +110,9 @@ class PaymentPages(BaseTestCase):
         self.driver.find_element(*PaymentPages.Comment_Fld).send_keys(comment)
         self.driver.find_element(*PaymentPages.TermsCond).click()
         self.driver.find_element(*PaymentPages.NextStep_Btn).click()
-        #Page5
+        # Page5
         self.driver.find_element(*PaymentPages.CompleteYourOrder_Page5_Btn).click()
-        #Page6 'Confirmation page'--> Needs more Verifying and assertions
+        # Page6 'Confirmation page'--> Needs more Verifying and assertions
     def get_Confirm_Msg(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(*PaymentPages.Confirm_Msg).text

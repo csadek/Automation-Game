@@ -2,15 +2,15 @@ from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
 from dateutil import parser
 import datetime
-import re
+import re  # for date time format
 
 
 class AddFlashSalePage(BaseTestCase):
     """ this class represents add flash sale to specific product elements manipulations and functions"""
-    """ Flash sale is specific type of sale on the product which remains for specific time- AT Jamaica user should have
+    """ Flash sale is specific type of sale on the product which remains for specific time- AT Jamaica, admin should have
     product created so that he can apply flash sale to it and it cannot happen during the creation of the product"""
     # Navigators
-    admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
+    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
     sub_menu = (By.CSS_SELECTOR, '#menu_1bd8d94f')
     edit_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php\"]')

@@ -9,8 +9,6 @@ class ProductsModule(BaseTestCase):
      3- edit product to add tabs & check them online
      4- delete product
      5- windows forms'''
-    def __init__(self, driver,name):
-        super(ProductsModule, self).__init__(driver)
     # Navigators
     admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
@@ -35,7 +33,7 @@ class ProductsModule(BaseTestCase):
     price = (By.NAME,'prix')
     promotion = (By.NAME,'promotion')
 
-    #Second tab
+    # Second tab
     english_tab = (By.CSS_SELECTOR,'a[href="#tab_EN"]')
     product_name = (By.CSS_SELECTOR,'#tab_EN > input:nth-child(3)')
     short_description = (By.NAME,'descriptif_en')
@@ -43,18 +41,20 @@ class ProductsModule(BaseTestCase):
     add_product_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
     confirm_delete = (By.CSS_SELECTOR,'body > div.bootbox.modal.fade.in > div > div > div.modal-footer > button.btn.btn-primary')
 
-    #Notification
+    # Notification
     alert =(By.CSS_SELECTOR,'#total > div.container > div > div > div.alert.alert-success.fade.in > b')
-    # naviagate to admin pages
+
+    # navigate to admin pages
     def admin_view(self):
         self.driver.find_element(*ProductsModule.admin_button).click()
-    #Add Product
+
+    # Add Product
     def AddProduct(self,position,reference,code,price,name,short,description):
-        #Open Add product page
+        # Open Add product page
         self.driver.find_element(*ProductsModule.main_menu).click()
         self.driver.find_element(*ProductsModule.sub_menu).click()
         self.driver.find_element(*ProductsModule.add_product_link).click()
-        #Add first
+        # Add first
         self.driver.find_element(*ProductsModule.select_category).click()
         self.driver.find_element(*ProductsModule.position).clear()
         self.driver.find_element(*ProductsModule.position).send_keys(position)
@@ -68,15 +68,14 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.reference).send_keys(reference)
         self.driver.find_element(*ProductsModule.code).send_keys(code)
         self.driver.find_element(*ProductsModule.price).send_keys(price)
-        #add second tab
+        # add second tab
         self.driver.find_element(*ProductsModule.english_tab).click()
         self.driver.find_element(*ProductsModule.product_name).send_keys(name)
         self.driver.find_element(*ProductsModule.short_description).send_keys(short)
         self.driver.find_element(*ProductsModule.description).send_keys(description)
-        #submit
+        # submit
         self.driver.find_element(*ProductsModule.add_product_button).click()
         return self.driver.find_element(*ProductsModule.alert).text
-
 
     def delete_product(self,name):
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']'.format(name)).click()

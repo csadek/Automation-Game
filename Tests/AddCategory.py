@@ -16,13 +16,8 @@ class AddCategory(BaseTestCase):
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Categories'))
     @unpack
-    def test_add_category(self,position,name):
-        CategoryPage.add_category(self,position,name)
-
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Sub'))
-    @unpack
-    def test_add_sub_category(self,position,name,no):
-        CategoryPage.add_sub_category(self,position,name,no)
+    def test_add_category(self,name, parent):
+        self.assertIn(name,CategoryPage.add_category(self,name,parent))
 
     def test_end(self):
         LoginLogoutPage.logout(self)
