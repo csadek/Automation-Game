@@ -1,14 +1,13 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
+from selenium.webdriver.common.keys import Keys
 
 
 class CategoryPage(BaseTestCase):
     """ this class represents add and delete both category and subcategory elements manipulations and functions"""
     """ Admin user should add categories and subcategories to add products to those categories"""
-    '''1- check category (view online)-
-     4- delete category'''
     # Navigators
-    admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
+    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
     sub_menu = (By.CSS_SELECTOR, '#menu_820845ea')
     add_category_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/categories.php?mode=ajout\"]')
@@ -23,14 +22,20 @@ class CategoryPage(BaseTestCase):
     add_category_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(27) > td > p > input')
     # alert
     alert = (By.CSS_SELECTOR,'div[class=\'alert alert-success fade in\']')
+    # category online
+    view_online = (By.CSS_SELECTOR, '#total > div.container > div > div > form > table > tbody > tr:nth-child(1) > td > a')
+    title = (By.CSS_SELECTOR,'#main_content > div > div > div > div.middle_column_repeat > div:nth-child(2) > h1')
 
-    # navigate to admin pages
-    def admin_view(self):
-        self.driver.find_element(*CategoryPage.admin_button).click()
-
-    # Add sub category
+    # Add category or sub category
     def add_category(self,name,parent):
         # Open category page
+        if 'http://10.1.22.67/Jamaica/achat' in self.driver.current_url:
+            self.driver.get('http://10.1.22.67/Jamaica/compte.php')
+            self.driver.find_element(*CategoryPage.admin_button).click()
+        elif 'http://10.1.22.67/Jamaica/compte.php' in self.driver.current_url:
+            self.driver.find_element(*CategoryPage.admin_button).click()
+        else:
+            pass
         self.driver.find_element(*CategoryPage.main_menu).click()
         self.driver.find_element(*CategoryPage.sub_menu).click()
         self.driver.find_element(*CategoryPage.add_category_link).click()
@@ -44,9 +49,26 @@ class CategoryPage(BaseTestCase):
         self.driver.find_element(*CategoryPage.view_on_home).click()
         self.driver.find_element(*CategoryPage.state_online).click()
         self.driver.find_element(*CategoryPage.name).send_keys(name)
-        # submit`
+        # submit
         self.driver.find_element(*CategoryPage.add_category_button).click()
-        return self.driver.find_element(*CategoryPage.alert).text
+
+        # Open edit product page
+        self.driver.find_element(*CategoryPage.main_menu).click()
+        self.driver.find_element(*CategoryPage.sub_menu).click()
+        self.driver.find_element(*CategoryPage.category_list_link).click()
+        self.driver.find_element_by_link_text(name).click()
+
+        # view online
+        self.driver.find_element(*CategoryPage.view_online).click()
+        window_after = self.driver.window_handles[1]
+        self.driver.find_element(self.driver.current_window_handle[0]).send_keys(Keys.ALT + Keys.F4)
+        self.driver.switch_to.window(window_after)
+
+        # Check category name
+        if self.driver.find_element(*CategoryPage.title).text == name:
+            return True
+        else:
+            return False
 
     # delete category
     def delete_category(self,idd):

@@ -10,7 +10,8 @@ class ProductsModule(BaseTestCase):
      4- delete product
      5- windows forms'''
     # Navigators
-    admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
+    #admin_button = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div > a.btn.btn-warning.pull-right')
+    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
     main_menu = (By.CSS_SELECTOR, '#menu_label_products')
     sub_menu = (By.CSS_SELECTOR, '#menu_1bd8d94f')
     add_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php?mode=ajout\"]')

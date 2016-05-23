@@ -15,7 +15,6 @@ class AddFlashSalePage(BaseTestCase):
     sub_menu = (By.CSS_SELECTOR, '#menu_1bd8d94f')
     edit_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php\"]')
 
-    # Locators
     # Flash Sale locators
     page_title = (By.CSS_SELECTOR,'#page_title > h1')
     flash_sale_price = (By.NAME,'prix_flash')
@@ -25,6 +24,7 @@ class AddFlashSalePage(BaseTestCase):
     save_changes_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
     alert = (By.CSS_SELECTOR,'div[class=\'alert alert-success fade in\']')
 
+    # product locators
     view_online = (By.CSS_SELECTOR,'#page_title > h1 > a')
     price = (By.ID,'prix_28')
     old_price = (By.CSS_SELECTOR,'#detailsajout28 > div > div > table > tbody > tr:nth-child(2) > td > del')
@@ -32,7 +32,7 @@ class AddFlashSalePage(BaseTestCase):
 
     # Add flash sale
     def add_flash_sale_to_product(self,price,start,end,name):
-        # Open edit page
+        # Open edit product page
         self.driver.find_element(*AddFlashSalePage.admin_button).click()
         self.driver.find_element(*AddFlashSalePage.main_menu).click()
         self.driver.find_element(*AddFlashSalePage.sub_menu).click()
@@ -54,22 +54,25 @@ class AddFlashSalePage(BaseTestCase):
         return self.driver.find_element(*AddFlashSalePage.alert).text
 
     def verify_flash_sale_price(self,name):
-        # make sure user is at the administrator view
-        if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:
+        # user can call that function from different views (product, admin, landing page)
+        if 'http://10.1.22.67/Jamaica/achat' in self.driver.current_url:
+            self.driver.get(self,'http://10.1.22.67/Jamaica/compte.php')
+            self.driver.find_element(*AddFlashSalePage.admin_button).click()
+        elif 'http://10.1.22.67/Jamaica/compte.php' in self.driver.current_url:
             self.driver.find_element(*AddFlashSalePage.admin_button).click()
         else:
             pass
-        # Open Add product page
+        # Open edit product page
         self.driver.find_element(*AddFlashSalePage.main_menu).click()
         self.driver.find_element(*AddFlashSalePage.sub_menu).click()
         self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
-        window_before = self.driver.window_handles[0]
 
         # view online
         self.driver.find_element(*AddFlashSalePage.view_online).click()
         window_after = self.driver.window_handles[1]
         self.driver.switch_to.window(window_after)
+
         # extract product new price
         new = self.driver.find_element(*AddFlashSalePage.price).text
         whole_text = new.split(',')
@@ -77,23 +80,8 @@ class AddFlashSalePage(BaseTestCase):
         return int(exact_price)
 
     def verify_remaining_time_to_end_sale(self,end_time):
-        # make sure user is at the administrator view
-        if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:
-            self.driver.find_element(*AddFlashSalePage.admin_button).click()
-        else:
-            pass
-        # Open Add product page
-        self.driver.find_element(*AddFlashSalePage.main_menu).click()
-        self.driver.find_element(*AddFlashSalePage.sub_menu).click()
-        self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
-        self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
-        window_before = self.driver.window_handles[0]
 
-        # view online
-        self.driver.find_element(*AddFlashSalePage.view_online).click()
-        window_after = self.driver.window_handles[1]
-        self.driver.switch_to.window(window_after)
-        #
+        # user must call verify flash sale price first
         alert1 = self.driver.find_element(*AddFlashSalePage.remaining_time).text
         time_list = re.findall(r'(?:\d)?\d+', alert1)
         now = datetime.datetime.now()
@@ -103,7 +91,6 @@ class AddFlashSalePage(BaseTestCase):
         else:
             return False
 
-   # def pay_with_flash_sale_price(self,name):
 
         
 

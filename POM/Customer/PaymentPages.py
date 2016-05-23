@@ -5,6 +5,8 @@ from POM.BaseTestCase import BaseTestCase
 class PaymentPages(BaseTestCase):
     """ this class represent payment1 page elements manipulations and functions"""
     '''need assertions'''
+
+   # def pay_with_flash_sale_price(self,name):
     # Locators
     # Page1
     Product_1 = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > a > span')

@@ -1,5 +1,4 @@
 from ddt import ddt, data, unpack
-
 from POM.Administrator.AddPromotionCodePage import AddPromotionCodePage
 from POM.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
@@ -16,6 +15,5 @@ class AddPromotionCode(BaseTestCase):
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Coupon'))
     @unpack
-    def test_Add_Promotion(self,name,start,amount):
-        AddPromotionCodePage.AddCoupon(self,name,start,amount)
-        self.assertIn('PROMOTIONAL CODE LIST',AddPromotionCodePage.get_page_name(self))
+    def test_Add_Promotion(self,name,start,end,amount):
+        self.assertIn('×\nThe coupon code {} has been created.'.format(name.upper()), AddPromotionCodePage.AddCoupon(self, name, start, end,amount))
