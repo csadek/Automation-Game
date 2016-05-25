@@ -19,11 +19,8 @@ class Search(BaseTestCase):
     @unpack
     def test_search_Exist_products(self,productName,Category):
         SearchPage.search_valid_Data(self,productName,Category)
-        self.assertTrue(productName,str.capitalize(SearchPage.get_Product_Name(self)) )
+      #  self.assertTrue(productName,str.capitalize(SearchPage.get_Product_Name(self)) )
 
-    def test_not_exist_Product(self):
-        SearchPage.search_not_exist_Product(self,'DRESS')
-        self.assertTrue('No product for this search.',SearchPage.get_not_found_Msg(self))
 
 
 
