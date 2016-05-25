@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from POM.BaseTestCase import BaseTestCase
-import poplib
+from selenium.webdriver.support import expected_conditions as EC
+
 
 class SendEmailClass(BaseTestCase):
     firstName = (By.NAME,'yname')
@@ -12,6 +15,9 @@ class SendEmailClass(BaseTestCase):
     backToProduct = (By.PARTIAL_LINK_TEXT,'Go back to the referer.')
     errorMsg= (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div')
     confirmationMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div')
+    emailAddress= (By.ID,'cred_userid_inputtext')
+    passWord = (By.ID,'cred_password_inputtext')
+    email =(By.CSS_SELECTOR,'#ShellMail')
 
     def send_Email_successfully(self,name,senderEmail,RecName,RecEmails ,comment):
         self.driver.find_element(*SendEmailClass.firstName).send_keys(name)
@@ -31,6 +37,21 @@ class SendEmailClass(BaseTestCase):
 
     def back_to_product_Page(self):
         self.driver.find_element(*SendEmailClass.backToProduct).click()
+
+
+    def open_outlook(self,userEmail,PassWord):
+        self.driver.get("https://login.microsoftonline.com/")
+        self.driver.implicitly_wait(20)
+
+        self.driver.find_element(*SendEmailClass.emailAddress).send_keys(userEmail)
+        self.driver.find_element(*SendEmailClass.passWord).send_keys(PassWord)
+        self.driver.find_element(*SendEmailClass.passWord).submit()
+
+        self.driver.implicitly_wait(20)
+        self.driver.find_element(*SendEmailClass.email).click()
+
+
+
 
 
 

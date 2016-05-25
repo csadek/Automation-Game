@@ -14,6 +14,7 @@ class SearchPage(BaseTestCase):
     ProductName = (By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > h1')
     emptyResults = (By.CLASS_NAME ,'search_result')
 
+
     def search_valid_Data(self,ProductName,CategoryName):
         self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
         self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
