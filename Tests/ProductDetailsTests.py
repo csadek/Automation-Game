@@ -24,7 +24,7 @@ class Search(BaseTestCase):
         ProductDetails.zoom_product_image(self)
         ProductDetails.give_your_Opinion_page(self,'Very Good')
         ProductDetails.getProductDetails(self,productName)
-        assertNotEquals =( ProductDetails.add_to_notePad_Page(self,productName),True)
+        self.assertTrue(ProductDetails.add_to_notePad_Page(self,productName))
 
 
 
