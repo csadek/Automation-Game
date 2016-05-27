@@ -54,9 +54,7 @@ class ProductsModule(AdminBase):
     def AddProduct(self,position,reference,code,price,name,short,description):
         # Open Add product page
 
-        self.driver.find_element(*ProductsModule.product_menu).click()
-        self.driver.find_element(*ProductsModule.product_sub_menu).click()
-        self.driver.find_element(*ProductsModule.add_product_link).click()
+
 
         # Add first
         self.driver.find_element(*ProductsModule.category).click()
