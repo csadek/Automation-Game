@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-
+import sys, string, os
 
 class ProductsModule(BaseTestCase):
     """ this class represents product page elements manipulations and functions. Administrator should be able to:
@@ -46,7 +46,8 @@ class ProductsModule(BaseTestCase):
 
     # Third tab
     file_associated_tab = (By.CSS_SELECTOR,'a[href="#tab2"]')
-    image_upload_button = (By.NAME,'file')
+    image_upload_button = (By.CSS_SELECTOR,'#image1 > div > div.qq-upload-button > input[type="file"]')
+
 
     # Save & notify
     save_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > div.center > p > input')
@@ -88,6 +89,13 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.product_name).send_keys(name)
         self.driver.find_element(*ProductsModule.short_description).send_keys(short)
         self.driver.find_element(*ProductsModule.description).send_keys(description)
+
+        #add Third tab - Jihad
+        self.driver.find_element(*ProductsModule.file_associated_tab).click()
+        self.driver.find_element(*ProductsModule.image_upload_button).submit()
+        self.driver.implicitly_wait(10)
+        os.system("C:\\Users\\jmohamed\\Desktop\\AutoIDscript.exe")
+        self.driver.implicitly_wait(30)
 
         # submit
         self.driver.find_element(*ProductsModule.save_button).click()
