@@ -14,6 +14,8 @@ class BaseTestCase(unittest.TestCase):
         # navigate to the application home page
         cls.driver.get('http://10.1.22.67/Jamaica/membre.php')
 
+
+
     @classmethod
     def tearDownClass(cls):
         # close the browser window

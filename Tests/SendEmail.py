@@ -1,9 +1,9 @@
 from ddt import ddt, data, unpack
 
-from POM.BaseTestCase import BaseTestCase
 from POM.Customer.ProductDetailsPage import ProductDetails
 from POM.Customer.SendEmailPage import SendEmailClass
 from POM.LoginLogoutPage import LoginLogoutPage
+from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 

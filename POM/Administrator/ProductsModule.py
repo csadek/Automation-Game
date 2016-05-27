@@ -1,19 +1,13 @@
+import os
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
-import sys, string, os
+from POM.Administrator.AdminBase import AdminBase
 
-class ProductsModule(BaseTestCase):
+
+class ProductsModule(AdminBase):
     """ this class represents product page elements manipulations and functions. Administrator should be able to:
      - Add new products for specific categories
      - Edit existing product
      - Delete product at specific category or subcategory"""
-
-    # Navigators
-    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
-    product_menu = (By.CSS_SELECTOR, '#menu_label_products')
-    product_sub_menu = (By.CSS_SELECTOR, '#menu_1bd8d94f')
-    add_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php?mode=ajout\"]')
-
     # Locators
     # first tab
     category = (By.CSS_SELECTOR,'#categories > option')
@@ -46,7 +40,7 @@ class ProductsModule(BaseTestCase):
 
     # Third tab
     file_associated_tab = (By.CSS_SELECTOR,'a[href="#tab2"]')
-    image_upload_button = (By.CSS_SELECTOR,'#image1 > div > div.qq-upload-button > input[type="file"]')
+    image_upload_button = (By.CSS_SELECTOR,'input[type="file"]')
 
 
     # Save & notify
@@ -55,22 +49,17 @@ class ProductsModule(BaseTestCase):
     confirm_msg =(By.CSS_SELECTOR,'#total > div.container > div > div > div.alert.alert-success.fade.in > b')
     page_title = (By.CSS_SELECTOR,'#page_title > h1')
 
+
     # Add Product
     def AddProduct(self,position,reference,code,price,name,short,description):
         # Open Add product page
-        if 'http://10.1.22.67/Jamaica/achat' in self.driver.current_url:
-            self.driver.get('http://10.1.22.67/Jamaica/compte.php')
-            self.driver.find_element(*ProductsModule.admin_button).click()
-        elif 'http://10.1.22.67/Jamaica/compte.php' in self.driver.current_url:
-            self.driver.find_element(*ProductsModule.admin_button).click()
-        else:
-            pass
+
         self.driver.find_element(*ProductsModule.product_menu).click()
         self.driver.find_element(*ProductsModule.product_sub_menu).click()
         self.driver.find_element(*ProductsModule.add_product_link).click()
 
         # Add first
-        """self.driver.find_element(*ProductsModule.category).click()
+        self.driver.find_element(*ProductsModule.category).click()
         self.driver.find_element(*ProductsModule.position).clear()
         self.driver.find_element(*ProductsModule.position).send_keys(position)
         self.driver.find_element(*ProductsModule.our_selection).click()
@@ -88,15 +77,17 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.english_tab).click()
         self.driver.find_element(*ProductsModule.product_name).send_keys(name)
         self.driver.find_element(*ProductsModule.short_description).send_keys(short)
-        self.driver.find_element(*ProductsModule.description).send_keys(description)"""
+        self.driver.find_element(*ProductsModule.description).send_keys(description)
 
         #add Third tab - Jihad
         self.driver.find_element(*ProductsModule.file_associated_tab).click()
-        self.driver.implicitly_wait(10)
-        self.driver.find_element(*ProductsModule.image_upload_button).click()
-        self.driver.implicitly_wait(10)
-        os.system("C:\\Users\\csadek\\Desktop\Automation-Game\\Automation-Game\\Utilities\\jihad.exe")
-        self.driver.implicitly_wait(30)
+        no=0
+        for i in self.driver.find_elements(*ProductsModule.image_upload_button):
+            if no==0:
+                i.send_keys('C:\\Users\\csadek\\Downloads\\52A-2GWs.png')
+                no += 1
+        #os.system("C:\\Users\\csadek\\Desktop\Automation-Game\\Automation-Game\\Utilities\\jihad.exe")
+
 
         # submit
         self.driver.find_element(*ProductsModule.save_button).click()
@@ -108,6 +99,7 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
         self.driver.find_element(*ProductsModule.english_tab).click()
         self.driver.find_element(*ProductsModule.product_instructions).click()
+        window_before = self.driver.window_handles[0]
         window_after = self.driver.window_handles[1]
         self.driver.switch_to.window(window_after)
         self.driver.find_element(*ProductsModule.content_tab1).clear()
@@ -119,7 +111,9 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.content_desc2).clear()
         self.driver.find_element(*ProductsModule.content_desc2).send_keys(desc2)
         self.driver.find_element(*ProductsModule.save_content).click()
-        return self.driver.find_element(*ProductsModule.confirm_tab2).text
+        alert= self.driver.find_element(*ProductsModule.confirm_tab2).text
+        self.driver.close()
+        return alert
 
     # delete product
     def delete_product(self,name):

@@ -1,6 +1,8 @@
+import pymysql    #install package
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
-#import pymysql    #install package
+
+from Tests.BaseTestCase import BaseTestCase
+
 
 class SearchPage(BaseTestCase):
     '''search product with no category
@@ -15,12 +17,8 @@ class SearchPage(BaseTestCase):
     emptyResults = (By.CLASS_NAME ,'search_result')
     list_of_products = (By.CSS_SELECTOR, 'div[class="produits row allow_order"] > div')
 
-    def search_valid_Data(self,ProductName,CategoryName):
-         self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
-         self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
-         self.driver.find_element(*SearchPage.SearchButton).click()
 
-    """def search_valid_Data(self,ProductName,CategoryName):
+    def search_valid_Data(self,ProductName,CategoryName):
         if CategoryName == "":
             self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
         elif ProductName == "":
@@ -32,7 +30,7 @@ class SearchPage(BaseTestCase):
             cur = conn.cursor()
             cur.execute("count FROM `peel_codes_promos` WHERE `date_fin`> {} && `etat` = 1".format(end_date))
             coupon_data = cur.fetchone()[0]
-            return coupon_data """
+            return coupon_data
 
 
 

@@ -2,10 +2,10 @@ from POM.ManageUserPage import ManageUserPage
 from POM.searchPage import SearchPage
 from ddt import ddt, data, unpack
 
-from POM.BaseTestCase import BaseTestCase
 from POM.Customer.PaymentPages import PaymentPages
 from POM.LoginLogoutPage import LoginLogoutPage
 from POM.NewUser.RegestrationPage import RegistrationPage
+from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 

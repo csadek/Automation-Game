@@ -2,12 +2,11 @@ import unittest
 import datetime as dt
 import os
 import sys
+# navigate to the relative paths from the batch file
+sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 from Utilities import HTMLTestRunner
 from Tests.LoginLogout import LoginLogout
 
-
-# navigate to the relative paths from the batch file
-sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
 
 # create the html report file
 current_directory = (os.path.dirname(os.getcwd()))

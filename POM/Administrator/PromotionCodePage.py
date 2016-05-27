@@ -1,16 +1,10 @@
-from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
 import pymysql    #install package
+from selenium.webdriver.common.by import By
+from POM.Administrator.AdminBase import AdminBase
 
 
-class AddPromotionCodePage(BaseTestCase):
+class AddPromotionCodePage(AdminBase):
     """ this class represent add promotion code page to specific product elements manipulations and functions"""
-    # Navigators
-    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
-    main_menu = (By.CSS_SELECTOR, '#menu_label_users')
-    sub_menu = (By.CSS_SELECTOR, '#menu_bc24ec8e')
-    add_coupon = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/codes_promos.php\"]')
-    add_coupon_link = (By.CSS_SELECTOR,'#total > div.container > div > div > p > a:nth-child(4)')
 
     # Locators
     promotion_code = (By.NAME, 'nom')
@@ -26,13 +20,9 @@ class AddPromotionCodePage(BaseTestCase):
     # Add coupon
     def AddCoupon(self,code_name,start,end,sale):
         # Open coupon codes page
-        self.driver.find_element(*AddPromotionCodePage.admin_button).click()
-        self.driver.find_element(*AddPromotionCodePage.main_menu).click()
-        self.driver.find_element(*AddPromotionCodePage.sub_menu).click()
-        self.driver.find_element(*AddPromotionCodePage.add_coupon).click()
-        self.driver.find_element(*AddPromotionCodePage.add_coupon_link).click()
 
         # Add coupon
+        self.driver.find_element(*AddPromotionCodePage.add_coupon_link).click()
         self.driver.find_element(*AddPromotionCodePage.promotion_code).send_keys(code_name)
         self.driver.find_element(*AddPromotionCodePage.start_date).clear()
         self.driver.find_element(*AddPromotionCodePage.start_date).send_keys(start)
@@ -48,6 +38,7 @@ class AddPromotionCodePage(BaseTestCase):
 
     def get_valid_coupon_data(self, end_date):
         # Connect to database to search for valid code using end date and state active
+        #TODO: this should be added at utilities
         conn = pymysql.connect(host='10.1.22.67', port=3306, user='Selenium', passwd='python', db='peel')
         cur = conn.cursor()
         cur.execute("SELECT `nom`, `remise_valeur` FROM `peel_codes_promos` WHERE `date_fin`> {} && `etat` = 1".format(end_date))
