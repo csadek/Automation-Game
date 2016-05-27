@@ -1,3 +1,4 @@
+import ConfigReader as Conf
 from selenium.webdriver.common.by import By
 from Tests.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
@@ -21,18 +22,18 @@ class AdminBase(BaseTestCase):
 
     # constructor
     def __init__(self, driver):
-        super(AdminBase, self).__init__(driver)
+        super(AdminBase, self.__init__(driver))
 
     # navigate to admin pages
     def navigate_to_admin(self,username, password):
-        if 'http://10.1.22.67/Jamaica/' in self.driver.current_url:
+        if Conf.read_ini_config('Paths','LoginURL') in self.driver.current_url:
             loginlogout_obj = LoginLogoutPage()
             if self.driver.find_element(loginlogout_obj.logout_link).text == 'Log in':
                 loginlogout_obj.login_with_valid_credentials(username,password)
-                self.driver.get('http://10.1.22.67/Jamaica/compte.php')
+                self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
                 self.driver.find_element(*AdminBase.admin_button).click()
             else:
-                self.driver.get('http://10.1.22.67/Jamaica/compte.php')
+                self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
                 self.driver.find_element(*AdminBase.admin_button).click()
 
     def view_users(self):
@@ -40,15 +41,28 @@ class AdminBase(BaseTestCase):
         self.driver.find_element(*AdminBase.users_sub).click()
         self.driver.find_element(*AdminBase.users_list_link).click()
 
-    def add_coupon(self):
+    def add_coupon_navigator(self):
         self.driver.find_element(*AdminBase.users_main).click()
         self.driver.find_element(*AdminBase.customer_loyalty_link).click()
         self.driver.find_element(*AdminBase.coupon_codes_link).click()
 
-    def edit_product(self):
+    def edit_product_navigator(self):
         self.driver.find_element(*AdminBase.products_main).click()
-        self.driver.find_element(*AdminBase.sub_menu).click()
-        self.driver.find_element(*AdminBase.edit_product_link).click()
+        self.driver.find_element(*AdminBase.products_sub).click()
+        self.driver.find_element(*AdminBase.product_list_link).click()
 
+    def add_product_navigator(self):
+        self.driver.find_element(*AdminBase.products_main).click()
+        self.driver.find_element(*AdminBase.products_sub).click()
+        self.driver.find_element(*AdminBase.add_product_link).click()
 
+    def edit_category_navigator(self):
+        self.driver.find_element(*AdminBase.products_main).click()
+        self.driver.find_element(*AdminBase.category_sub).click()
+        self.driver.find_element(*AdminBase.category_list_link).click()
+
+    def add_category_navigator(self):
+        self.driver.find_element(*AdminBase.products_main).click()
+        self.driver.find_element(*AdminBase.category_sub).click()
+        self.driver.find_element(*AdminBase.add_category_link).click()
 
