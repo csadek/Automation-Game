@@ -21,6 +21,8 @@ class ProductDetails(BaseTestCase):
     #Add to notepad
     MyAccountLink=(By.PARTIAL_LINK_TEXT,'My Account')
     myReminder= (By.PARTIAL_LINK_TEXT,'Check my reminder')
+    table=(By.CLASS_NAME,'table-responsive')
+    reminder_name = (By.CSS_SELECTOR,'#main_content > div > div > div > div.middle_column_repeat > div > table > tbody > tr > td.lignecaddie_produit_details > a')
 
     #Give your opinion Link
     opinionLink= (By.PARTIAL_LINK_TEXT,'Give your opinion')
@@ -43,7 +45,6 @@ class ProductDetails(BaseTestCase):
     def send_email(self):
         self.driver.find_element(*ProductDetails.sendEmailLink).click()
 
-
     def give_your_Opinion_page(self,Opinion):
          self.driver.find_element(*ProductDetails.opinionLink).click()
          self.driver.find_element(*ProductDetails.yourOpinionText).send_keys(Opinion)
@@ -53,11 +54,15 @@ class ProductDetails(BaseTestCase):
         # return self.driver.find_element(*ProductDetails.confirmMsg).text
 
 
-    def add_to_notePad_Page(self):
+    def add_to_notePad_Page(self,product_name):
         self.driver.find_element(*ProductDetails.addToNotePad).click()
         self.driver.find_element(*ProductDetails.MyAccountLink).click()
         self.driver.find_element(*ProductDetails.myReminder).click()
-
+        for i in self.driver.find_elements(*ProductDetails.reminder_name):
+            if i.text == product_name:
+                return True
+            else:
+                return False
 
 
     def __init__(self, driver):
