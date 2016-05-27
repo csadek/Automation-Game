@@ -29,7 +29,8 @@ class Search(BaseTestCase):
         ProductDetails.getProductDetails(self,productName)
         ProductDetails.getDetailsTab(self)
         self.driver.implicitly_wait(10)
-        ProductDetails.print_Product_Detils(self)
+        ProductDetails.print_Product_Details(self)
+
 
 
 

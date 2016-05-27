@@ -18,6 +18,10 @@ class SendEmailClass(BaseTestCase):
     emailAddress= (By.ID,'cred_userid_inputtext')
     passWord = (By.ID,'cred_password_inputtext')
     email =(By.CSS_SELECTOR,'#ShellMail')
+    searchBox= (By.CSS_SELECTOR,'#primaryContainer > div:nth-child(4) > div > div._n_Z > div._n_61 > div:nth-child(1) > div:nth-child(1) > div > div > div:nth-child(1) > div:nth-child(1) > div._n_f3 > div._n_o3._n_u3 > div._n_w3 > button > span._n_t.ms-font-weight-semilight.ms-font-color-neutralPrimary')
+    butn=(By.CSS_SELECTOR,'#primaryContainer > div:nth-child(4) > div > div._n_Z > div._n_61 > div:nth-child(1) > div:nth-child(1) > div > div > div:nth-child(1) > div:nth-child(1) > div._n_f3 > div._n_o3._n_u3 > div._n_w3 > div > div._is_t.ms-border-color-themePrimary._is_u > div > button._is_A.o365button')
+
+
 
     def send_Email_successfully(self,name,senderEmail,RecName,RecEmails ,comment):
         self.driver.find_element(*SendEmailClass.firstName).send_keys(name)
@@ -46,9 +50,13 @@ class SendEmailClass(BaseTestCase):
         self.driver.find_element(*SendEmailClass.emailAddress).send_keys(userEmail)
         self.driver.find_element(*SendEmailClass.passWord).send_keys(PassWord)
         self.driver.find_element(*SendEmailClass.passWord).submit()
-
-        self.driver.implicitly_wait(20)
         self.driver.find_element(*SendEmailClass.email).click()
+        self.driver.find_element(*SendEmailClass.searchBox).click()
+
+        self.driver.find_element(*SendEmailClass.searchBox).send_keys('ssssssssss')
+        self.driver.find_element(*SendEmailClass.searchBox).submit()
+        self.driver.find_element(*SendEmailClass.butn).click()
+        self.driver.implicitly_wait(20)
 
 
 

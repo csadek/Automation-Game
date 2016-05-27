@@ -1,6 +1,7 @@
+import os
 from selenium.webdriver.common.by import By
 from POM.BaseTestCase import BaseTestCase
-from selenium.webdriver.common.action_chains import ActionChains
+
 
 
 class ProductDetails(BaseTestCase):
@@ -12,11 +13,12 @@ class ProductDetails(BaseTestCase):
     # Locators
     sendEmailLink = (By.PARTIAL_LINK_TEXT,'Send email to your friend')
     addToNotePad = (By.PARTIAL_LINK_TEXT,'Add to notepad')
-    printPage = (By.PARTIAL_LINK_TEXT,'Print this page')
-    washingTab = (By.PARTIAL_LINK_TEXT,'Washing')
     productInfo = (By.PARTIAL_LINK_TEXT,'Product Info')
-    availability= (By.PARTIAL_LINK_TEXT,'Availability')
     zoomTool = (By.CLASS_NAME,'zoomPup')
+
+    # Details tabs
+    availability= (By.PARTIAL_LINK_TEXT,'Availability')
+    washingTab = (By.PARTIAL_LINK_TEXT,'Washing')
 
     #Add to notepad
     MyAccountLink=(By.PARTIAL_LINK_TEXT,'My Account')
@@ -30,6 +32,12 @@ class ProductDetails(BaseTestCase):
     sendOpinionBtn=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > form > table > tbody > tr:nth-child(7) > td > input')
     rate= (By.NAME,'note')
     confirmMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div.alert.alert-success.fade.in')
+
+    #Print Page
+    printPage = (By.PARTIAL_LINK_TEXT,'Print this page')
+
+
+
 
     def getProductDetails(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
@@ -63,6 +71,13 @@ class ProductDetails(BaseTestCase):
                 return True
             else:
                 return False
+
+    def print_Product_Details(self):
+         self.driver.find_element(*ProductDetails.printPage).click()
+         self.driver.get("http://10.1.22.67/Jamaica/achat/produit_details.php?id=1")
+         os.system("../Utilities/PrintScript.exe")
+         #autoit.Run("../Utilities/AutoIDscript.au3")
+
 
 
     def __init__(self, driver):

@@ -13,7 +13,7 @@ class AddProduct(BaseTestCase):
     @unpack
     def test_Add(self,user,password):
         LoginLogoutPage.login_with_valid_credentials(self, user, password)
-        ProductsModule.admin_view(self)
+
 
     @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Clothes'))
     @unpack

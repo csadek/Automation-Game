@@ -36,7 +36,7 @@ class ProductsModule(BaseTestCase):
     product_name = (By.CSS_SELECTOR,'#tab_EN > input:nth-child(3)')
     short_description = (By.NAME,'descriptif_en')
     description = (By.CSS_SELECTOR,'body')
-    product_instructions = (By.CSS_SELECTOR,'a[href="http://10.1.22.67/Jamaica/administrer/produits.php?mode=modif_tab&id=1&tab_lang=en"]')
+    product_instruct1ions = (By.CSS_SELECTOR,'a[href="http://10.1.22.67/Jamaica/administrer/produits.php?mode=modif_tab&id=1&tab_lang=en"]')
     content_tab1 = (By.NAME,'tab1_title_en')
     content_desc1 = (By.CSS_SELECTOR,'#xEditingArea > iframe')
     content_tab2 = (By.NAME,'tab2_title_en')

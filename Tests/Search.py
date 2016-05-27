@@ -1,5 +1,5 @@
 from ddt import ddt, data, unpack
-
+from POM.Customer.ProductDetailsPage import ProductDetails
 from POM.BaseTestCase import BaseTestCase
 from POM.Customer.searchPage import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
@@ -19,7 +19,8 @@ class Search(BaseTestCase):
     @unpack
     def test_search_Exist_products(self,productName,Category):
         SearchPage.search_valid_Data(self,productName,Category)
-      #  self.assertTrue(productName,str.capitalize(SearchPage.get_Product_Name(self)) )
+        ProductDetails.getProductDetails(self,productName)
+
 
 
 
