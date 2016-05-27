@@ -30,6 +30,7 @@ class ProductDetails(BaseTestCase):
     def send_email(self):
         self.driver.find_element(*ProductDetails.sendEmailLink).click()
 
+
     def give_your_Opinion_page(self):
          self.driver.find_element(*ProductDetails.opinionLink).click()
 

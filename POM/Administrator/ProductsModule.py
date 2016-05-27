@@ -70,7 +70,7 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.add_product_link).click()
 
         # Add first
-        self.driver.find_element(*ProductsModule.category).click()
+        """self.driver.find_element(*ProductsModule.category).click()
         self.driver.find_element(*ProductsModule.position).clear()
         self.driver.find_element(*ProductsModule.position).send_keys(position)
         self.driver.find_element(*ProductsModule.our_selection).click()
@@ -88,13 +88,14 @@ class ProductsModule(BaseTestCase):
         self.driver.find_element(*ProductsModule.english_tab).click()
         self.driver.find_element(*ProductsModule.product_name).send_keys(name)
         self.driver.find_element(*ProductsModule.short_description).send_keys(short)
-        self.driver.find_element(*ProductsModule.description).send_keys(description)
+        self.driver.find_element(*ProductsModule.description).send_keys(description)"""
 
         #add Third tab - Jihad
         self.driver.find_element(*ProductsModule.file_associated_tab).click()
-        self.driver.find_element(*ProductsModule.image_upload_button).submit()
         self.driver.implicitly_wait(10)
-        os.system("C:\\Users\\jmohamed\\Desktop\\AutoIDscript.exe")
+        self.driver.find_element(*ProductsModule.image_upload_button).click()
+        self.driver.implicitly_wait(10)
+        os.system("C:\\Users\\csadek\\Desktop\Automation-Game\\Automation-Game\\Utilities\\jihad.exe")
         self.driver.implicitly_wait(30)
 
         # submit
