@@ -23,8 +23,13 @@ class Search(BaseTestCase):
         ProductDetails.getProductDetails(self,productName)
         ProductDetails.zoom_product_image(self)
         ProductDetails.give_your_Opinion_page(self,'Very Good')
+        # back to product details
         ProductDetails.getProductDetails(self,productName)
         self.assertTrue(ProductDetails.add_to_notePad_Page(self,productName))
+        ProductDetails.getProductDetails(self,productName)
+        ProductDetails.getDetailsTab(self)
+        self.driver.implicitly_wait(10)
+        ProductDetails.print_Product_Detils(self)
 
 
 
