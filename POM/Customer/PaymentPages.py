@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
+
+from Tests.BaseTestCase import BaseTestCase
 
 
 class PaymentPages(BaseTestCase):

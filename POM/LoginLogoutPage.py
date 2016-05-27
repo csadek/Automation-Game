@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
+from Tests.BaseTestCase import BaseTestCase
 
 
 class LoginLogoutPage(BaseTestCase):
@@ -37,8 +37,6 @@ class LoginLogoutPage(BaseTestCase):
     def logout(self):
         if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:
             self.driver.find_element(*LoginLogoutPage.log_out_admin).click()
-        elif self.driver.current_url == 'http://10.1.22.67/Jamaica/':
-            pass
-        else:
+        elif self.driver.find_element(*LoginLogoutPage.logout_link).text != 'Log in':
             self.driver.find_element(*LoginLogoutPage.logout_link).click()
             self.driver.find_element(*LoginLogoutPage.logout_user).click()

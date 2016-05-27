@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from POM.BaseTestCase import BaseTestCase
+from Tests.BaseTestCase import BaseTestCase
 
 
 class ManageBillingAddressPage(BaseTestCase):

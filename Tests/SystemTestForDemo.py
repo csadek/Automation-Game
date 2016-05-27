@@ -3,10 +3,10 @@ from POM.SendEmailPage import sendEmailClass
 from POM.searchPage import SearchPage
 from ddt import ddt, data, unpack
 
-from POM.BaseTestCase import BaseTestCase
 from POM.Customer.FollowUpOrderPage import FollowUpOrdersPage
 from POM.Customer.ProductDetailsPage import ProductDetails
 from POM.LoginLogoutPage import LoginLogoutPage
+from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 

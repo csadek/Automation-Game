@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
-from selenium.webdriver.common.action_chains import ActionChains
+
+from Tests.BaseTestCase import BaseTestCase
 
 
 class ProductDetails(BaseTestCase):
@@ -11,59 +11,38 @@ class ProductDetails(BaseTestCase):
 
     # Locators
     sendEmailLink = (By.PARTIAL_LINK_TEXT,'Send email to your friend')
+    opinionLink= (By.PARTIAL_LINK_TEXT,'Give your opinion')
+    peopleFeedBack = (By.PARTIAL_LINK_TEXT,'All opinion on this product')
     addToNotePad = (By.PARTIAL_LINK_TEXT,'Add to notepad')
     printPage = (By.PARTIAL_LINK_TEXT,'Print this page')
     washingTab = (By.PARTIAL_LINK_TEXT,'Washing')
     productInfo = (By.PARTIAL_LINK_TEXT,'Product Info')
     availability= (By.PARTIAL_LINK_TEXT,'Availability')
-    zoomTool = (By.CLASS_NAME,'zoomPup')
-
-    #Add to notepad
-    MyAccountLink=(By.PARTIAL_LINK_TEXT,'My Account')
-    myReminder= (By.PARTIAL_LINK_TEXT,'Check my reminder')
-    table=(By.CLASS_NAME,'table-responsive')
-    reminder_name = (By.CSS_SELECTOR,'#main_content > div > div > div > div.middle_column_repeat > div > table > tbody > tr > td.lignecaddie_produit_details > a')
-
-    #Give your opinion Link
-    opinionLink= (By.PARTIAL_LINK_TEXT,'Give your opinion')
-    yourOpinionText=(By.NAME,'avis')
-    sendOpinionBtn=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > form > table > tbody > tr:nth-child(7) > td > input')
-    rate= (By.NAME,'note')
-    confirmMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div.alert.alert-success.fade.in')
+    zoomTool = (By.CSS_SELECTOR,'#zoom1 > div > div.zoomWindow')
 
     def getProductDetails(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
-
-    def getDetailsTab(self):
         self.driver.find_element(*ProductDetails.availability).click()
         self.driver.find_element(*ProductDetails.washingTab).click()
 
     def zoom_product_image(self):
-         element=self.driver.find_element(*ProductDetails.zoomTool)
-         self.driver.implicitly_wait(30)
+         self.driver.find_element(*ProductDetails.zoomTool).click()
 
     def send_email(self):
         self.driver.find_element(*ProductDetails.sendEmailLink).click()
 
-    def give_your_Opinion_page(self,Opinion):
+
+    def give_your_Opinion_page(self):
          self.driver.find_element(*ProductDetails.opinionLink).click()
-         self.driver.find_element(*ProductDetails.yourOpinionText).send_keys(Opinion)
-         self.driver.find_element(*ProductDetails.rate).click()
-         self.driver.find_element(*ProductDetails.sendOpinionBtn).click()
 
-        # return self.driver.find_element(*ProductDetails.confirmMsg).text
+    def people_feedback_Page(self):
+        self.driver.find_element(*ProductDetails.peopleFeedBack).click()
 
-
-    def add_to_notePad_Page(self,product_name):
+    def add_to_notePad_Page(self):
         self.driver.find_element(*ProductDetails.addToNotePad).click()
-        self.driver.find_element(*ProductDetails.MyAccountLink).click()
-        self.driver.find_element(*ProductDetails.myReminder).click()
-        for i in self.driver.find_elements(*ProductDetails.reminder_name):
-            if i.text == product_name:
-                return True
-            else:
-                return False
 
+    def print_Page(self):
+        self.driver.find_element(*ProductDetails.printPage).click()
 
     def __init__(self, driver):
         super(ProductDetails, self).__init__(driver)

@@ -1,7 +1,7 @@
 from ddt import ddt, data, unpack
 
-from POM.BaseTestCase import BaseTestCase
 from POM.NewUser.RegestrationPage import RegistrationPage
+from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 

@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
-from POM.BaseTestCase import BaseTestCase
-from selenium.webdriver.support import expected_conditions as EC
+from Tests.BaseTestCase import BaseTestCase
 
 
 class SendEmailClass(BaseTestCase):

@@ -1,19 +1,14 @@
-from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
-from dateutil import parser
 import datetime
 import re  # for date time format
+from dateutil import parser
+from selenium.webdriver.common.by import By
+from POM.Administrator.AdminBase import AdminBase
 
 
-class AddFlashSalePage(BaseTestCase):
+class AddFlashSalePage(AdminBase):
     """ this class represents add flash sale to specific product elements manipulations and functions"""
     """ Flash sale is specific type of sale on the product which remains for specific time- AT Jamaica, admin should have
     product created so that he can apply flash sale to it and it cannot happen during the creation of the product"""
-    # Navigators
-    admin_button = (By.CSS_SELECTOR,'a[class="btn btn-warning pull-right"]')
-    main_menu = (By.CSS_SELECTOR, '#menu_label_products')
-    sub_menu = (By.CSS_SELECTOR, '#menu_1bd8d94f')
-    edit_product_link = (By.CSS_SELECTOR,'a[href^=\"http://10.1.22.67/Jamaica/administrer/produits.php\"]')
 
     # Flash Sale locators
     page_title = (By.CSS_SELECTOR,'#page_title > h1')
@@ -55,17 +50,9 @@ class AddFlashSalePage(BaseTestCase):
 
     def verify_flash_sale_price(self,name):
         # user can call that function from different views (product, admin, landing page)
-        if 'http://10.1.22.67/Jamaica/achat' in self.driver.current_url:
-            self.driver.get(self,'http://10.1.22.67/Jamaica/compte.php')
-            self.driver.find_element(*AddFlashSalePage.admin_button).click()
-        elif 'http://10.1.22.67/Jamaica/compte.php' in self.driver.current_url:
-            self.driver.find_element(*AddFlashSalePage.admin_button).click()
-        else:
-            pass
+
         # Open edit product page
-        self.driver.find_element(*AddFlashSalePage.main_menu).click()
-        self.driver.find_element(*AddFlashSalePage.sub_menu).click()
-        self.driver.find_element(*AddFlashSalePage.edit_product_link).click()
+
         self.driver.find_element_by_css_selector('a[title=\'Delete {}\']+a[title=\'Modify\']'.format(name)).click()
 
         # view online

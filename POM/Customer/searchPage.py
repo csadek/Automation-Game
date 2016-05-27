@@ -1,6 +1,8 @@
-from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
 import pymysql    #install package
+from selenium.webdriver.common.by import By
+
+from Tests.BaseTestCase import BaseTestCase
+
 
 class SearchPage(BaseTestCase):
     '''search product with no category
