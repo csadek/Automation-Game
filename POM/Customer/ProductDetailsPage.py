@@ -82,6 +82,7 @@ class ProductDetails(BaseTestCase):
 
 
 
+
     def __init__(self, driver):
         super(ProductDetails, self).__init__(driver)
 
