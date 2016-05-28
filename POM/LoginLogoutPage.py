@@ -7,14 +7,14 @@ class LoginLogoutPage(BaseTestCase):
     # Navigator
     login_link = (By.CLASS_NAME,'header_user_text')
     # Locators
-    username = (By.CSS_SELECTOR,'#compte_login_mini > form > table > tbody > tr:nth-child(1) > td.module_login_email > input')
-    password =(By.CSS_SELECTOR,'#compte_login_mini > form > table > tbody > tr:nth-child(2) > td.module_login_password > input')
-    login_button = (By.CSS_SELECTOR,'#compte_login_mini > form > table > tbody > tr:nth-child(3) > td > input.btn.btn-success')
-    Error_LBL = (By.CSS_SELECTOR, 'div[class=\'alert alert-danger fade in\']')
+    username = (By.NAME,'email')
+    password =(By.NAME,'mot_passe')
+    login_button = (By.CSS_SELECTOR,'input[class="btn btn-success"')
+    Error_LBL = (By.CSS_SELECTOR, 'div[class="alert alert-danger fade in"]')
     #logout
-    log_out_admin = (By.CSS_SELECTOR, '#total > div.navbar.navbar-inverse.navbar-static-top > div > div > div.navbar-collapse.collapse > nav > ul.nav.nav-pills.pull-right > li:nth-child(2) > a')
+    log_out_admin = (By.CSS_SELECTOR, 'span[class ="glyphicon glyphicon-off"')
     logout_link = (By.CSS_SELECTOR,'#header_login > div > a > span.hidden-xs > span.header_user_text')
-    logout_user = (By.CSS_SELECTOR,'#header_login > div > div > div > div > a:nth-child(8)')
+    logout_user = (By.LINK_TEXT,'Log out')
 
     def login_with_Invalid_credentials(self, username, password):
         self.driver.find_element(*LoginLogoutPage.login_link).click()
@@ -39,4 +39,5 @@ class LoginLogoutPage(BaseTestCase):
             self.driver.find_element(*LoginLogoutPage.log_out_admin).click()
         elif self.driver.find_element(*LoginLogoutPage.logout_link).text != 'Log in':
             self.driver.find_element(*LoginLogoutPage.logout_link).click()
+            self.driver.implicitly_wait(5)
             self.driver.find_element(*LoginLogoutPage.logout_user).click()

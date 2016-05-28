@@ -1,4 +1,5 @@
 import unittest
+import ConfigReader as Conf
 from selenium import webdriver
 
 
@@ -12,7 +13,7 @@ class BaseTestCase(unittest.TestCase):
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
         # navigate to the application home page
-        cls.driver.get('http://10.1.22.67/Jamaica/membre.php')
+        cls.driver.get(Conf.read_ini_config('Paths','LoginURL'))
 
 
 

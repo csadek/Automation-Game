@@ -1,6 +1,6 @@
 from ddt import ddt, data, unpack
 from POM.Customer.ProductDetailsPage import ProductDetails
-from POM.BaseTestCase import BaseTestCase
+from Tests.BaseTestCase import BaseTestCase
 from POM.Customer.searchPage import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
 from Utilities.ReadExcel import ReadExcel
@@ -10,15 +10,15 @@ from Utilities.ReadExcel import ReadExcel
 class Search(BaseTestCase):
 
 
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','LoginValid'))
+    @data(*ReadExcel.get_sheet('../Utilities/Data.xlsx','LoginValid'))
     @unpack
     def test_add(self,user,password):
         LoginLogoutPage.login_with_valid_credentials(self, user, password)
 
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','Products'))
+    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx','Products'))
     @unpack
-    def test_search_Exist_products(self,productName,Category):
-        SearchPage.search_valid_Data(self,productName,Category)
+    def test_search_Exist_products(self,username,password,productName,Category):
+        SearchPage.search_valid_Data(self,username,password,productName,Category)
         ProductDetails.getProductDetails(self,productName)
 
 
