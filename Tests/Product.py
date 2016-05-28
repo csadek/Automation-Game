@@ -14,11 +14,12 @@ class AddProduct(BaseTestCase):
 
     @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','Clothes']))
     @unpack
-    def test_delete(self,username,password,position,reference,code,price,name,short,description):
+    def test_pdelete(self,username,password,position,reference,code,price,name,short,description):
         ProductsModule.delete_product(self,username,password,name)
 
     @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','Product instructions']))
     @unpack
-    def test_edit_product(self,username,password,name,tab1,desc1,tab2,desc2):
-        ProductsModule.edit_product(self,username,password,name,tab1,desc1,tab2,desc2)
+    def test_edit_product(self,username,password,name,tab1,tab2):
+        ProductsModule.uppload_image(self,username,password,name)
+        ProductsModule.edit_product(self,username,password,name,tab1,tab2)
 
