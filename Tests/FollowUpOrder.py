@@ -9,7 +9,7 @@ from Utilities.ReadExcel import ReadExcel
 @ddt
 class FollowUpOrder(BaseTestCase):
 
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','LoginValid'))
+    @data(*ReadExcel.get_sheet('../Utilities/Data.xlsx','LoginValid'))
     @unpack
     def test_FollowOrder_valid(self, username, password):
         LoginLogoutPage.login_with_valid_credentials(self, username, password)

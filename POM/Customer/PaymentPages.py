@@ -70,7 +70,6 @@ class PaymentPages(BaseTestCase):
     TermsCond = (By.CSS_SELECTOR,'div > p > input[type="checkbox"]')
     NextStep_Btn = (By.CSS_SELECTOR,'div:nth-child(2) > div > div > input')
 
-
     # Page5 'Summary' --> Needs more Verifying and assertions
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
 

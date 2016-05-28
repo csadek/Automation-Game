@@ -8,11 +8,12 @@ from Utilities.ReadExcel import ReadExcel
 
 @ddt
 class MangeBilling(BaseTestCase):
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx', 'BillingAddress'))
+
+    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','NewShppingAddress']))
     @unpack
-    def test_createAnother_Address_Successfully(self, surAddress, surName, firstName, email, company, address, zipCode,
+    def test_createAnother_Address_Successfully(self,name,password,surAddress, surName, firstName, email, company, address, zipCode,
                                                 town, country, phone):
-        LoginLogoutPage.login_with_valid_credentials(self, 'csadek@integrant.com', 'ZAQ!cde3')
+        LoginLogoutPage.login_with_valid_credentials(self, name, password)
         ManageBillingAddressPage.manage_billing(self)
         ManageBillingAddressPage.Create_Another_Address(self, surAddress, surName, firstName, email, company, address,
                                                         zipCode, town, country, phone)
