@@ -34,11 +34,6 @@ class ProductDetails(BaseTestCase):
     rate= (By.NAME,'note')
     confirmMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div.alert.alert-success.fade.in')
 
-    #Print Page
-    printPage = (By.PARTIAL_LINK_TEXT,'Print this page')
-
-
-
 
     def getProductDetails(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
@@ -72,15 +67,6 @@ class ProductDetails(BaseTestCase):
                 return True
             else:
                 return False
-
-    def print_Product_Details(self):
-        self.driver.find_element(*ProductDetails.printPage).click()
-        self.driver.get("http://10.1.22.67/Jamaica/achat/produit_details.php?id=1")
-        time.sleep(5)
-        os.startfile(r"C:\Users\csadek\Desktop\Automation-Game\Automation-Game\Utilities\PrintScript.exe")
-        print ("")
-
-
 
 
     def __init__(self, driver):

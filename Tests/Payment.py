@@ -1,5 +1,5 @@
-from POM.searchPage import SearchPage
 from ddt import ddt, data, unpack
+from POM.Customer.searchPage import SearchPage
 
 from POM.Customer.PaymentPages import PaymentPages
 from POM.LoginLogoutPage import LoginLogoutPage

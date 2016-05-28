@@ -33,8 +33,6 @@ class SearchPage(BaseTestCase):
             return coupon_data
 
 
-
-
     def search_not_exist_Product(self,ProductName):
         self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
         self.driver.find_element(*SearchPage.SearchButton).click()
