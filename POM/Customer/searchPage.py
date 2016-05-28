@@ -1,10 +1,10 @@
 import pymysql
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 from POM.LoginLogoutPage import LoginLogoutPage
 
 
-class SearchPage(BaseTestCase):
+class SearchPage(AdminBase):
     '''search product with no category
     search all products at specific category
     assert on each function'''

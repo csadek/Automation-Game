@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 
 
-class SendEmailClass(BaseTestCase):
+class SendEmailClass(AdminBase):
     firstName = (By.NAME,'yname')
     yourEmail = (By.NAME,'yemail')
     recipientNames = (By.NAME,'fname[]')

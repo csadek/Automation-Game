@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 
 
-class FollowUpOrdersPage(BaseTestCase):
+class FollowUpOrdersPage(AdminBase):
     """ this class represent FollowUp_Orders page elements manipulations and functions"""
     '''follow up on the product used at payment
     edit order status

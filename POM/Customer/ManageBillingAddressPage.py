@@ -1,10 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from POM.Administrator.AdminBase import AdminBase
 
-from Tests.BaseTestCase import BaseTestCase
 
-
-class ManageBillingAddressPage(BaseTestCase):
+class ManageBillingAddressPage(AdminBase):
     PageTitle = (By.CLASS_NAME,'page_title')
     BillingAddressLink = (By.PARTIAL_LINK_TEXT,'Manage my billing and shipping addresses')
     billingAddressList = (By.NAME , 'personal_address_bill')

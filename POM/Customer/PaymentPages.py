@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 from POM.Customer.searchPage import SearchPage
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 
 
-class PaymentPages(BaseTestCase):
+class PaymentPages(AdminBase):
     """ this class represent payment1 page elements manipulations and functions"""
     '''need assertions'''
 
