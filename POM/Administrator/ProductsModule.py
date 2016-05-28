@@ -23,7 +23,7 @@ class ProductsModule(AdminBase):
     reference = (By.NAME,'reference')
     code = (By.NAME,'technical_code')
     price = (By.NAME,'prix')
-    promotion = (By.NAME,'promotion')
+    colors = (By.CSS_SELECTOR,'select[name="couleurs[]"] option')
 
     # Second tab
     english_tab = (By.CSS_SELECTOR,'a[href="#tab_EN"]')
@@ -31,14 +31,14 @@ class ProductsModule(AdminBase):
     short_description = (By.NAME,'descriptif_en')
     description = (By.CSS_SELECTOR,'body')
     content_tab1 = (By.NAME,'tab1_title_en')
-    content_desc1 = (By.CSS_SELECTOR,'#xEditingArea > iframe')
     content_tab2 = (By.NAME,'tab2_title_en')
-    content_desc2= (By.CSS_SELECTOR,'#tab2_html_en___Frame')
     save_content = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(21) > td > input')
     confirm_tab2 =(By.CLASS_NAME,'alert alert-success fade in')
 
     # Third tab
     file_associated_tab = (By.CSS_SELECTOR,'a[href="#tab2"]')
+    add_image = (By.CSS_SELECTOR,'tr>td[class="title_label"]>a')
+    chose_file_button = (By.CSS_SELECTOR,'input[name="imagecouleur0_1"]')
     image_upload_button = (By.CSS_SELECTOR,'input[type="file"]')
 
     # Save & notify
@@ -66,29 +66,36 @@ class ProductsModule(AdminBase):
         self.driver.find_element(*ProductsModule.reference).send_keys(reference)
         self.driver.find_element(*ProductsModule.code).send_keys(code)
         self.driver.find_element(*ProductsModule.price).send_keys(price)
-
+        self.driver.find_elements(*ProductsModule.colors)[1].click()
         # add second tab
         self.driver.find_element(*ProductsModule.english_tab).click()
         self.driver.find_element(*ProductsModule.product_name).send_keys(name)
         self.driver.find_element(*ProductsModule.short_description).send_keys(short)
         self.driver.find_element(*ProductsModule.description).send_keys(description)
-
-        #add Third tab - Jihad
-        """self.driver.find_element(*ProductsModule.file_associated_tab).click()
-        no=0
-        for i in self.driver.find_elements(*ProductsModule.image_upload_button):
-            if no==0:
-                i.send_keys('C:\\Users\\csadek\\Downloads\\52A-2GWs.png')
-                no += 1
-        #os.system("C:\\Users\\csadek\\Desktop\Automation-Game\\Automation-Game\\Utilities\\jihad.exe")"""
-
-
         # submit
         self.driver.find_element(*ProductsModule.save_button).click()
         return self.driver.find_element(*ProductsModule.confirm_msg).text
 
+    #upload image to product
+    def uppload_image(self,username,password,name):
+        # Add product details
+        AdminBase.navigate_to_admin(self,username,password)
+        AdminBase.edit_product_navigator(self)
+
+        modify_product = self.driver.find_element_by_css_selector('a[title="Delete {}"]+a[title="Modify"]'.format(name)).get_attribute('href')
+        product_id=modify_product.split('&')
+        idmsg = product_id[1].split('=')
+        id = idmsg[1]
+        self.driver.find_element_by_css_selector('a[title="Delete {}"]+a[title="Modify"]'.format(name)).click()
+        #edit Third tab - Jihad
+        self.driver.find_element(*ProductsModule.file_associated_tab).click()
+        self.driver.find_element(*ProductsModule.add_image).click()
+        self.driver.find_element(*ProductsModule.chose_file_button).click()
+        os.system("..\\utilities\\jihad.exe")
+        self.driver.find_element(*ProductsModule.save_button).click()
+
     # edit product details
-    def edit_product(self,username,password,name,tab1,desc1,tab2,desc2):
+    def edit_product(self,username,password,name,tab1,tab2):
         # Add product details
         AdminBase.navigate_to_admin(self,username,password)
         AdminBase.edit_product_navigator(self)
@@ -105,12 +112,8 @@ class ProductsModule(AdminBase):
         self.driver.switch_to.window(window_after)
         self.driver.find_element(*ProductsModule.content_tab1).clear()
         self.driver.find_element(*ProductsModule.content_tab1).send_keys(tab1)
-        self.driver.find_element(*ProductsModule.content_desc1).clear()
-        self.driver.find_element(*ProductsModule.content_desc1).send_keys(desc1)
         self.driver.find_element(*ProductsModule.content_tab2).clear()
         self.driver.find_element(*ProductsModule.content_tab2).send_keys(tab2)
-        self.driver.find_element(*ProductsModule.content_desc2).clear()
-        self.driver.find_element(*ProductsModule.content_desc2).send_keys(desc2)
         self.driver.find_element(*ProductsModule.save_content).click()
         alert= self.driver.find_element(*ProductsModule.confirm_tab2).text
         self.driver.close()
