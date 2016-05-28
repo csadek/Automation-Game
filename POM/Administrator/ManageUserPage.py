@@ -4,22 +4,30 @@ from POM.Administrator.AdminBase import AdminBase
 
 class ManageUserPage(AdminBase):
     """ this class represents manage users page elements manipulations and functions"""
-    '''give user admin permission'''
-
+    """give user admin permission to be able to view all products"""
     # Locators
-    edit = (By.CSS_SELECTOR,'#tablesForm > tbody > tr:nth-child(2) > td:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(3) > a > img')
+    users_mail = (By.CSS_SELECTOR,'#tablesForm > tbody > tr > td:nth-child(3) > a')
     user_permission = (By.CSS_SELECTOR,'select[name="priv[]"] option')
-    save_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form:nth-child(1) > table > tbody > tr:nth-child(53) > td > p > input')
+    save_button = (By.CSS_SELECTOR,'input[class="btn btn-primary"')
+    alert =(By.CSS_SELECTOR,'div[class="alert alert-success fade in"] b')
 
-    # naviagate to admin pages
-    def admin_view(self):
-        self.driver.find_element(*ManageUserPage.admin_button).click()
-    #Add Product
-    def edit_user(self):
-        #Open edit user page
-
-        self.driver.find_element(*ManageUserPage.edit).click()
-        #change permission
-        for i in self.driver.find_elements(*ManageUserPage.user_permission):
-            if i.text != '[Jamaica] Client':
-                i.click()
+    # Edit user privileges
+    def edit_user(self,username,password,email):
+        # Open edit user page
+        AdminBase.navigate_to_admin(self,username,password)
+        AdminBase.view_users(self)
+        # click on edit for specific user
+        for i in self.driver.find_elements(*ManageUserPage.users_mail):
+            if i.text == email:
+                ref = i.get_attribute('href')
+                user_id=ref.split('=')
+                id = user_id[1]
+                self.driver.find_element_by_css_selector('a[href="http://10.1.22.67/Jamaica/administrer/utilisateurs.php?mode=modif&id_utilisateur={}&start=0"]'.format(id))
+                # change permission
+                for i in self.driver.find_elements(*ManageUserPage.user_permission):
+                    if i.text != '[Jamaica] Client':
+                        i.click()
+                self.driver.find_element(*ManageUserPage.save_button).click()
+                return self.driver.find_element(*ManageUserPage.alert).text
+            else:
+                continue

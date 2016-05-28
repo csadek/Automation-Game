@@ -12,17 +12,18 @@ class AddPromotionCodePage(AdminBase):
     end_date = (By.NAME, 'date_fin')
     discount = (By.NAME,'remise_valeur')
     status_active = (By.NAME,'etat')
-    add_coupon_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(15) > td > p > input')
+    add_coupon_button = (By.CSS_SELECTOR,'#total > div.container > div > div > p > a:nth-child(2)')
 
     # Alert
     alert = (By.CSS_SELECTOR,'div[class=\'alert alert-success fade in\']')
 
     # Add coupon
-    def AddCoupon(self,code_name,start,end,sale):
+    def AddCoupon(self,username,password,code_name,start,end,sale):
         # Open coupon codes page
-
+        AdminBase.navigate_to_admin(self,username,password)
+        AdminBase.add_coupon_navigator(self)
         # Add coupon
-        self.driver.find_element(*AddPromotionCodePage.add_coupon_link).click()
+        self.driver.find_element(*AddPromotionCodePage.add_coupon_button).click()
         self.driver.find_element(*AddPromotionCodePage.promotion_code).send_keys(code_name)
         self.driver.find_element(*AddPromotionCodePage.start_date).clear()
         self.driver.find_element(*AddPromotionCodePage.start_date).send_keys(start)

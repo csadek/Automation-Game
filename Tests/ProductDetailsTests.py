@@ -1,7 +1,6 @@
 from ddt import ddt, data, unpack
-
 from POM.Customer.ProductDetailsPage import ProductDetails
-from POM.BaseTestCase import BaseTestCase
+from Tests.BaseTestCase import BaseTestCase
 from POM.Customer.searchPage import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
 from Utilities.ReadExcel import ReadExcel

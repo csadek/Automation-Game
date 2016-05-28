@@ -1,6 +1,7 @@
 import os
+import time
 from selenium.webdriver.common.by import By
-from POM.BaseTestCase import BaseTestCase
+from Tests.BaseTestCase import BaseTestCase
 
 
 
@@ -73,10 +74,11 @@ class ProductDetails(BaseTestCase):
                 return False
 
     def print_Product_Details(self):
-         self.driver.find_element(*ProductDetails.printPage).click()
-         self.driver.get("http://10.1.22.67/Jamaica/achat/produit_details.php?id=1")
-         os.system("../Utilities/PrintScript.exe")
-         #autoit.Run("../Utilities/AutoIDscript.au3")
+        self.driver.find_element(*ProductDetails.printPage).click()
+        self.driver.get("http://10.1.22.67/Jamaica/achat/produit_details.php?id=1")
+        time.sleep(5)
+        os.startfile(r"C:\Users\csadek\Desktop\Automation-Game\Automation-Game\Utilities\PrintScript.exe")
+        print ("")
 
 
 

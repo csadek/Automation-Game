@@ -11,12 +11,12 @@ from ddt import ddt, data, unpack
 class LoginLogout(BaseTestCase):
 
     @unpack
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','LoginInvalid'))
+    @data(*ReadExcel.get_sheet('../Utilities/Data.xlsx','LoginInvalid'))
     def test_login_invalid(self,username,password,error):
         self.assertTrue(error,LoginLogoutPage.login_with_Invalid_credentials(self, username,password))
 
     @unpack
-    @data(*ReadExcel.get_data('../Utilities/Data.xlsx','LoginValid'))
+    @data(*ReadExcel.get_sheet('../Utilities/Data.xlsx','LoginValid'))
     def test_login_valid(self,username,password):
         self.assertEqual(username,LoginLogoutPage.login_with_valid_credentials(self,username,password))
 

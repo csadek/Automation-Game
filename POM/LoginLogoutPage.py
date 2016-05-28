@@ -5,7 +5,7 @@ from Tests.BaseTestCase import BaseTestCase
 class LoginLogoutPage(BaseTestCase):
     """ this class represent login page elements manipulations and functions"""
     # Navigator
-    login_link = (By.CSS_SELECTOR,'#header_login > div > a > span.hidden-xs > span.header_user_text')
+    login_link = (By.CLASS_NAME,'header_user_text')
     # Locators
     username = (By.CSS_SELECTOR,'#compte_login_mini > form > table > tbody > tr:nth-child(1) > td.module_login_email > input')
     password =(By.CSS_SELECTOR,'#compte_login_mini > form > table > tbody > tr:nth-child(2) > td.module_login_password > input')

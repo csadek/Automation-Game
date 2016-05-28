@@ -20,19 +20,13 @@ class AdminBase(BaseTestCase):
     customer_loyalty_link = (By.CSS_SELECTOR, '#menu_bc24ec8e')
     coupon_codes_link = (By.CSS_SELECTOR,'a[title="Coupon codes"]')
 
-    # constructor
-    def __init__(self, driver):
-        super(AdminBase, self.__init__(driver))
-
     # navigate to admin pages
     def navigate_to_admin(self,username, password):
-        if Conf.read_ini_config('Paths','LoginURL') in self.driver.current_url:
-            loginlogout_obj = LoginLogoutPage()
-            if self.driver.find_element(loginlogout_obj.logout_link).text == 'Log in':
-                loginlogout_obj.login_with_valid_credentials(username,password)
-                self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
-                self.driver.find_element(*AdminBase.admin_button).click()
-            else:
+        if Conf.read_ini_config('Paths','HomeURL') in self.driver.current_url:
+            self.driver.find_element(*AdminBase.admin_button).click()
+        elif Conf.read_ini_config('Paths','AdminURL') not in self.driver.current_url:
+            if self.driver.find_element(*LoginLogoutPage.login_link).text == 'Log in':
+                LoginLogoutPage.login_with_valid_credentials(self,username,password)
                 self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
                 self.driver.find_element(*AdminBase.admin_button).click()
 
