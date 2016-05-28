@@ -22,11 +22,11 @@ class ManageUserPage(AdminBase):
                 ref = i.get_attribute('href')
                 user_id=ref.split('=')
                 id = user_id[1]
-                self.driver.find_element_by_css_selector('a[href="http://10.1.22.67/Jamaica/administrer/utilisateurs.php?mode=modif&id_utilisateur={}&start=0"]'.format(id))
+                self.driver.find_element_by_css_selector('a[href="http://10.1.22.67/Jamaica/administrer/utilisateurs.php?mode=modif&id_utilisateur={}&start=0"]'.format(id)).click()
                 # change permission
-                for i in self.driver.find_elements(*ManageUserPage.user_permission):
-                    if i.text != '[Jamaica] Client':
-                        i.click()
+                for x in self.driver.find_elements(*ManageUserPage.user_permission):
+                    if x.text != '[Jamaica] Client':
+                        x.click()
                 self.driver.find_element(*ManageUserPage.save_button).click()
                 return self.driver.find_element(*ManageUserPage.alert).text
             else:

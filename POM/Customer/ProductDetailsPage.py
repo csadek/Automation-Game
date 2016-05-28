@@ -1,11 +1,11 @@
 import os
 import time
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 
 
 
-class ProductDetails(BaseTestCase):
+class ProductDetails(AdminBase):
     """ this class represent login page elements manipulations and functions"""
     '''assert on each function
     complete each process

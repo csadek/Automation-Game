@@ -1,10 +1,10 @@
 import pymysql
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 from POM.LoginLogoutPage import LoginLogoutPage
 
 
-class SearchPage(BaseTestCase):
+class SearchPage(AdminBase):
     '''search product with no category
     search all products at specific category
     assert on each function'''
@@ -19,12 +19,12 @@ class SearchPage(BaseTestCase):
 
 
     def search_valid_Data(self,userName,Password,ProductName,CategoryName):
-       LoginLogoutPage.login_with_valid_credentials(self,userName,Password)
-       self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
-       self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
-       self.driver.find_element(*SearchPage.SearchButton).click()
+        LoginLogoutPage.login_with_valid_credentials(self,userName,Password)
+        self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
+        self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
+        self.driver.find_element(*SearchPage.SearchButton).click()
 
-       """ if CategoryName == "":
+        if CategoryName == "":
             self.driver.find_element(*SearchPage.SearchBox).send_keys(ProductName)
         elif ProductName == "":
             self.driver.find_element(*SearchPage.CategoryList).send_keys(CategoryName)
@@ -35,7 +35,7 @@ class SearchPage(BaseTestCase):
             cur = conn.cursor()
             cur.execute("count FROM `peel_codes_promos` WHERE `date_fin`> {} && `etat` = 1".format(end_date))
             coupon_data = cur.fetchone()[0]
-            return coupon_data """
+            return coupon_data
 
 
     def search_not_exist_Product(self,ProductName):

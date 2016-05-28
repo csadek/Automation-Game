@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 from POM.Customer.searchPage import SearchPage
-from Tests.BaseTestCase import BaseTestCase
+from POM.Administrator.AdminBase import AdminBase
 
 
-class PaymentPages(BaseTestCase):
+class PaymentPages(AdminBase):
     """ this class represent payment1 page elements manipulations and functions"""
     '''need assertions'''
 
@@ -69,7 +69,6 @@ class PaymentPages(BaseTestCase):
     Comment_Fld = (By.CSS_SELECTOR,'fieldset:nth-child(2) > div > textarea')
     TermsCond = (By.CSS_SELECTOR,'div > p > input[type="checkbox"]')
     NextStep_Btn = (By.CSS_SELECTOR,'div:nth-child(2) > div > div > input')
-
 
     # Page5 'Summary' --> Needs more Verifying and assertions
     CompleteYourOrder_Page5_Btn = (By.CSS_SELECTOR,'div.totalcaddie > form > div.center > input')
