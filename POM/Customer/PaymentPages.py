@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from POM.Customer.searchPage import SearchPage
 from Tests.BaseTestCase import BaseTestCase
 
 
@@ -19,9 +20,9 @@ class PaymentPages(BaseTestCase):
     #Sale Time details message = i think it needs iframe becouse if i take the selector, the message words will be taken not the frame itself
 
     # page2
-    Color_Lst = (By.CSS_SELECTOR, '#couleur > option:nth-child(2)')
-    Size_Lst = (By.CSS_SELECTOR, '#taille > option:nth-child(5)')
-    Quantity_Fld = (By.CSS_SELECTOR, 'div.product_quantity.pull-left > input')
+    Color_Lst = (By.NAME, 'couleur')
+    Size_Lst = (By.ID, 'taille')
+    Quantity_Fld = (By.NAME, 'qte')
     Warning_Msg_Popup = (By.CSS_SELECTOR, 'div.modal-body > div')
     OK_Popup_Btn = (By.CSS_SELECTOR,'div.modal-footer > button')
     AddToCard_Btn = (By.CSS_SELECTOR, 'tr > td > div.product_order.pull-right > input')
@@ -76,15 +77,15 @@ class PaymentPages(BaseTestCase):
     # Page6 'Confirmation page'--> Needs more Verifying and assertions
     Confirm_Msg = (By.CSS_SELECTOR,'div.middle_column_repeat > h1')
 
-    def Pay_Oneproduct(self):
+    def Pay_Oneproduct(self,Color,Size,Quantity):
         self.driver.find_element(*PaymentPages.Product_1).click()
         self.driver.implicitly_wait(30)
-        self.driver.find_element(*PaymentPages.Color_Lst).click()
-        self.driver.implicitly_wait(30)
+        self.driver.find_element(*PaymentPages.Color_Lst).send_keys(Color)
+
         self.driver.find_element(*PaymentPages.Size_Lst).click()
-        self.driver.implicitly_wait(30)
+        self.driver.find_element(*PaymentPages.Size_Lst).send_keys(Size)
         self.driver.find_element(*PaymentPages.Quantity_Fld).clear()
-        self.driver.find_element(*PaymentPages.Quantity_Fld).send_keys('1')
+        self.driver.find_element(*PaymentPages.Quantity_Fld).send_keys(Quantity)
         self.driver.find_element(*PaymentPages.AddToCard_Btn).click()
         self.driver.implicitly_wait(30)
         self.driver.find_element(*PaymentPages.YourCart_Btn).click()
@@ -96,7 +97,7 @@ class PaymentPages(BaseTestCase):
         #self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
 
         # Page4 'Payment means'
-    def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country, comment):
+    def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country):
         self.driver.find_element(*PaymentPages.Company_Fld).clear()
         self.driver.find_element(*PaymentPages.Company_Fld).send_keys(company)
         self.driver.find_element(*PaymentPages.Surname_Fld).send_keys(surename)
@@ -109,7 +110,6 @@ class PaymentPages(BaseTestCase):
         self.driver.find_element(*PaymentPages.Town_Fld).send_keys(town)
         self.driver.find_element(*PaymentPages.Country_Lst).send_keys(country)
         self.driver.find_element(*PaymentPages.Payment_RdBtn).click()
-        self.driver.find_element(*PaymentPages.Comment_Fld).send_keys(comment)
         self.driver.find_element(*PaymentPages.TermsCond).click()
         self.driver.find_element(*PaymentPages.NextStep_Btn).click()
         # Page5

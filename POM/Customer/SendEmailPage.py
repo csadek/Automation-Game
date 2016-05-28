@@ -50,7 +50,7 @@ class SendEmailClass(BaseTestCase):
         self.driver.find_element(*SendEmailClass.email).click()
         self.driver.find_element(*SendEmailClass.searchBox).click()
 
-        self.driver.find_element(*SendEmailClass.searchBox).send_keys('ssssssssss')
+        self.driver.find_element(*SendEmailClass.searchBox).send_keys('hello')
         self.driver.find_element(*SendEmailClass.searchBox).submit()
         self.driver.find_element(*SendEmailClass.butn).click()
         self.driver.implicitly_wait(20)

@@ -1,4 +1,4 @@
-import pymysql    #install package
+import pymysql
 from selenium.webdriver.common.by import By
 from POM.Administrator.AdminBase import AdminBase
 
