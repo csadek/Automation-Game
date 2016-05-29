@@ -1,4 +1,5 @@
 import os
+import time
 from selenium.webdriver.common.by import By
 from POM.Administrator.AdminBase import AdminBase
 
@@ -92,6 +93,8 @@ class ProductsModule(AdminBase):
         self.driver.find_element(*ProductsModule.add_image).click()
         self.driver.find_element(*ProductsModule.chose_file_button).click()
         os.system("..\\utilities\\jihad.exe")
+        time.sleep(5)
+        self.driver.switch_to_window(self.driver.window_handles[0])
         self.driver.find_element(*ProductsModule.save_button).click()
 
     # edit product details

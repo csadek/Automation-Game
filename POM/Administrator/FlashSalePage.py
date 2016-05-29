@@ -20,7 +20,7 @@ class FlashSalePage(AdminBase):
 
     # product locators
     view_online = (By.CSS_SELECTOR,'#page_title > h1 > a')
-    price = (By.ID,'prix_28')
+    price = (By.ID,'prix_80')
     old_price = (By.CSS_SELECTOR,'td[class="middle"] del')
     remaining_time = (By.CSS_SELECTOR,'div.alert.alert-warning')
 
