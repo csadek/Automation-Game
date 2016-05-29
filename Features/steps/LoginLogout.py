@@ -11,8 +11,6 @@ user_name = ''
 
 @given('The user is at the Home Page')
 def step_impl(context):
-    context.browser = webdriver.Firefox()
-    context.browser.implicitly_wait(30)
     context.browser.get('http://10.1.22.67/Jamaica/membre.php')
 
 @when('The user Logs In with Valid Credentials')

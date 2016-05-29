@@ -5,7 +5,7 @@ from Utilities.ReadExcel import ReadExcel
 
 
 @ddt
-class AddProduct(BaseTestCase):
+class Product(BaseTestCase):
 
     @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','Clothes']))
     @unpack

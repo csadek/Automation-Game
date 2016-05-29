@@ -1,3 +1,4 @@
+import ConfigReader as Conf
 from selenium.webdriver.common.by import By
 from Tests.BaseTestCase import BaseTestCase
 
@@ -26,13 +27,16 @@ class LoginLogoutPage(BaseTestCase):
         return self.driver.find_element(*LoginLogoutPage.Error_LBL)
 
     def login_with_valid_credentials(self, username, password):
-        self.driver.find_element(*LoginLogoutPage.login_link).click()
-        self.driver.find_element(*LoginLogoutPage.username).clear()
-        self.driver.find_element(*LoginLogoutPage.username).send_keys(username)
-        self.driver.find_element(*LoginLogoutPage.password).clear()
-        self.driver.find_element(*LoginLogoutPage.password).send_keys(password)
-        self.driver.find_element(*LoginLogoutPage.login_button).click()
-        return self.driver.find_element(*LoginLogoutPage.login_link).text
+        if Conf.read_ini_config('Paths','AdminURL') in self.driver.current_url:
+            self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
+        if self.driver.find_element(*LoginLogoutPage.login_link).text == 'Log in':
+            self.driver.find_element(*LoginLogoutPage.login_link).click()
+            self.driver.find_element(*LoginLogoutPage.username).clear()
+            self.driver.find_element(*LoginLogoutPage.username).send_keys(username)
+            self.driver.find_element(*LoginLogoutPage.password).clear()
+            self.driver.find_element(*LoginLogoutPage.password).send_keys(password)
+            self.driver.find_element(*LoginLogoutPage.login_button).click()
+            return self.driver.find_element(*LoginLogoutPage.login_link).text
 
     def logout(self):
         if 'http://10.1.22.67/Jamaica/administrer' in self.driver.current_url:

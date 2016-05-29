@@ -46,6 +46,7 @@ class PaymentPages(AdminBase):
     PromoCode_Fld = (By.CSS_SELECTOR, '#code_promo')
     UpdateYourCart_Btn = (By.CSS_SELECTOR, 'div.code_promo > div:nth-child(2) > a')
     ShippingZone_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(1) > select')
+    Shipping_con = (By.CSS_SELECTOR,'option[value="1"')
     MeansOfShipping_Lst = (By.CSS_SELECTOR, '#choix_zone > p:nth-child(3) > select > option:nth-child(3)')
     CompeleteUrOrder_Btn = (By.CSS_SELECTOR, 'tr:nth-child(1) > td > p > button')
     CompleteYourOrder_Popup_Btn = (By.CSS_SELECTOR, 'div.modal-body > div > div > a')
@@ -76,11 +77,10 @@ class PaymentPages(AdminBase):
     # Page6 'Confirmation page'--> Needs more Verifying and assertions
     Confirm_Msg = (By.CSS_SELECTOR,'div.middle_column_repeat > h1')
 
-    def Pay_Oneproduct(self,Color,Size,Quantity):
+    def pay_product(self,Color,Size,Quantity):
         self.driver.find_element(*PaymentPages.Product_1).click()
         self.driver.implicitly_wait(30)
         self.driver.find_element(*PaymentPages.Color_Lst).send_keys(Color)
-
         self.driver.find_element(*PaymentPages.Size_Lst).click()
         self.driver.find_element(*PaymentPages.Size_Lst).send_keys(Size)
         self.driver.find_element(*PaymentPages.Quantity_Fld).clear()
@@ -89,31 +89,16 @@ class PaymentPages(AdminBase):
         self.driver.implicitly_wait(30)
         self.driver.find_element(*PaymentPages.YourCart_Btn).click()
         self.driver.find_element(*PaymentPages.ShippingZone_Lst).click()
-        self.driver.implicitly_wait(30)
+        self.driver.find_element(*PaymentPages.Shipping_con).click()
         self.driver.find_element(*PaymentPages.MeansOfShipping_Lst).click()
         #The next page will be changed according to Means Of Shipping, So in this Method Pickup in store will be chosen
         self.driver.find_element(*PaymentPages.CompeleteUrOrder_Btn).click()
-        #self.driver.find_element(*PaymentPages.CompleteYourOrder_Popup_Btn).click()
-
         # Page4 'Payment means'
-    def Billing_Address(self, company, surename, firstname, email, phone, address, zipcode, town, country):
-        self.driver.find_element(*PaymentPages.Company_Fld).clear()
-        self.driver.find_element(*PaymentPages.Company_Fld).send_keys(company)
-        self.driver.find_element(*PaymentPages.Surname_Fld).send_keys(surename)
-        self.driver.find_element(*PaymentPages.FirstName_Fld).send_keys(firstname)
-        self.driver.find_element(*PaymentPages.Email_Fld).clear()
-        self.driver.find_element(*PaymentPages.Email_Fld).send_keys(email)
-        self.driver.find_element(*PaymentPages.Phone_Fld).send_keys(phone)
-        self.driver.find_element(*PaymentPages.Address_Fld).send_keys(address)
-        self.driver.find_element(*PaymentPages.ZipCode_Fld).send_keys(zipcode)
-        self.driver.find_element(*PaymentPages.Town_Fld).send_keys(town)
-        self.driver.find_element(*PaymentPages.Country_Lst).send_keys(country)
         self.driver.find_element(*PaymentPages.Payment_RdBtn).click()
         self.driver.find_element(*PaymentPages.TermsCond).click()
         self.driver.find_element(*PaymentPages.NextStep_Btn).click()
         # Page5
         self.driver.find_element(*PaymentPages.CompleteYourOrder_Page5_Btn).click()
         # Page6 'Confirmation page'--> Needs more Verifying and assertions
-    def get_Confirm_Msg(self):
         self.driver.implicitly_wait(10)
         return self.driver.find_element(*PaymentPages.Confirm_Msg).text

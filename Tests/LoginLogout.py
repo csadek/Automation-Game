@@ -12,7 +12,7 @@ class LoginLogout(BaseTestCase):
 
     @unpack
     @data(*ReadExcel.get_sheet('../Utilities/Data.xlsx','LoginInvalid'))
-    def test_login_invalid(self,username,password,error):
+    def test_login_invalid(self,scen,username,password,error):
         self.assertTrue(error,LoginLogoutPage.login_with_Invalid_credentials(self, username,password))
 
     @unpack

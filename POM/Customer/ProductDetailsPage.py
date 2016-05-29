@@ -1,16 +1,11 @@
-import os
-import time
 from selenium.webdriver.common.by import By
 from POM.Administrator.AdminBase import AdminBase
+from POM.Customer.CustomerBase import CustomerBase
 
 
 
-class ProductDetails(AdminBase):
+class ProductDetailsPage(CustomerBase):
     """ this class represent login page elements manipulations and functions"""
-    '''assert on each function
-    complete each process
-    integrate with SMTP to check the mail'''
-
     # Locators
     sendEmailLink = (By.PARTIAL_LINK_TEXT,'Send email to your friend')
     addToNotePad = (By.PARTIAL_LINK_TEXT,'Add to notepad')
@@ -35,42 +30,35 @@ class ProductDetails(AdminBase):
     confirmMsg=(By.CSS_SELECTOR,'#main_content > div:nth-child(1) > div > div > div.middle_column_repeat > div.alert.alert-success.fade.in')
 
 
-    def getProductDetails(self,ProductName):
+    def get_product_details(self,ProductName):
         self.driver.find_element_by_partial_link_text(ProductName).click()
 
-    def getDetailsTab(self):
-        self.driver.find_element(*ProductDetails.availability).click()
-        self.driver.find_element(*ProductDetails.washingTab).click()
+    def ge_details_tab(self):
+        self.driver.find_element(*ProductDetailsPage.availability).click()
+        self.driver.find_element(*ProductDetailsPage.washingTab).click()
 
     def zoom_product_image(self):
-         element=self.driver.find_element(*ProductDetails.zoomTool)
+         element=self.driver.find_element(*ProductDetailsPage.zoomTool)
          self.driver.implicitly_wait(30)
 
     def send_email(self):
-        self.driver.find_element(*ProductDetails.sendEmailLink).click()
+        self.driver.find_element(*ProductDetailsPage.sendEmailLink).click()
 
     def give_your_Opinion_page(self,Opinion):
-         self.driver.find_element(*ProductDetails.opinionLink).click()
-         self.driver.find_element(*ProductDetails.yourOpinionText).send_keys(Opinion)
-         self.driver.find_element(*ProductDetails.rate).click()
-         self.driver.find_element(*ProductDetails.sendOpinionBtn).click()
-
-        # return self.driver.find_element(*ProductDetails.confirmMsg).text
-
+         self.driver.find_element(*ProductDetailsPage.opinionLink).click()
+         self.driver.find_element(*ProductDetailsPage.yourOpinionText).send_keys(Opinion)
+         self.driver.find_element(*ProductDetailsPage.rate).click()
+         self.driver.find_element(*ProductDetailsPage.sendOpinionBtn).click()
 
     def add_to_notePad_Page(self,product_name):
-        self.driver.find_element(*ProductDetails.addToNotePad).click()
-        self.driver.find_element(*ProductDetails.MyAccountLink).click()
-        self.driver.find_element(*ProductDetails.myReminder).click()
-        for i in self.driver.find_elements(*ProductDetails.reminder_name):
+        self.driver.find_element(*ProductDetailsPage.addToNotePad).click()
+        self.driver.find_element(*ProductDetailsPage.MyAccountLink).click()
+        self.driver.find_element(*ProductDetailsPage.myReminder).click()
+        for i in self.driver.find_elements(*ProductDetailsPage.reminder_name):
             if i.text == product_name:
                 return True
             else:
                 return False
-
-
-    def __init__(self, driver):
-        super(ProductDetails, self).__init__(driver)
 
 
 

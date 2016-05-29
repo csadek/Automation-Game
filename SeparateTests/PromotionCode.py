@@ -3,7 +3,8 @@ import datetime as dt
 import os
 import sys
 from Utilities import HTMLTestRunner
-from Tests.SmokeTests import Smoke
+from Tests.AddpromotionCode import AddPromotionCode
+
 
 
 # navigate to the relative paths from the batch file
@@ -14,10 +15,10 @@ current_directory = (os.path.dirname(os.getcwd()))
 outfile = open(current_directory + '\Reports\TestReport_' + dt.datetime.now().strftime("%Y-%m-%d_%H%M%S"+ ".html"), "w")
 
 # get all tests for the system test
-Smoke_tests = unittest.TestLoader().loadTestsFromTestCase(Smoke)
+Add_Promotion_Code_test = unittest.TestLoader().loadTestsFromTestCase(AddPromotionCode)
 
 #   Creating a Test Suite using the imported Test Case Files
-test_full = unittest.TestSuite([Smoke_tests])
+test_full = unittest.TestSuite([Add_Promotion_Code_test])
 
 runner = HTMLTestRunner.HTMLTestRunner(
     stream=outfile,
@@ -26,4 +27,4 @@ runner = HTMLTestRunner.HTMLTestRunner(
 )
 
 # run the suite using HTMLTEstRunner
-# runner.run(test_full)
+#runner.run(test_full)
