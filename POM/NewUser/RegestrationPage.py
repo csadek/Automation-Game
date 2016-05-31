@@ -6,6 +6,7 @@ from POM.LoginLogoutPage import LoginLogoutPage
 from Tests.BaseTestCase import BaseTestCase
 
 
+
 class RegistrationPage(BaseTestCase):
     """ this class represent Registration elements manipulations and functions"""
     # Locators
