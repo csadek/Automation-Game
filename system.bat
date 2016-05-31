@@ -1,1 +1,0 @@
-python ..\Automation-Game\TestSuits\SystemTest-TestSuit.py

@@ -7,7 +7,6 @@ from POM.NewUser.RegestrationPage import RegistrationPage
 from POM.Administrator.ManageUserPage import ManageUserPage
 from POM.Customer.ManageBillingAddressPage import ManageBillingAddressPage
 from POM.Customer.searchPage import SearchPage
-from POM.Customer.ProductDetailsPage import ProductDetailsPage
 from POM.Customer.PaymentPages import PaymentPages
 from POM.Customer.FollowUpOrderPage import FollowUpOrdersPage
 from Utilities.ReadExcel import ReadExcel

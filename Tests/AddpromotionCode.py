@@ -1,7 +1,6 @@
 from ddt import ddt, data, unpack
 
 from POM.Administrator.PromotionCodePage import AddPromotionCodePage
-from POM.LoginLogoutPage import LoginLogoutPage
 from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 

@@ -1,8 +1,9 @@
 from ddt import ddt, data, unpack
+
+from POM.Administrator.ManageUserPage import ManageUserPage
 from POM.NewUser.RegestrationPage import RegistrationPage
 from Tests.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
-from POM.Administrator.ManageUserPage import ManageUserPage
 
 
 @ddt

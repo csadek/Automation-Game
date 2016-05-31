@@ -1,0 +1,3 @@
+ddt
+selenium == 2.48.0
+pymysql ==

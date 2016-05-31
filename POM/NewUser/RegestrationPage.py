@@ -1,8 +1,9 @@
-from selenium.webdriver.common.by import By
 import pymysql
-from Tests.BaseTestCase import BaseTestCase
+from selenium.webdriver.common.by import By
+
 import ConfigReader as Conf
 from POM.LoginLogoutPage import LoginLogoutPage
+from Tests.BaseTestCase import BaseTestCase
 
 
 class RegistrationPage(BaseTestCase):
