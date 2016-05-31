@@ -2,14 +2,14 @@ from ddt import ddt, data, unpack
 
 from POM.Customer.ManageBillingAddressPage import ManageBillingAddressPage
 from POM.LoginLogoutPage import LoginLogoutPage
-from Tests.BaseTestCase import BaseTestCase
+from Utilities.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 
 @ddt
 class MangeBilling(BaseTestCase):
 
-    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','ShppingAddress']))
+    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['Admin','ShppingAddress']))
     @unpack
     def test_manage_billing(self,name,password,surAddress, surName, firstName, email, company, address, zipCode,
                                                 town, country, phone):

@@ -1,8 +1,7 @@
 from selenium.webdriver.common.by import By
-
-import ConfigReader as Conf
 from POM.LoginLogoutPage import LoginLogoutPage
-from Tests.BaseTestCase import BaseTestCase
+from Utilities import ConfigReader as Conf
+from Utilities.BaseTestCase import BaseTestCase
 
 
 class AdminBase(BaseTestCase):
@@ -27,7 +26,7 @@ class AdminBase(BaseTestCase):
             self.driver.find_element(*AdminBase.admin_button).click()
         elif Conf.read_ini_config('Paths','AdminURL') not in self.driver.current_url:
             if self.driver.find_element(*LoginLogoutPage.login_link).text == 'Log in':
-                LoginLogoutPage.login_with_valid_credentials(self,username,password)
+                LoginLogoutPage.login(self,username,password)
                 self.driver.get(Conf.read_ini_config('Paths','HomeURL'))
                 self.driver.find_element(*AdminBase.admin_button).click()
 

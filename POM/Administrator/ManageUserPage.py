@@ -17,9 +17,9 @@ class ManageUserPage(AdminBase):
         AdminBase.navigate_to_admin(self,username,password)
         AdminBase.view_users(self)
         # click on edit for specific user
-        for i in self.driver.find_elements(*ManageUserPage.users_mail):
-            if i.text == email:
-                ref = i.get_attribute('href')
+        for user in self.driver.find_elements(*ManageUserPage.users_mail):
+            if user.text == email:
+                ref = user.get_attribute('href')
                 user_id=ref.split('=')
                 id = user_id[1]
                 self.driver.find_element_by_css_selector('a[href="http://10.1.22.67/Jamaica/administrer/utilisateurs.php?mode=modif&id_utilisateur={}&start=0"]'.format(id)).click()

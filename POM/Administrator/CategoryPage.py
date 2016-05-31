@@ -33,9 +33,9 @@ class CategoryPage(AdminBase):
             self.driver.find_element(*CategoryPage.root_category).click()
         else:
             # Add sub category
-            for i in self.driver.find_elements(*CategoryPage.parents):
-                if i.text == parent:
-                    i.click()
+            for category in self.driver.find_elements(*CategoryPage.parents):
+                if category.text == parent:
+                    category.click()
         self.driver.find_element(*CategoryPage.view_on_home).click()
         self.driver.find_element(*CategoryPage.state_online).click()
         self.driver.find_element(*CategoryPage.name).send_keys(categoryname)
@@ -69,7 +69,6 @@ class CategoryPage(AdminBase):
         AdminBase.edit_category_navigator(self)
 
         # delete category
-        id = ''
         # get list of categories names
         for i in self.driver.find_elements_by_css_selector('tr[class="classe1"] td:nth-child(4) a'):
             if i.text == categoryname:

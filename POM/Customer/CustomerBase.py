@@ -1,6 +1,6 @@
-import ConfigReader as Conf
 from POM.LoginLogoutPage import LoginLogoutPage
-from Tests.BaseTestCase import BaseTestCase
+from Utilities import ConfigReader as Conf
+from Utilities.BaseTestCase import BaseTestCase
 
 
 class CustomerBase(BaseTestCase):

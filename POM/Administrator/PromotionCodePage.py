@@ -1,4 +1,4 @@
-import pymysql
+from Utilities.DBConnect import DBConnect
 from selenium.webdriver.common.by import By
 from POM.Administrator.AdminBase import AdminBase
 
@@ -13,7 +13,7 @@ class AddPromotionCodePage(AdminBase):
     discount = (By.NAME,'remise_valeur')
     status_active = (By.NAME,'etat')
     add_coupon_button = (By.CSS_SELECTOR,'#total > div.container > div > div > p > a:nth-child(4)')
-    submitbutton = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(15) > td > p > input')
+    submit_button = (By.CSS_SELECTOR,'#total > div.container > div > div > form > table > tbody > tr:nth-child(15) > td > p > input')
 
     # Alert
     alert = (By.CSS_SELECTOR,'div[class=\'alert alert-success fade in\']')
@@ -35,16 +35,12 @@ class AddPromotionCodePage(AdminBase):
         self.driver.find_element(*AddPromotionCodePage.status_active).click()
 
         # submit
-        self.driver.find_element(*AddPromotionCodePage.submitbutton).click()
+        self.driver.find_element(*AddPromotionCodePage.submit_button).click()
         return self.driver.find_element(*AddPromotionCodePage.alert).text
 
     def get_valid_coupon_data(self, end_date):
-        # Connect to database to search for valid code using end date and state active
-        #TODO: this should be added at utilities
-        conn = pymysql.connect(host='10.1.22.67', port=3306, user='Selenium', passwd='python', db='peel')
-        cur = conn.cursor()
-        cur.execute("SELECT `nom`, `remise_valeur` FROM `peel_codes_promos` WHERE `date_fin`> {} && `etat` = 1".format(end_date))
-        coupon_data = cur.fetchone()[0][1]
-        return coupon_data
+        # search for valid code at database using end date and state active then it returns its name and amount of promotion
+        coupon_data = DBConnect.execute_select_query("SELECT `nom`, `remise_valeur` FROM `peel_codes_promos` WHERE `date_fin`> {} && `etat` = 1".format(end_date))
+        return coupon_data[0][1]
 
 

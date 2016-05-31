@@ -89,10 +89,3 @@ class FlashSalePage(AdminBase):
             return True
         else:
             return False
-
-
-        
-
-
-
-

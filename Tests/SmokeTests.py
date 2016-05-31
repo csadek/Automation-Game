@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(sys.path[0], os.pardir)))
-from Tests.BaseTestCase import BaseTestCase
+from Utilities.BaseTestCase import BaseTestCase
 from POM.LoginLogoutPage import LoginLogoutPage
 from POM.NewUser.RegestrationPage import RegistrationPage
 from POM.Administrator.ManageUserPage import ManageUserPage
@@ -17,13 +17,13 @@ from ddt import ddt, data, unpack
 class Smoke(BaseTestCase):
 
     @unpack
-    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','Registration']))
-    def test_smoke_testcase1(self,admin,adminpass,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website, confirm):
-        self.assertIn(confirm,RegistrationPage.Register_with_valid_input(self,email,nickname,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website))
-        self.assertTrue(email,RegistrationPage.verify_user_at_DB(self,nickname))
-        self.assertIn(email,ManageUserPage.edit_user(self,admin,adminpass,email))
+    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['Admin','Registration']))
+    def test_smoke_testcase1(self,admin,adminpass,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website, confirm):
+        self.assertIn(confirm,RegistrationPage.Register_with_valid_input(self,password,firstName,surname,company,capacity,dateofbirth,phone,mobile,address,zipcode,town,country,how_do_you_know_our_website))
+        self.assertTrue(RegistrationPage.mail,RegistrationPage.verify_user_at_DB(self))
+        self.assertIn(RegistrationPage.mail,ManageUserPage.edit_user(self,admin,adminpass,RegistrationPage.mail))
         LoginLogoutPage.logout(self)
-        self.assertEqual(email,LoginLogoutPage.login_with_valid_credentials(self,nickname,password))
+        self.assertEqual(RegistrationPage.mail,LoginLogoutPage.login(self,RegistrationPage.username,password))
 
     @unpack
     @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['Products','ShppingAddress']))

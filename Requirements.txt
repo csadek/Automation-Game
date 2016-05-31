@@ -1,3 +1,4 @@
 ddt
-selenium == 2.48.0
+selenium == 2.53.2
 pymysql ==
+pip == 8.1.1

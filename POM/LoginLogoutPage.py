@@ -1,6 +1,7 @@
-import ConfigReader as Conf
 from selenium.webdriver.common.by import By
-from Tests.BaseTestCase import BaseTestCase
+
+from Utilities import ConfigReader as Conf
+from Utilities.BaseTestCase import BaseTestCase
 
 
 class LoginLogoutPage(BaseTestCase):

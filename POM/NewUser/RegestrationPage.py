@@ -1,14 +1,14 @@
-import pymysql
 from selenium.webdriver.common.by import By
-
-import ConfigReader as Conf
 from POM.LoginLogoutPage import LoginLogoutPage
-from Tests.BaseTestCase import BaseTestCase
-
+from Utilities import ConfigReader as Conf
+from Utilities.BaseTestCase import BaseTestCase
+from Utilities.DBConnect import DBConnect
+from Utilities.DataRandomGenerator import RandomGen
 
 
 class RegistrationPage(BaseTestCase):
     """ this class represent Registration elements manipulations and functions"""
+
     # Locators
     Email = (By.CSS_SELECTOR,'#email')
     Nickname = (By.CSS_SELECTOR,'#pseudo')
@@ -22,21 +22,24 @@ class RegistrationPage(BaseTestCase):
     Zipcode = (By.ID, 'code_postal')
     Town = (By.ID, 'ville')
     Title =(By.NAME,'civilite')
-    #Title = (By.CSS_SELECTOR,'div:nth-child(2) > div:nth-child(1) > span.enregistrementdroite > input[type="radio"]:nth-child(1)')
     Capacity = select_capacity = (By.ID, "fonction")
     DateOfBirth = (By.CSS_SELECTOR,'#naissance')
     Country = select_Country = (By.ID, "pays")
-    How_do_you_know_our_website = select_Howdoyouknowourwebsite = (By.ID, "origin")
+    How_do_you_know_our_website = (By.ID, "origin")
     Code = (By.CSS_SELECTOR,'#code')
     FirstSelection = (By.ID, 'newsletter')
     SecondSelection = (By.ID, 'commercial')
-    OpenAccount = (By.CSS_SELECTOR, 'tr:nth-child(2) > td > div > p.center > input.btn.btn-primary.btn-lg')
+    OpenAccount = (By.CSS_SELECTOR, 'input[class="btn btn-primary btn-lg"')
     Thanks_Msg = (By.CSS_SELECTOR, 'div.middle_column_repeat > p')
 
-    def Register_with_valid_input(self,email, nickname, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town, country, how_do_you_know_our_website):
+    # mail & username
+    mail = RandomGen.Random_Email(7)
+    username = RandomGen.Random_char(6)
+
+    def Register_with_valid_input(self, password, firstname, surname, company, capacity, dateofbirth, phone, mobile,address, zipcode, town, country, how_do_you_know_our_website):
         self.driver.get(Conf.read_ini_config('Paths','RegisterURL'))
-        self.driver.find_element(*RegistrationPage.Email).send_keys(email)
-        self.driver.find_element(*RegistrationPage.Nickname).send_keys(nickname)
+        self.driver.find_element(*RegistrationPage.Email).send_keys(*RegistrationPage.mail)
+        self.driver.find_element(*RegistrationPage.Nickname).send_keys(*RegistrationPage.username)
         self.driver.find_element(*RegistrationPage.Password).send_keys(password)
         self.driver.find_element(*RegistrationPage.FirstName).send_keys(firstname)
         self.driver.find_element(*RegistrationPage.Surname).send_keys(surname)
@@ -61,10 +64,6 @@ class RegistrationPage(BaseTestCase):
         return alert
 
     def verify_user_at_DB(self, username):
-        # Connect to database to search for user using username
-        #TODO: this should be added at utilities
-        conn = pymysql.connect(host='10.1.22.67', port=3306, user='Selenium', passwd='python', db='peel')
-        cur = conn.cursor()
-        cur.execute("SELECT `email` FROM `peel_utilisateurs` WHERE `pseudo` ='{}' ".format(username))
-        email = cur.fetchone()
+        # search for the registered user at the DB using his username
+        email = DBConnect.execute_select_query("SELECT `email` FROM `peel_utilisateurs` WHERE `pseudo` ='{}' ".format(*RegistrationPage.username))
         return email

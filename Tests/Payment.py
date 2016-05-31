@@ -3,14 +3,14 @@ from ddt import ddt, data, unpack
 from POM.Customer.PaymentPages import PaymentPages
 from POM.Customer.searchPage import SearchPage
 from POM.LoginLogoutPage import LoginLogoutPage
-from Tests.BaseTestCase import BaseTestCase
+from Utilities.BaseTestCase import BaseTestCase
 from Utilities.ReadExcel import ReadExcel
 
 
 @ddt
 class Payment(BaseTestCase):
 
-    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['LoginValid','Products']))
+    @data(*ReadExcel.get_sheets('../Utilities/Data.xlsx',['Admin','Products']))
     @unpack
     def test_payment(self,userName,password,productName,Category):
         LoginLogoutPage.login_with_valid_credentials(self,userName,password)

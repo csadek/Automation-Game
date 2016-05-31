@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
+
 from POM.Customer.CustomerBase import CustomerBase
-import ConfigReader as Conf
+from Utilities import ConfigReader as Conf
 
 
 class FollowUpOrdersPage(CustomerBase):

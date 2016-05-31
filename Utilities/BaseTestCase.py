@@ -1,6 +1,6 @@
 import unittest
-import ConfigReader as Conf
 from selenium import webdriver
+from Utilities import ConfigReader as Conf
 
 
 # BaseTestCase class, which will provide us with the setUp() and tearDown() methods

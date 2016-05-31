@@ -92,7 +92,7 @@ class ProductsModule(AdminBase):
         self.driver.find_element(*ProductsModule.file_associated_tab).click()
         self.driver.find_element(*ProductsModule.add_image).click()
         self.driver.find_element(*ProductsModule.chose_file_button).click()
-        os.system("..\\utilities\\jihad.exe")
+        os.system("..\\utilities\\UploadImg.exe")
         time.sleep(5)
         self.driver.switch_to_window(self.driver.window_handles[0])
         self.driver.find_element(*ProductsModule.save_button).click()
